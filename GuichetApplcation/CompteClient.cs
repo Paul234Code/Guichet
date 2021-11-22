@@ -32,7 +32,7 @@ namespace Guichet
         public void MakeDeposit(decimal amount, DateTime date, string note)
         {
         }
-        public void MakeWithdrawal(decimal amount, DateTime date, string note)
+        public void MakeWithdrawal(decimal amount, DateTime date, string note) 
         {
         }
     }

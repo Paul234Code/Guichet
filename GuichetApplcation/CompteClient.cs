@@ -18,7 +18,7 @@ namespace Guichet
         public string Number { get; }
         public string Owner { get; set; }
         public decimal Balance { get; }
-        // Le constructeur
+        // Le constructeur de la classe CompteClient
         public CompteClient(string nomProprietaire, decimal balance, EtatDuCompte etatDuCompte)
         {
             numero = numeroID.ToString();

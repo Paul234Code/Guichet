@@ -79,5 +79,18 @@ namespace Guichet
 
             Receiver.Deposer(amount, DateTime.Now, "Depot");
         }
+        // Fonction qui affiche l'historique du compte
+        public string GetAccountHistory()
+        {
+            var report = new StringBuilder();
+            decimal balance = 0;
+            report.AppendLine("Date\t\tAmount\tBalance\tNote");
+            foreach (var item in allTransactions)
+            {
+                balance += item.Amount;
+                report.AppendLine($"{item.Date.ToShortDateString()}\t{item.Amount}\t{balance}\t{item.Notes}");
+            }
+            return report.ToString();
+        }
     }
 }

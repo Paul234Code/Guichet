@@ -22,5 +22,15 @@ namespace Guichet
             Console.WriteLine("2- Se connecter comme administrateur");
             Console.WriteLine("3- Quitter");
         }
+        // methode qui retourne le solde du guichet
+        public decimal getSoldeGuichet()
+        {
+            return Solde;
+        }
+        // Affiche le solde du guichet
+        public void AfficherSoldeGuichet()
+        {
+
+        }
     }
 }

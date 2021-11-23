@@ -10,6 +10,6 @@ namespace Guichet
     {
         private CompteClient client;
         private static char[] nomUtilisateur = new char[7];
-        private char[] NIP = new char[3];
+        private char[] userPassword = new char[3]; 
     }
 }

@@ -12,5 +12,12 @@ namespace Guichet
         private CompteEpargne compteEpargne;
         private static char[] nomUtilisateur = new char[7];
         private char[] userPassword = new char[3]; 
+        // Le constructeur
+        public Usager()
+        {
+            compteCheque = new CompteCheque();
+            compteEpargne = new CompteEpargne();
+
+        }
     }
 }

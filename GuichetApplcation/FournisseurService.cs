@@ -9,6 +9,17 @@ namespace Guichet
         // Les proprietes
         public string NomFournisseur { get; set; }
         public List<Facture> ListeFacture { get; set; } 
+        // Le  Constructeur de la classe Fournisseur
+        public FournisseurService(string nomFournisseur)
+        {
+            this.nomFournisseur = nomFournisseur;
+            listeFacture = new List<Facture>();
+        }
+        // Ajouter une facture 
+        public void AjouterFacture(Facture facture)
+        {
+            listeFacture.Add(facture);
+        }
 
 
     }

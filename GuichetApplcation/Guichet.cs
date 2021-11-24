@@ -8,17 +8,16 @@ namespace Guichet
 {
     public class Guichet
     {
-       
-        
+        List<Client> ListeClients = new List<Client>();
+
         private EtatDuSysteme mode;
         private decimal solde;
 
-        List<Client> ListeClients = new List<Client>();
-        ListeClients.Add(new client1("Firdaous", 1234);
-        ListeClients.Add(new client2("JonamDes",4321);
 
-        ListeClients.Add(new client3)
-
+        public void ajouterClient(Client client)
+        {
+            ListeClients.Add(client);
+        }
 
 
         // Menu Utilisateur

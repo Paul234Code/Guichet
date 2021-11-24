@@ -10,5 +10,15 @@ namespace Guichet
         public List<Facture> ListeFacture { get; set; } 
 
 
+        public FournisseurService(string nomFournisseur, List<Facture> listeFacture)
+        {
+        }
+
+        public void ajouterNoFacture(Facture facture)
+        {
+            ListeFacture.Add(facture);
+        }
+
+
     }
 }

@@ -143,13 +143,12 @@ namespace Guichet
         {
             switch (fournisseur)
             {
-                case "1":
-                    Amazon();
+                case "Amazon":
+                 break;
+                case "Bell":
                     break;
-                case "2":
-                    Bell();
+                case "Videotron": 
                     break;
-                case "3":
             }
         }
 

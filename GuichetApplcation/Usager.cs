@@ -14,11 +14,11 @@ namespace Guichet
         private static char[] nomUtilisateur = new char[8];
         private char[] userPassword = new char[4];
         // Le constructeur
-        public Usager()
+        public Usager(CompteEpargne compteEpargne,CompteCheque compteCheque,Guichet guichet)
         {
-            compteCheque = new CompteCheque();
-            compteEpargne = new CompteEpargne();
-            guichet = new Guichet();
+            this.compteCheque = compteCheque;
+            this.compteEpargne = compteEpargne;
+            this.guichet = guichet;
 
         }
         // pour changer le mot de passe

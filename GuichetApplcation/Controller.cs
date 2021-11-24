@@ -8,7 +8,7 @@ namespace Guichet
     {
         static void Main(string[] args)
         {
-            Guichet guichet = new Guichet();
+            Guichet guichet = new ();
             List<Client> ListeClients = new List<Client>();
            
 

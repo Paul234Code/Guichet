@@ -11,7 +11,10 @@ namespace Guichet
        
         
         private EtatDuSysteme mode;
-        private decimal Solde;
+        private decimal solde;
+
+        List<Client> listeClients = new List<Client>();
+
 
 
 
@@ -37,7 +40,7 @@ namespace Guichet
         // methode qui retourne le solde du guichet
         public decimal getSoldeGuichet()
         {
-            return Solde;
+            return solde;
         }
         // Affiche le solde du guichet
         public void AfficherSoldeGuichet()

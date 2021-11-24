@@ -11,8 +11,8 @@ namespace Guichet
         private CompteClient compteCheque;
         private CompteClient compteEpargne;
         private Guichet guichet;
-        private static char[] nomUtilisateur = new char[7];
-        private char[] userPassword = new char[3]; 
+        private static char[] nomUtilisateur = new char[8];
+        private char[] userPassword = new char[4]; 
         // Le constructeur
         public Usager()
         {
@@ -21,5 +21,55 @@ namespace Guichet
             guichet = new Guichet();
 
         }
+
+        // Méthode pour changer de MotDePasse
+        public void ChangerMotDePasse()
+        {
+
+        }
+
+        // Méthode pour déposer un montant
+
+        public void DéposerMontant()
+        {
+
+        }
+
+        // Méthode pour retirer un montant d'un compte
+
+        public void RetirerMontant()
+        {
+
+        }
+
+        // Méthode pour Afficher le solde du compte chèque ou épargne
+
+        public void AfficherSoldeCompte()
+        {
+
+        }
+
+        // Méthode pour effectuer un virement entre les comptes
+
+        public void FaireVirement()
+        {
+
+        }
+
+        // Méthode  pour payer facture
+
+        public void PayerFacture()
+        {
+
+        }
+
+        // Méthode pour fermer la session
+
+        public void FermerSession()
+        {
+
+        }
+
+
     }
 }

@@ -26,6 +26,9 @@
         // Afficher la liste des comptes 
         public  void VoirListeDesCompte()
         {
+            foreach(var client in guichet.ListeClients)
+            {
+                Console.WriteLine(client);
 
         }
         public void RetournerMenuPrincipal()

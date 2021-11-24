@@ -5,6 +5,7 @@
         private string administrateurId = "admin";
         private string administrateurPassword = "123456";
         private Guichet guichet;
+        private CompteClient compteClient;
         public Administrateur(Guichet guichet)
         {
             this.guichet = guichet;
@@ -26,6 +27,8 @@
         // Afficher la liste des comptes 
         public  void VoirListeDesCompte()
         {
+
+            
 
         }
         public void RetournerMenuPrincipal()

@@ -13,7 +13,7 @@ namespace Guichet
         private string nomFacture;
         private decimal montantFacture;
         // Les proprietes
-        public string NumeroFacture { get;  }
+        public string NumeroFacture { get;  } // On inscrit seulement le get car nous n'avons pas besoin de modifier les paramètres de la facture  (num, montant, nom)
         public decimal MontantFacture { get; }
         public string NomFacture { get; }
         // Le constructeur de la classe

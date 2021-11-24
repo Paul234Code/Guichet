@@ -10,8 +10,10 @@ namespace Guichet
     {
         // attributs de la classe
         private List<Transaction> allTransactions = new List<Transaction>();
-        private static int numeroID = 1234567890;
+
+        private static int numeroID = 1234567890; // Sert à créer un nouvel ID pour la variable numero
         protected string numero;
+
         protected string nomProprietaire;
         protected decimal balance;
         protected EtatDuCompte etatDuCompte;

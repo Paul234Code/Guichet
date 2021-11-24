@@ -13,6 +13,7 @@ Si l'utilisateur choisi 1:
 - Afficher message "Veuillez entrer vos identifiants"
 
 Si l'utilisateur entre des infos enregistrées (NOM, NIP), afficher le menu du compte personnel.
+Si l
 
 AFFICHAGE MENU COMPTE PERSONNEL:
 
@@ -89,35 +90,34 @@ A.N : Le montant doit être affiché dans le format xx xxx.xx$
 
 Section administrateur : Si l'utilisateur choisi 2:
  
-- afficher message "veuillez entrer votre nom d'utilisateur et votre mot de passe"
-- si nom != admin et si mot de passe != 123456 et Si l'utilisateur fait 3 erreurs,alors guichet en panne/ afficher message erreur
-- Si l'utilisateur entre des infos enregistriées, afficher le menu administrateur.
+- Afficher message "Veuillez entrer votre nom d'utilisateur et votre mot de passe"
+A- Si nom != admin et si le mot de passe != 123456, afficher message "Identifiants invalides"
+B- Si l'utilisateur fait 3 erreurs, alors guichet tombe en panne + Afficher message de panne.
+C- Si l'utilisateur entre les infos d'admin, afficher le menu administrateur.
     
-    si l'utilisateur choisi 1:  remettre le guichet en fonction:
-    option oui: le guichet doit revenir en mode fonctionnel + retour au menu administrateur
-    option non: le guichet reste en panne + retour au menu administrateur.
+Si l'utilisateur choisi 1:  Remettre le guichet en fonction:
+A- Afficher message "Voulez-vous remettre le guichet en fonction ?(O/N)"
+Si option oui: le guichet doit revenir en mode fonctionnel + retour au menu administrateur
+Si option non: le guichet reste en panne + retour au menu administrateur.
     
-    si l'utilisateur choisi 2: déposer de l'argent dans le guichet 
-      A.N :administrateur connecté 
-      - afficher "c'est quoi le montant à déposer"
-       si montant > 10 000$   afficher "montant maximum à déposer est de 10 000$"  
-       sinon "saisir à nouveau le montant". 
-      
-   si l'utilisateur choisi 3 : voir le solde du guichet 
-   - afficher le solde du guichet 
-   - retour au menu administrateur.
-  
-  si l'utilisateur choisi 4: voir la liste des comptes.
-  - afficher "nom du propriétaire du compte"
-  - afficher le numéro de compte 
-  - afficher le solde du compte
-  - aficher l'état du compte verrouillé / non verouillé
-  
-  si l'utilisateur choisi 5: retourner au menu principal.
+Si l'utilisateur choisi 2: Déposer de l'argent dans le guichet 
+A- Afficher message: "Veuillez entrer le montant du dépôt"
+B- Si le montant entré > 10 000$, afficher message "Veuillez entrer un montant inférieur à 10 000$"
+C- Si le montant entré < 10 000$, enregistré et déposer le montant dans le guichet.
  
-
-
-
+      
+Si l'utilisateur choisi 3 : Voir le solde du guichet 
+- Afficher le solde du guichet et retour au menu Administrateur
+  
+Si l'utilisateur choisi 4: Voir la liste des comptes.
+A- Afficher "Nom du propriétaire du compte"
+B- Afficher le numéro de compte 
+C- Afficher le solde du compte
+D- Afficher l'état du compte (Actif/Vérouillé)
+  
+Si l'utilisateur choisi 5: Retourner au menu principal
+A- Le système retourne au menu principal
+ 
 
 
 

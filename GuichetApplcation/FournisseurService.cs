@@ -14,7 +14,7 @@ namespace Guichet
         {
         }
 
-        public void ajouterNoFacture(Facture facture)
+        public void AjouterNoFacture(Facture facture)
         {
             ListeFacture.Add(facture);
         }

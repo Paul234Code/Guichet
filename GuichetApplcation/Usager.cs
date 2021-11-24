@@ -25,28 +25,47 @@ namespace Guichet
         // Méthode pour changer de MotDePasse
         public void ChangerMotDePasse()
         {
+            Console.WriteLine("Veuillez entrer votre nouveau mot de passe: ");
+            char newPassword = Convert.ToChar(Console.ReadLine());
 
+            if(newPassword == userPassword[4])
+            {
+                Console.WriteLine("Veuillez entrer un mot de passe valide");
+            }
+            else if (newPassword != userPassword[4])
+            {
+                newPassword = userPassword[4];
+            }
+            
         }
 
         // Méthode pour déposer un montant
 
         public void DéposerMontant()
         {
+            Console.WriteLine("Veuillez entrer le montant à déposer: ");
+            decimal montantDépôt = Convert.ToDecimal(Console.ReadLine());
 
+            if(montantDépôt < 0)
+            {
+                Console.WriteLine("Veuillez entrer un montant positif");
+            }
+            else if(montantDépôt > )  //Pas finit !! Vous pouvez modifier si vous voulez faire autre chose
         }
 
         // Méthode pour retirer un montant d'un compte
 
         public void RetirerMontant()
         {
-
+            Console.WriteLine("Veuillez entrer le montant à retirer: ");
+            decimal montantRetrait = Convert.ToDecimal(Console.ReadLine());
         }
 
         // Méthode pour Afficher le solde du compte chèque ou épargne
 
         public void AfficherSoldeCompte()
         {
-
+            Console.WriteLine("Solde de votre compte: ");
         }
 
         // Méthode pour effectuer un virement entre les comptes

@@ -8,5 +8,7 @@ namespace Guichet
 {
     public class CompteEpargne : CompteClient
     {
+        private decimal TauxIntérêt;
+
     }
 }

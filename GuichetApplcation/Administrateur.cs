@@ -21,7 +21,7 @@
         // Affiche le solde courant du Guichet
         public void VoirSoldeGuichet()
         {
-
+            
         }
         // Afficher la liste des comptes 
         public  void VoirListeDesCompte()

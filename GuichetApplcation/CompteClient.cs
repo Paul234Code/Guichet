@@ -94,5 +94,6 @@ namespace Guichet
             }
             return report.ToString();
         }
+        
     }
 }

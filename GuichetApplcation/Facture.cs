@@ -8,12 +8,12 @@ namespace Guichet
 {
     public class Facture
     {
-        private static int identifiantFacture = 123;
+        private static int identifiantFacture = 123; //pour donner un nouveau numero à chaque nouvelle facture
         private string numeroFacture;
         private string nomFacture;
         private decimal montantFacture;
         // Les proprietes
-        public string NumeroFacture { get;  }
+        public string NumeroFacture { get;  } //mettre get sans set parcq on a pas besoin de modifier le nom et le montant
         public decimal MontantFacture { get; }
         public string NomFacture { get; }
         // Le constructeur de la classe

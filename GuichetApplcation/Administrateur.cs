@@ -1,6 +1,6 @@
 ﻿namespace Guichet
 {
-    public class Administrateur
+    public class Administrateur:Client
     {
         private string administrateurId = "admin";
         private string administrateurPassword = "123456";
@@ -13,11 +13,18 @@
        {
 
        }
+        // 
         public void DéposerArgent(decimal montant)
         {
 
         }
+        // Affiche le solde courant du Guichet
         public void VoirSoldeGuichet()
+        {
+
+        }
+        // Afficher la liste des comptes 
+        public  void VoirListeDesCompte()
         {
 
         }

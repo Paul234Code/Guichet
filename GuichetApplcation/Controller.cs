@@ -9,7 +9,7 @@ namespace Guichet
         static void Main(string[] args)
         {
             Guichet guichet = new Guichet();
-            List<CompteClient> ListeClients = new List<CompteClient>();
+            List<Client> ListeClients = new List<Client>();
             bool mode = true;
             while (mode)
             {

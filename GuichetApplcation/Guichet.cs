@@ -9,7 +9,7 @@ namespace Guichet
     public class Guichet
     {
        
-        private Administrateur administrateur;
+        
         private EtatDuSysteme mode;
         private decimal Solde;
 
@@ -29,6 +29,11 @@ namespace Guichet
         }
         // Affiche le solde du guichet
         public void AfficherSoldeGuichet()
+        {
+
+        }
+        // Methode pour debiter un montant du Guichet
+        public void Debiter(decimal montant)
         {
 
         }

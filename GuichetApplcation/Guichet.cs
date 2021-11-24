@@ -16,11 +16,21 @@ namespace Guichet
 
 
         // Menu Utilisateur
-        public void MenuUtilisateur()
+        public void MenuPrincipal()
         {
             Console.WriteLine("1-Se connecter à votre compte");
             Console.WriteLine("2- Se connecter comme administrateur");
             Console.WriteLine("3- Quitter");
+        }
+        // Menu du compte Personnel
+        public void MenuPersonnel()
+        {
+
+        }
+        // creation Menu Administrateur
+        public void MenuAdmin()
+        {
+
         }
         // methode qui retourne le solde du guichet
         public decimal getSoldeGuichet()

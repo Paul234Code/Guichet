@@ -15,7 +15,7 @@ namespace Guichet
         // Les proprietes
         public string NumeroFacture { get;  }
         public decimal MontantFacture { get; }
-        public string NomFacture { get; }
+        public string NomFacture { get; } 
         // Le constructeur de la classe
         public Facture( string nomFacture,decimal montantFacture)
         {

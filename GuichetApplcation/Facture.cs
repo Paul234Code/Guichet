@@ -28,7 +28,7 @@ namespace Guichet
         // Methode qui affiche les informations sur une facture
         public void AfficherInformationFacture()
         {
-
+            Console.WriteLine();
         }
     }
 }

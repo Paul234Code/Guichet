@@ -38,7 +38,7 @@ namespace Guichet
             this.nomProprietaire = nomProprietaire;
             this.etatDuCompte = etatDuCompte;
             numeroID++;
-            Deposer(initialBalance, DateTime.Now, "Solde initial");
+            Deposer(initialBalance, DateTime.Now, "Solde initial"); //
 
         }
         // Methode qui depose un montant positif dans un compte

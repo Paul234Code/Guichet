@@ -9,7 +9,7 @@ namespace Guichet
     public class Usager:Client
     {
         private CompteClient compteCheque;
-        private CompteEpargne compteEpargne;
+        private CompteClient compteEpargne;
         private Guichet guichet;
         private static char[] nomUtilisateur = new char[7];
         private char[] userPassword = new char[3]; 

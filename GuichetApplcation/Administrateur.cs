@@ -1,4 +1,5 @@
-﻿namespace Guichet
+﻿using System;
+namespace Guichet
 {
     public class Administrateur:Client
     {
@@ -16,16 +17,22 @@
         // 
         public void DéposerArgent(decimal montant)
         {
+            guichet.Debiter(montant);
 
         }
         // Affiche le solde courant du Guichet
         public void VoirSoldeGuichet()
         {
+            Console.WriteLine(guichet.getSoldeGuichet());
 
         }
         // Afficher la liste des comptes 
         public  void VoirListeDesCompte()
         {
+            foreach(var client in guichet.ListeClients)
+            {
+
+            }
 
         }
         public void RetournerMenuPrincipal()

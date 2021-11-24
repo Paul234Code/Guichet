@@ -9,12 +9,14 @@ namespace Guichet
         static void Main(string[] args)
         {
             Guichet guichet = new Guichet();
-            List<CompteClient> ListeClients = new List<CompteClient>();
+            List<Usager> ListeClients = new List<Usager>();
             bool mode = true;
             while (mode)
             {
                 Thread.Sleep(200);
             }
+            System.Environment.CurrentManagedThreadId
+
         }
     }
 }

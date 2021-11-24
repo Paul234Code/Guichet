@@ -75,17 +75,26 @@ namespace Guichet
            switch (operation)
             {
                 case "1":
-                    Changermotdepasse();
+                    ChangerMotDePasse();
                     break;
                 case "2":
-                    Deposermontant();
+                    DéposerMontant();
                     break;
                 case "3":
                     RetirerMontant();
                     break;
                 case "4":
-                    AfficherSolde();
+                    AfficherSoldeCompte();
                     break;
+                case "5":
+                    FaireVirement();
+                case "6":
+                    PayerFacture();
+                    break;
+                case "7":
+                    FermerSession();
+                    break;
+
             }
         }
         
@@ -102,6 +111,52 @@ namespace Guichet
             Console.WriteLine(" 5- Retour au menu principal");
          
         }
+         public void SelectChoixAdmin(string choixadmin)
+        {
+            switch (choixadmin)
+            {
+                case "1":
+                    RemettreGuichetEnFonction();
+                    break;
+                case "2":
+                    DéposerArgent();
+                    break;
+                case "3":
+                    VoirSoldeGuichet();
+                    break;
+                case "4":
+                    VoirListeDesCompte();
+                    break;
+                case "5":
+                    RetournerMenuPrincipal();
+                    break;
+            }
+        } 
+          public void MenuFournisseur()
+        {
+            Console.WriteLine(" 1- Amazon");
+            Console.WriteLine(" 2- Bell");
+            Console.WriteLine(" 3- Vidéotron");
+        }
+
+          public void SelectFournisseur(string fournisseur)
+        {
+            switch (fournisseur)
+            {
+                case "1":
+                    Amazon();
+                    break;
+                case "2":
+                    Bell();
+                    break;
+                case "3":
+            }
+        }
+
+
+
+
+
         // methode qui retourne le solde du guichet
         public decimal getSoldeGuichet()
         {

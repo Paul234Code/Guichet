@@ -29,9 +29,9 @@ namespace Guichet
         // Afficher la liste des comptes 
         public  void VoirListeDesCompte()
         {
-            foreach(var client in guichet.ListeClients)
+            foreach (var client in guichet.ListeClients)
             {
-
+                Console.WriteLine(client);
             }
 
         }

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Guichet
 {
-    public class Usager:Client
+    public class Usager : Client
     {
         private CompteClient compteCheque;
-        private CompteEpargne compteEpargne;
+        private CompteClient compteEpargne;
         private Guichet guichet;
-        private static char[] nomUtilisateur = new char[7];
-        private char[] userPassword = new char[3]; 
+        private static char[] nomUtilisateur = new char[8];
+        private char[] userPassword = new char[4];
         // Le constructeur
         public Usager()
         {
@@ -21,5 +21,12 @@ namespace Guichet
             guichet = new Guichet();
 
         }
+        // pour changer le mot de passe
+        public  void ChangerMotdePasse()
+        {
+
+        }
+        // 
+
     }
 }

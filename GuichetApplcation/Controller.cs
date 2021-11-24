@@ -10,13 +10,10 @@ namespace Guichet
         {
             Guichet guichet = new Guichet();
             List<Client> ListeClients = new List<Client>();
-            bool mode = true;
-            while (mode)
-            {
-                Thread.Sleep(200);
-            }
+           
 
           
         }
+
     }
 }

@@ -9,10 +9,13 @@ namespace Guichet
     public class CompteCheque : CompteClient
     {
 
-        public CompteCheque(string nomProprietaire,decimal balance,EtatDuCompte etatDuCompte):
+        private TypeDuCompte typeCompte;
+        public TypeDuCompte TypeCompte { get; set; }
+
+        public CompteCheque(string nomProprietaire,decimal balance,EtatDuCompte etatDuCompte, TypeDuCompte typeCompte) :
             base(nomProprietaire, balance, etatDuCompte)
         {
-
+            this.TypeCompte = typeCompte;
         }
     }
 }

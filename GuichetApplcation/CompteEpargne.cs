@@ -12,11 +12,10 @@ namespace Guichet
         public TypeDuCompte TypeCompte  { get; set; } 
 
         // Le constructeur de la classe Epargne
-        public CompteEpargne(string nomProprietaire, decimal balance, EtatDuCompte etatDuCompte,TypeDuCompte typeDuCompte) :
+        public CompteEpargne(string nomProprietaire, decimal balance, EtatDuCompte etatDuCompte,TypeDuCompte typeCompte) :
             base(nomProprietaire, balance, etatDuCompte)
         {
-
-
+            this.TypeCompte = typeCompte;
         }
     }
 }

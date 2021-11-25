@@ -39,6 +39,16 @@ namespace Guichet
         {
 
         }
+        // Methode qui retourne le nom utilisateur du compte admin
+        public string GetAdministrateurId()
+        {
+            return administrateurId;
+        }
+        // retourne le mot de passe 
+        public string GetAdministrateurPassword()
+        {
+            return administrateurPassword;
+        }
 
     }
 }

@@ -25,9 +25,16 @@ namespace Guichet
             identifiantFacture++;
 
         }
+        public override string ToString()
+        {
+            return $"{numeroFacture} \t{nomFacture}\t{montantFacture}";
+        }
         // Methode qui affiche les informations sur une facture
         public void AfficherInformationFacture()
         {
+            Console.WriteLine("numero\t nom Facture\tmontantFacture");
+            Console.WriteLine($"{numeroFacture}\t{nomFacture}\t{montantFacture}");
+            
 
         }
     }

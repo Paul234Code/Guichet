@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Guichet
 {
-    public enum EtatDuCompte
+    public enum TypeDuCompte
     {
-        VEROUILLE,
-        ACTIF
+        Epargne;
+        Cheque,
+        Hypotheque
+
     }
-    
-    
 }

@@ -8,7 +8,11 @@ namespace Guichet
 {
     public class CompteCheque : CompteClient
     {
-        private string typeCompte;
 
+        public CompteCheque(string nomProprietaire,decimal balance,EtatDuCompte etatDuCompte):
+            base(nomProprietaire, balance, etatDuCompte)
+        {
+
+        }
     }
 }

@@ -8,8 +8,15 @@ namespace Guichet
 {
     public class CompteEpargne : CompteClient
     {
-        
-        private string typeCompte;
+        private TypeDuCompte typeCompte;
+        public TypeDuCompte TypeCompte  { get; set; } 
 
+        // Le constructeur de la classe Epargne
+        public CompteEpargne(string nomProprietaire, decimal balance, EtatDuCompte etatDuCompte,TypeDuCompte typeDuCompte) :
+            base(nomProprietaire, balance, etatDuCompte)
+        {
+
+
+        }
     }
 }

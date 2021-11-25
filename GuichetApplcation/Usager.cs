@@ -6,19 +6,61 @@ using System.Threading.Tasks;
 
 namespace Guichet
 {
-    public class Usager:Client
+    public class Usager : Client
     {
         private CompteClient compteCheque;
         private CompteClient compteEpargne;
         private Guichet guichet;
         private static char[] nomUtilisateur = new char[8];
-        private char[] userPassword = new char[4]; 
+        private char[] userPassword = new char[4];
+        // Les proprietes
+        public CompteClient getCompteCheque { get;  }
+        public Guichet Guichet { get; set; }
+        public  CompteClient    getCompteEpargne { get; }
         // Le constructeur
-        public Usager()
+        public Usager(CompteClient compteEpargne,CompteClient compteCheque,Guichet guichet)
         {
-            compteCheque = new CompteCheque();
-            compteEpargne = new CompteEpargne();
-            guichet = new Guichet();
+            this.compteCheque = compteCheque;
+            this.compteEpargne = compteEpargne;
+            this.guichet = guichet;
+
+        }
+        // pour changer le mot de passe
+        public  void ChangerMotdePasse()
+        {
+
+        }
+        // Fonction  qui permet de deposer un monant dans un compte
+        public void DeposerMontant(decimal montant)
+        {
+
+        }
+        // Fonction qui permet de retirer un montant
+        public void RetirerMontant(decimal montant)
+        {
+            compteCheque.Retirer(montant, DateTime.Now, "Retrait ");
+            //compteEpargne.Retirer(montant, DateTime.Now, "Retrait ");
+            guichet.Debiter(montant);
+
+
+        }
+        // Afficher le solde du compte
+        public void AfficherSoldeCompte()
+        {
+
+        }
+        // Faire un virement entre deux compte
+        public void FaireVirement()
+        {
+
+        }
+        // Payer une facture
+        public void PayerFacture()
+        {
+
+        }
+        public void FermerSession()
+        {
 
         }
 
@@ -55,44 +97,6 @@ namespace Guichet
                 Guichet.Solde = Guichet.Solde + montantDépôt;
             }//Pas finit !! Vous pouvez modifier si vous voulez faire autre chose
         }
-
-        // Méthode pour retirer un montant d'un compte
-
-        public void RetirerMontant()
-        {
-            Console.WriteLine("Veuillez entrer le montant à retirer: ");
-            decimal montantRetrait = Convert.ToDecimal(Console.ReadLine());
-        }
-
-        // Méthode pour Afficher le solde du compte chèque ou épargne
-
-        public void AfficherSoldeCompte()
-        {
-            Console.WriteLine("Solde de votre compte: ");
-            Console.WriteLine()
-        }
-
-        // Méthode pour effectuer un virement entre les comptes
-
-        public void FaireVirement()
-        {
-
-        }
-
-        // Méthode  pour payer facture
-
-        public void PayerFacture()
-        {
-
-        }
-
-        // Méthode pour fermer la session
-
-        public void FermerSession()
-        {
-
-        }
-
 
     }
 }

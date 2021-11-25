@@ -15,7 +15,9 @@ namespace Guichet
         public CompteEpargne(string nomProprietaire, decimal balance, EtatDuCompte etatDuCompte,TypeDuCompte typeCompte) :
             base(nomProprietaire, balance, etatDuCompte)
         {
-            this.TypeCompte = typeCompte;
+            this.typeCompte = typeCompte;
+
+
         }
     }
 }

@@ -10,46 +10,48 @@ namespace Guichet
         {
             Console.WriteLine("==============================================================");
 
-            //classe CompteClient
-            CompteClient paul = new CompteEpargne("Paul Faye",2000,EtatDuCompte.ACTIF);
-            CompteClient jonam = new CompteEpargne("Firdaous El Mabrooki", 200, EtatDuCompte.ACTIF);
-            CompteClient firdaous = new CompteEpargne("Jonam Dessureault", 200, EtatDuCompte.ACTIF);
+            //classe CompteEpargne
+            CompteClient paulEpargne = new CompteEpargne("Paul Faye",2000,EtatDuCompte.ACTIF);
+            CompteClient firdaousEpargne = new CompteEpargne("Firdaous El Mabrooki", 2000, EtatDuCompte.VEROUILLE);
+            CompteClient jonamEpargne = new CompteEpargne("Jonam Dessureault", 2000, EtatDuCompte.ACTIF);
 
             // des comptes cheques
-            CompteClient paulCheque = new CompteCheque("Paul Faye", 2000, EtatDuCompte.ACTIF);
-            CompteClient jonamCheque = new CompteCheque("Firdaous El Mabrooki", 3000, EtatDuCompte.ACTIF);
-            CompteClient firdaousCheque = new CompteCheque("Jonam Dessureault", 8000, EtatDuCompte.ACTIF);
+            CompteClient paulCheque = new CompteCheque("Paul Faye", 8000, EtatDuCompte.ACTIF);
+            CompteClient firdaousCheque = new CompteCheque("Firdaous El Mabrooki", 8000, EtatDuCompte.ACTIF);
+            CompteClient jonamCheque = new CompteCheque("Jonam Dessureault", 8000, EtatDuCompte.ACTIF);
 
-            paul.AfficherCompte();
+            paulEpargne.AfficherCompte();
+            Console.WriteLine("-------------------------------------------------------------");
+            paulCheque.AfficherCompte();
             Console.WriteLine("==============================================================");
-            jonam.AfficherCompte();
-            Console.WriteLine("==============================================================");
-            firdaous.AfficherCompte();
+            firdaousEpargne.AfficherCompte();
+            Console.WriteLine("==============================================================");         
+            jonamEpargne.AfficherCompte();
             Console.WriteLine();
 
             Console.WriteLine("Deposer 2000$ pour jonam , paul et Firdaous:");
-            paul.Deposer(2000, DateTime.Now, "Payment salaire");
-            firdaous.Deposer(2000, DateTime.Now, "Payment salaire");
-            jonam.Deposer(2000, DateTime.Now, "Depot");
+            paulEpargne.Deposer(2000, DateTime.Now, "Payment salaire");
+            firdaousEpargne.Deposer(2000, DateTime.Now, "Payment salaire");
+            jonamEpargne.Deposer(2000, DateTime.Now, "Depot");
 
             Console.WriteLine("Les nouveaux soldes apres un depot de 2000$ : ");
-            paul.AfficherCompte();
+            paulEpargne.AfficherCompte();
             Console.WriteLine("==============================================================");
-            jonam.AfficherCompte();
+            jonamEpargne.AfficherCompte();
             Console.WriteLine("==============================================================");
-            firdaous.AfficherCompte();
+            firdaousEpargne.AfficherCompte();
 
             Console.WriteLine("Retirer 500$ pour jonam , paul et Firdaous:");
-            paul.Retirer(500, DateTime.Now, "Retrait");
-            firdaous.Retirer(500, DateTime.Now, "Retrait");
-            jonam.Retirer(500, DateTime.Now, "Retrait");
+            paulEpargne.Retirer(500, DateTime.Now, "Retrait");
+            firdaousEpargne.Retirer(500, DateTime.Now, "Retrait");
+            jonamEpargne.Retirer(500, DateTime.Now, "Retrait");
 
             Console.WriteLine("Les nouveaux soldes apres un retrait de 500$ : ");
-            paul.AfficherCompte();
+            paulEpargne.AfficherCompte();
             Console.WriteLine("==============================================================");
-            jonam.AfficherCompte();
+            jonamEpargne.AfficherCompte();
             Console.WriteLine("==============================================================");
-            firdaous.AfficherCompte();
+            firdaousEpargne.AfficherCompte();
 
 
 
@@ -62,7 +64,7 @@ namespace Guichet
             Console.WriteLine("==============================================================");
 
             //List<Client> ListeClients = new List<Client>();
-            Usager usager =  new Usager(paul,paulCheque,guichet);
+            Usager usager =  new Usager(paulEpargne,paulCheque,guichet);
            
              usager.RetirerMontant(200);
                        
@@ -97,7 +99,7 @@ namespace Guichet
             service1.AjouterFacture(facture2);
             service1.AjouterFacture(facture3);
             service1.AfficherService();
-
+           
 
 
         }

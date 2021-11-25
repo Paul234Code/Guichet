@@ -10,14 +10,20 @@ namespace Guichet
     {
         // Attributs de la classe
 
-        private List<Client> listeClients = new List<Client>();
-        private EtatDuSysteme mode;
-        private decimal solde;
+        private List<Client> listeClients;
+        private EtatDuSysteme mode = EtatDuSysteme.ON; // mode par defaut       
+        private  decimal solde = 10000;
         // Les proprietes
         public List<Client> ListeClients { get; set; }
         public EtatDuSysteme Mode { get; set; }
         public decimal Solde { get; set; }
-
+        // Le constructeur de la classe Guichet
+        public Guichet()
+        {
+            listeClients = new List<Client>();
+            
+           
+        }
 
         // Menu Utilisateur
         public void MenuPrincipal()
@@ -37,7 +43,7 @@ namespace Guichet
 
         }
         // methode qui retourne le solde du guichet
-        public decimal getSoldeGuichet()
+        public  decimal getSoldeGuichet()
         {
             return solde;
         }

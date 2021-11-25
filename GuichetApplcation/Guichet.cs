@@ -13,7 +13,6 @@ namespace Guichet
         private List<Client> listeClients;
         private EtatDuSysteme mode = EtatDuSysteme.ON; // mode par defaut       
         private decimal solde = 10000;
-
         // Les proprietes
         public List<Client> ListeClients { get; set; }
         public EtatDuSysteme Mode { get; set; }
@@ -31,10 +30,8 @@ namespace Guichet
             listeClients.Add(client);
         }
 
-
-
-        // Menu principal
-        public void MenuPincipal()
+        // Menu Utilisateur
+        public void MenuPrincipal()
         {
             Console.WriteLine(" Menu principal");
             Console.WriteLine("1-Se connecter à votre compte d'utilisateur"); //ajouter consolereadline + switch pour choix de menu     
@@ -86,29 +83,30 @@ namespace Guichet
             Console.WriteLine(" 7- Fermer session");
     
         }
-         public void SelectOperation(string operation,Usager usager)//créer objet usager pour appeler les fonctions créer dans le switch
+         public void SelectOperation(string operation,Usager usager)
         {
            switch (operation)
             {
                 case "1":
-                    ChangerMotDePasse();
+                    usager.ChangerMotdePasse();
                     break;
                 case "2":
-                    DéposerMontant();
+                    usager.DeposerMontant(400);
                     break;
                 case "3":
-                    RetirerMontant();
+                    usager.RetirerMontant(400);
                     break;
                 case "4":
-                    AfficherSoldeCompte();
+                    usager.AfficherSoldeCompte();
                     break;
                 case "5":
-                    FaireVirement();
+                    usager.FaireVirement();
+                    break;
                 case "6":
-                    PayerFacture();
+                    usager.PayerFacture();
                     break;
                 case "7":
-                    FermerSession();
+                    usager.FermerSession();
                     break;
 
             }
@@ -123,25 +121,24 @@ namespace Guichet
             Console.WriteLine(" 5- Retour au menu principal");
          
         }
-         public void SelectChoixAdmin(string choixadmin,Administrateur admin)//créer objet administrateur
-                                                                             //pour appeler les fonctions dans switch
+         public void SelectChoixAdmin(string choixadmin,Administrateur admin)
         {
             switch (choixadmin)
             {
                 case "1":
-                    RemettreGuichetEnFonction();
+                    admin.RemettreGuichetEnFonction();
                     break;
                 case "2":
-                    DéposerArgent();
+                    admin.DeposerArgent(800);
                     break;
                 case "3":
-                    VoirSoldeGuichet();
+                    admin.VoirSoldeGuichet();
                     break;
                 case "4":
-                    VoirListeDesCompte();
+                    admin.VoirListeDesCompte();
                     break;
                 case "5":
-                    RetournerMenuPrincipal();
+                    admin.RetournerMenuPrincipal();
                     break;
             }
         } 
@@ -151,37 +148,31 @@ namespace Guichet
             Console.WriteLine(" 2- Bell");
             Console.WriteLine(" 3- Vidéotron");
         }
-
-          public void SelectFournisseur(string fournisseur)
-        {
-            switch (fournisseur)
-            {
-                case "Amazon":
-                 break;
-                case "Bell":
-                    break;
-                case "Videotron": 
-                    break;
-            }
-        }
-
-
-
-
-
+       
+        
         // methode qui retourne le solde du guichet
-        public decimal getSoldeGuichet()
+        public  decimal getSoldeGuichet()
         {
-            return Solde;
+            return solde;
         }
         //methode qui Affiche le solde du guichet
         public void AfficherSoldeGuichet()
         {
+            Console.WriteLine("Solde Guichet:  "+ solde);
 
         }
         // Methode pour debiter/retirer un montant du Guichet
         public void Debiter(decimal montant)
         {
+            if(montant <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(montant),"montant du retrait doit etre positif");
+            }
+            if(montant > solde)
+            {
+                throw new ArgumentOutOfRangeException(nameof(montant), "operation de retrait impossible ");
+            }
+            solde -= montant;
 
         }
     }

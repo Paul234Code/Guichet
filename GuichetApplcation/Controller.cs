@@ -13,6 +13,7 @@ namespace Guichet
             Administrateur admin  =  new Administrateur(guichet);
             Console.WriteLine(admin.GetAdministrateurId());
             Console.WriteLine(admin.GetAdministrateurPassword());
+            Console.WriteLine("==============================================================");
             // class Facture
             Facture facture1 = new Facture("Telephone", 200);
             Facture facture2 = new Facture("Internet", 300);

@@ -6,6 +6,7 @@ namespace Guichet
         private string administrateurId = "admin";
         private string administrateurPassword = "123456";
         private Guichet guichet;
+        // Le constructeur
         public Administrateur(Guichet guichet)
         {
             this.guichet = guichet;

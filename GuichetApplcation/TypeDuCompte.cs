@@ -10,7 +10,7 @@ namespace Guichet
     {
         Epargne,
         Cheque,
-       
+      
 
     }
 }

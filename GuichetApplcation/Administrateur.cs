@@ -67,5 +67,36 @@ namespace Guichet
             return administrateurPassword;
         }
 
+        public void seconnecteradmin()
+        {
+            int compteur = 0;
+            Console.WriteLine("Enter votre nom Utilisateur: ");
+            string userAdmin = Console.ReadLine();
+            Console.WriteLine("Enter your password");
+            string password = Console.ReadLine();
+
+            if (userAdmin.Equals(string.Empty) || (password.Equals(string.Empty))) ;
+            {
+                Console.WriteLine("userAdmin or password invalide");
+            }
+            if (!userAdmin.Equals(GetAdministrateurId()) || !password.Equals(GetAdministrateurPassword()))
+            {
+                Console.WriteLine("userAdmin or password invalide");
+            }while(!userAdmin.Equals(GetAdministrateurId()) || !password.Equals(GetAdministrateurPassword()) && compteur < 3)
+            {
+                Console.WriteLine("Enter votre nom Utilisateur: ");
+                userAdmin = Console.ReadLine();
+                Console.WriteLine("Enter your password");
+                password = Console.ReadLine();
+                compteur++;
+            }
+            
+            if(compteur == 3)
+            {
+                Console.WriteLine("Trop de tentatives, votre compte est vérouillé");
+            }
+            
+        }
+
     }
 }

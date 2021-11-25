@@ -58,11 +58,13 @@ namespace Guichet
         // Afficher le solde du compte
         public void AfficherSoldeCompte()
         {
-
+            compteCheque.AfficherCompte();
+            compteEpargne.AfficherCompte();
         }
         // Faire un virement entre deux compte
-        public void FaireVirement()
+        public void FaireVirement(CompteCheque cheque, decimal montant)
         {
+            //virer du compteEpargne vers compteCheque
 
         }
         // Payer une facture

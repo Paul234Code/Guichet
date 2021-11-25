@@ -59,13 +59,13 @@ namespace Guichet
 
         private void seconnecterutilisateur()
         {
-            throw new NotImplementedException();
-        }
-        private void seconnecteradmin()
-        {
-            throw new NotImplementedException();
-        }
 
+
+        }
+        public void seconnecteradmin()
+        {
+
+        }
         private void quitter()
         {
             throw new NotImplementedException();
@@ -83,9 +83,8 @@ namespace Guichet
             Console.WriteLine(" 5- Effectuer un virment entre les comptes");
             Console.WriteLine(" 6- Payer une facture");
             Console.WriteLine(" 7- Fermer session");
-    
         }
-         public void SelectOperation(string operation,Usager usager)
+         public void SelectOperation(string operation,Usager usager,CompteCheque cheque, decimal montant)
         {
            switch (operation)
             {
@@ -93,16 +92,16 @@ namespace Guichet
                     usager.ChangerMotDePasse();
                     break;
                 case "2":
-                    usager.DeposerMontant(400);
+                    usager.DeposerMontant(montant);
                     break;
                 case "3":
-                    usager.RetirerMontant(400);
+                    usager.RetirerMontant(montant);
                     break;
                 case "4":
                     usager.AfficherSoldeCompte();
                     break;
                 case "5":
-                    usager.FaireVirement();
+                    usager.FaireVirement(cheque,montant);
                     break;
                 case "6":
                     usager.PayerFacture();

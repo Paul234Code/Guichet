@@ -58,12 +58,12 @@ namespace Guichet
             //classes Guichet
             Console.WriteLine("==============================================================");
 
-            Guichet guichet = new Guichet() { }; // 10000$
+            Guichet guichet = new Guichet(); // 10000$
             Console.WriteLine("Solde initial guichet:  "+ guichet.getSoldeGuichet()); //10000$
             Console.WriteLine("Etat initial:  "+ guichet.Mode);
             Console.WriteLine("==============================================================");
 
-            //List<Client> ListeClients = new List<Client>();
+          
             Usager usager =  new Usager(paulEpargne,paulCheque,guichet);
            
              usager.RetirerMontant(200);

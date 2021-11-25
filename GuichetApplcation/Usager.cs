@@ -48,10 +48,15 @@ namespace Guichet
         public void AfficherSoldeCompte()
         {
 
+
+
         }
         // Faire un virement entre deux compte
-        public void FaireVirement()
+        public void FaireVirement(CompteCheque cheque, decimal montant)
         {
+            // virer du compteEpargne vers compteCheque
+           compteEpargne.Virer(cheque, montant);
+
 
         }
         // Payer une facture

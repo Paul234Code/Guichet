@@ -18,8 +18,8 @@ namespace Guichet
         // 
         public void DeposerArgent(decimal montant)
         {
-            decimal nouveau = guichet.getSoldeGuichet();
-            decimal  difference = 10000 - (nouveau + montant);
+            decimal nouveau = guichet.getSoldeGuichet(); // le restant dans le guichet 5000$
+            decimal  difference = 10000 - (nouveau + montant); // 4000$
             if (difference == 0)
             {
                 guichet.Solde += montant;
@@ -66,6 +66,37 @@ namespace Guichet
         public string GetAdministrateurPassword()
         {
             return administrateurPassword;
+        }
+
+        public void seconnecteradmin()
+        {
+
+            int compteur = 0;
+            Console.WriteLine("Enter votre nom Utilisateur :");
+            string userAdmin = Console.ReadLine();
+            Console.WriteLine("Enter your password:");
+            string password = Console.ReadLine();
+            // Validation du nom utilisateur et du mot de passe
+            if(userAdmin.Equals(string.Empty)|| password.Equals(string.Empty))
+            {
+                Console.WriteLine("userAdmin or password invalide");
+
+            }
+            if(!userAdmin.Equals(GetAdministrateurId()) || !password.Equals(GetAdministrateurPassword()))
+            {
+                Console.WriteLine("userAdmin or password invalide");
+
+            }
+            while (!userAdmin.Equals(GetAdministrateurId()) || !password.Equals(GetAdministrateurPassword()))
+            {
+                Console.WriteLine("Enter votre nom Utilisateur :");
+                userAdmin = Console.ReadLine();
+                Console.WriteLine("Enter your password:");
+                password = Console.ReadLine();
+
+            }
+
+
         }
 
     }

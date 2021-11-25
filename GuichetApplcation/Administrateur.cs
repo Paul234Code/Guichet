@@ -50,6 +50,8 @@ namespace Guichet
                 Console.WriteLine(client);
             }
 
+            
+
         }
         public void RetournerMenuPrincipal()
         {

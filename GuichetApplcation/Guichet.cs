@@ -50,15 +50,7 @@ namespace Guichet
 
         }
         // Menu du compte Personnel
-        public void MenuPersonnel()
-        {
-
-        }
-        // creation Menu Administrateur
-        public void MenuAdmin()
-        {
-
-        }
+        
         // methode qui retourne le solde du guichet
         public  decimal getSoldeGuichet()
         {

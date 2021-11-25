@@ -24,6 +24,11 @@ namespace Guichet
             
            
         }
+        // methode qui ajoute un client dans la liste
+        public  void AjouterClient(Client client)
+        {
+            listeClients.Add(client);
+        }
 
         // Menu Utilisateur
         public void MenuPrincipal()

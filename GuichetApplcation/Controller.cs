@@ -51,6 +51,7 @@ namespace Guichet
             Console.WriteLine("==============================================================");
 
             //List<Client> ListeClients = new List<Client>();
+            guichet.ListeClients.
 
             Administrateur admin  =  new Administrateur(guichet);
             Console.WriteLine(admin.GetAdministrateurId());

@@ -12,7 +12,7 @@ namespace Guichet
 
         private List<Client> listeClients;
         private EtatDuSysteme mode = EtatDuSysteme.ON; // mode par defaut       
-        private  decimal solde ;
+        private decimal solde = 10000;
         // Les proprietes
         public List<Client> ListeClients { get; set; }
         public EtatDuSysteme Mode { get; set; }
@@ -21,7 +21,7 @@ namespace Guichet
         public Guichet()
         {
             listeClients = new List<Client>();
-            solde = 10000;
+           solde = 10000;
 
         }
         // methode qui ajoute un client dans la liste

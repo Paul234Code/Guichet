@@ -56,36 +56,25 @@ namespace Guichet
             //classes Guichet
             Console.WriteLine("==============================================================");
 
-            Guichet guichet = new Guichet(); // 10000$
-            Console.WriteLine(guichet.getSoldeGuichet()); //10000$
-            Console.WriteLine(guichet.Mode);
+            Guichet guichet = new Guichet() { }; // 10000$
+            Console.WriteLine("Solde initial guichet:  "+ guichet.getSoldeGuichet()); //10000$
+            Console.WriteLine("Etat initial:  "+ guichet.Mode);
             Console.WriteLine("==============================================================");
 
             //List<Client> ListeClients = new List<Client>();
             Usager usager =  new Usager(paul,paulCheque,guichet);
-            try
-            {
-                usager.RetirerMontant(200);
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            
+           
+             usager.RetirerMontant(200);
+                       
             Console.WriteLine("nouveau solde guichet: "+ guichet.getSoldeGuichet()); //9800$
 
             Administrateur admin  =  new Administrateur(guichet);  //9800$   
 
-            try
-            {
-                admin.DeposerArgent(200); //10000$ ????
+           
+           
+            admin.DeposerArgent(200); //10000$ ????
+            Console.WriteLine("solde guichet dans try :" + guichet.Solde);
 
-            }
-            catch (ArgumentOutOfRangeException ex)
-            {
-                Console.WriteLine(ex.Message+"ligne 45");
-            }
             Console.WriteLine("nouveau solde guichet deuxieme: " + guichet.getSoldeGuichet());
             Console.WriteLine("==============================================================");
             Console.WriteLine(admin.GetAdministrateurId());

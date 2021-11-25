@@ -59,7 +59,7 @@ namespace Guichet
         // Affiche le solde du guichet
         public void AfficherSoldeGuichet()
         {
-            Console.WriteLine("Solde Guichet:  "+ solde);
+            Console.WriteLine("Solde Guichet:  " + solde);
 
         }
         // Methode pour debiter un montant du Guichet

@@ -25,24 +25,35 @@ namespace Guichet
             this.guichet = guichet;
 
         }
-        // pour changer le mot de passe
-        public  void ChangerMotdePasse()
+        // Fonction qui permet de changer le mot de passe
+
+        public void ChangerMotDePasse()
         {
+            Console.WriteLine("Veuillez entrer votre nouveau mot de passe: ");
+            char newPassword = Convert.ToChar(Console.ReadLine());
+
+            if (newPassword == userPassword[4])
+            {
+                Console.WriteLine("Veuillez entrer un mot de passe valide");
+            }
+            else if (newPassword != userPassword[4])
+            {
+                newPassword = userPassword[4];
+            }
 
         }
-        // Fonction  qui permet de deposer un monant dans un compte
-        public void DeposerMontant(decimal montant)
+        // Fonction  qui permet de déposer un montant dans un compte
+        public void DéposerMontant(decimal amount)
         {
-
+            compteCheque.Deposer(amount, DateTime.Now, "depot");
+            compteEpargne.Deposer(amount, DateTime.Now, "depot");
         }
-        // Fonction qui permet de retirer un montant
-        public void RetirerMontant(decimal montant)
+
+        // Fonction qui permet de retirer un montant dans un compte
+        public void RetirerMontant(decimal amount)
         {
-            compteCheque.Retirer(montant, DateTime.Now, "Retrait ");
-            //compteEpargne.Retirer(montant, DateTime.Now, "Retrait ");
-            guichet.Debiter(montant);
-
-
+            compteCheque.Retirer(amount, DateTime.Now, "retrait");
+            compteEpargne.Retirer(amount, DateTime.Now, "depot");
         }
         // Afficher le solde du compte
         public void AfficherSoldeCompte()
@@ -63,40 +74,7 @@ namespace Guichet
         {
 
         }
-
-        // Méthode pour changer de MotDePasse
-        public void ChangerMotDePasse()
-        {
-            Console.WriteLine("Veuillez entrer votre nouveau mot de passe: ");
-            char newPassword = Convert.ToChar(Console.ReadLine());
-
-            if(newPassword == userPassword[4])
-            {
-                Console.WriteLine("Veuillez entrer un mot de passe valide");
-            }
-            else if (newPassword != userPassword[4])
-            {
-                newPassword = userPassword[4];
-            }
             
-        }
-
-        // Méthode pour déposer un montant
-
-        public void DéposerMontant()
-        {
-            Console.WriteLine("Veuillez entrer le montant à déposer: ");
-            decimal montantDépôt = Convert.ToDecimal(Console.ReadLine());
-
-            if(montantDépôt < 0)
-            {
-                Console.WriteLine("Veuillez entrer un montant positif");
-            }
-            else if(montantDépôt > 0)
-            {
-                Guichet.Solde = Guichet.Solde + montantDépôt;
-            }//Pas finit !! Vous pouvez modifier si vous voulez faire autre chose
-        }
 
     }
 }

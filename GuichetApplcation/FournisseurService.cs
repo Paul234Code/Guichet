@@ -27,10 +27,9 @@ namespace Guichet
             Console.WriteLine(nomFournisseur);
             foreach(Facture facture in listeFacture)
             {
-                Console.WriteLine("\t"+facture.ToString());
+                Console.WriteLine("\t" + facture.ToString());
             }
 
-            
         }
 
 

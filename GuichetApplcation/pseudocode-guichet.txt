@@ -39,7 +39,7 @@ Si l'utilisateur choisi 1:  Afficher changer votre mot de passe
  B- Lorsque l'utilisateur à choisit Chèque ou Épargne, afficher "Choisir un montant"
  C- L'utilisateur doit choisir le montant à déposer (Supérieur à 0$)
   A.N (mécanique pour valider que les données sont valides) = Seulement des chiffres sont acceptés)
- D- Lorsque le dépôt est effectué, afficher le solde u compte et retour au menu du compte.
+ D- Lorsque le dépôt est effectué, afficher le solde du compte et retour au menu du compte.
  
   
  Si l'utilisateur choisi 3: Retirer un montant d'un compte 

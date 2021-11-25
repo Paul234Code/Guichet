@@ -15,7 +15,7 @@ namespace Guichet
        {
 
        }
-        // 
+
         public void DeposerArgent(decimal montant)
         {
             decimal nouveau = guichet.getSoldeGuichet();
@@ -50,9 +50,8 @@ namespace Guichet
                 Console.WriteLine(client);
             }
 
-            
-
         }
+
         public void RetournerMenuPrincipal()
         {
 

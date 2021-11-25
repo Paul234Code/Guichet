@@ -85,29 +85,30 @@ namespace Guichet
             Console.WriteLine(" 7- Fermer session");
     
         }
-         public void SelectOperation(string operation)
+         public void SelectOperation(string operation,Usager usager)
         {
            switch (operation)
             {
                 case "1":
-                    ChangerMotDePasse();
+                    usager.ChangerMotdePasse();
                     break;
                 case "2":
-                    DéposerMontant();
+                    usager.DeposerMontant(400);
                     break;
                 case "3":
-                    RetirerMontant();
+                    usager.RetirerMontant(400);
                     break;
                 case "4":
-                    AfficherSoldeCompte();
+                    usager.AfficherSoldeCompte();
                     break;
                 case "5":
-                    FaireVirement();
+                    usager.FaireVirement();
+                    break;
                 case "6":
-                    PayerFacture();
+                    usager.PayerFacture();
                     break;
                 case "7":
-                    FermerSession();
+                    usager.FermerSession();
                     break;
 
             }
@@ -126,24 +127,24 @@ namespace Guichet
             Console.WriteLine(" 5- Retour au menu principal");
          
         }
-         public void SelectChoixAdmin(string choixadmin)
+         public void SelectChoixAdmin(string choixadmin,Administrateur admin)
         {
             switch (choixadmin)
             {
                 case "1":
-                    RemettreGuichetEnFonction();
+                    admin.RemettreGuichetEnFonction();
                     break;
                 case "2":
-                    DéposerArgent();
+                    admin.DeposerArgent(800);
                     break;
                 case "3":
-                    VoirSoldeGuichet();
+                    admin.VoirSoldeGuichet();
                     break;
                 case "4":
-                    VoirListeDesCompte();
+                    admin.VoirListeDesCompte();
                     break;
                 case "5":
-                    RetournerMenuPrincipal();
+                    admin.RetournerMenuPrincipal();
                     break;
             }
         } 
@@ -153,16 +154,8 @@ namespace Guichet
             Console.WriteLine(" 2- Bell");
             Console.WriteLine(" 3- Vidéotron");
         }
-        // Menu du compte Personnel
-        public void MenuPersonnel()
-        {
-
-        }
-        // creation Menu Administrateur
-        public void MenuAdmin()
-        {
-
-        }
+       
+        
         // methode qui retourne le solde du guichet
         public  decimal getSoldeGuichet()
         {

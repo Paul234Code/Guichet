@@ -43,7 +43,7 @@ namespace Guichet
 
         }
         // Fonction  qui permet de déposer un montant dans un compte
-        public void DéposerMontant(decimal amount)
+        public void DeposerMontant(decimal amount)
         {
             compteCheque.Deposer(amount, DateTime.Now, "depot");
             compteEpargne.Deposer(amount, DateTime.Now, "depot");

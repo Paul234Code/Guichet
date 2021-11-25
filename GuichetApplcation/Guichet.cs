@@ -90,7 +90,7 @@ namespace Guichet
            switch (operation)
             {
                 case "1":
-                    usager.ChangerMotdePasse();
+                    usager.ChangerMotDePasse();
                     break;
                 case "2":
                     usager.DeposerMontant(400);

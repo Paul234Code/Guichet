@@ -6,7 +6,7 @@ namespace Guichet
         private string administrateurId = "admin";
         private string administrateurPassword = "123456";
         private Guichet guichet;
-        private CompteClient compteClient;
+        // Le constructeur de la classe Guichet
         public Administrateur(Guichet guichet)
         {
             this.guichet = guichet;
@@ -16,9 +16,24 @@ namespace Guichet
 
        }
         // 
-        public void DéposerArgent(decimal montant)
+        public void DeposerArgent(decimal montant)
         {
-            guichet.Debiter(montant);
+            decimal nouveau = guichet.getSoldeGuichet();
+            decimal  difference = 10000 - (nouveau + montant);
+            if (difference == 0)
+            {
+                guichet.Solde += montant;
+            }
+            else if(difference > 0)
+            {
+                guichet.Solde += difference;
+
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException(nameof(montant),"Invalide operation montant eleve");
+            }
+               
 
         }
         // Affiche le solde courant du Guichet
@@ -30,9 +45,9 @@ namespace Guichet
         // Afficher la liste des comptes 
         public  void VoirListeDesCompte()
         {
-            foreach(var client in guichet.ListeClients)
+            foreach (var client in guichet.ListeClients)
             {
-
+                Console.WriteLine(client);
             }
 
             
@@ -41,6 +56,16 @@ namespace Guichet
         public void RetournerMenuPrincipal()
         {
 
+        }
+        // Methode qui retourne le nom utilisateur du compte admin
+        public string GetAdministrateurId()
+        {
+            return administrateurId;
+        }
+        // retourne le mot de passe 
+        public string GetAdministrateurPassword()
+        {
+            return administrateurPassword;
         }
 
     }

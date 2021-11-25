@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace Guichet
 {
@@ -19,6 +20,17 @@ namespace Guichet
         public void AjouterFacture(Facture facture)
         {
             listeFacture.Add(facture);
+        }
+        // Affichage de la liste des factures et le nom du fournisseur
+        public void AfficherService()
+        {
+            Console.WriteLine(nomFournisseur);
+            foreach(Facture facture in listeFacture)
+            {
+                Console.WriteLine("\t"+facture.ToString());
+            }
+
+            
         }
 
 

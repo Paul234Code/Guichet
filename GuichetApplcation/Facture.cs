@@ -15,7 +15,7 @@ namespace Guichet
         // Les proprietes
         public string NumeroFacture { get;  }
         public decimal MontantFacture { get; }
-        public string NomFacture { get; }
+        public string NomFacture { get; } 
         // Le constructeur de la classe
         public Facture( string nomFacture,decimal montantFacture)
         {
@@ -25,9 +25,16 @@ namespace Guichet
             identifiantFacture++;
 
         }
+        public override string ToString()
+        {
+            return $"{numeroFacture} \t{nomFacture}\t{montantFacture}";
+        }
         // Methode qui affiche les informations sur une facture
         public void AfficherInformationFacture()
         {
+            Console.WriteLine("numero\t nom Facture\tmontantFacture");
+            Console.WriteLine($"{numeroFacture}\t{nomFacture}\t{montantFacture}");
+            
 
         }
     }

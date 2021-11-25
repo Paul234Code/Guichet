@@ -8,10 +8,28 @@ namespace Guichet
 {
     public class Guichet
     {
-       
-        
-        private EtatDuSysteme mode;
-        private decimal Solde;
+        // Attributs de la classe
+
+        private List<Client> listeClients;
+        private EtatDuSysteme mode = EtatDuSysteme.ON; // mode par defaut       
+        private decimal solde = 10000;
+
+        // Les proprietes
+        public List<Client> ListeClients { get; set; }
+        public EtatDuSysteme Mode { get; set; }
+        public decimal Solde { get; set; }
+        // Le constructeur de la classe Guichet
+        public Guichet()
+        {
+            listeClients = new List<Client>();
+           solde = 10000;
+
+        }
+        // methode qui ajoute un client dans la liste
+        public  void AjouterClient(Client client)
+        {
+            listeClients.Add(client);
+        }
 
 
 
@@ -30,34 +48,32 @@ namespace Guichet
             switch (choix)
             {
                 case "1":
-                    seconnecterutilisateur();
+                    SeconnecterUtilisateur();
                     break;
                 case "2":
-                    seconnecteradmin();
+                    SeconnecterAdmin();
                     break;
                 case "3":
-                    quitter();
+                    Quitter();
                     break;
   
             }
         }
 
-        private void seconnecterutilisateur()
+        private void SeconnecterUtilisateur()
         {
             throw new NotImplementedException();
         }
-        private void seconnecteradmin()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void quitter()
+        private void SeconnecterAdmin()
         {
             throw new NotImplementedException();
         }
 
-        // créer menu personnel
-        //consolewriteline+consolereadline+switch choix de menu
+        private void Quitter()
+        {
+            throw new NotImplementedException();
+        }
+
 
         public void MenuPersonnel()
         {
@@ -70,7 +86,7 @@ namespace Guichet
             Console.WriteLine(" 7- Fermer session");
     
         }
-         public void SelectOperation(string operation)
+         public void SelectOperation(string operation,Usager usager)//créer objet usager pour appeler les fonctions créer dans le switch
         {
            switch (operation)
             {
@@ -98,10 +114,6 @@ namespace Guichet
             }
         }
         
-
-
-        // creer menu administrateur
-        //consolewriteline + consolereadline + switch choix de menu
         public void MenuAdmin()
         {
             Console.WriteLine(" 1- Remettre le guichet en fonction");
@@ -111,7 +123,8 @@ namespace Guichet
             Console.WriteLine(" 5- Retour au menu principal");
          
         }
-         public void SelectChoixAdmin(string choixadmin)
+         public void SelectChoixAdmin(string choixadmin,Administrateur admin)//créer objet administrateur
+                                                                             //pour appeler les fonctions dans switch
         {
             switch (choixadmin)
             {
@@ -161,12 +174,12 @@ namespace Guichet
         {
             return Solde;
         }
-        // Affiche le solde du guichet
+        //methode qui Affiche le solde du guichet
         public void AfficherSoldeGuichet()
         {
 
         }
-        // Methode pour debiter un montant du Guichet
+        // Methode pour debiter/retirer un montant du Guichet
         public void Debiter(decimal montant)
         {
 

@@ -50,7 +50,10 @@ namespace Guichet
             {
                 Console.WriteLine("Veuillez entrer un montant positif");
             }
-            else if(montantDépôt > )  //Pas finit !! Vous pouvez modifier si vous voulez faire autre chose
+            else if(montantDépôt > 0)
+            {
+                Guichet.Solde = Guichet.Solde + montantDépôt;
+            }//Pas finit !! Vous pouvez modifier si vous voulez faire autre chose
         }
 
         // Méthode pour retirer un montant d'un compte
@@ -66,6 +69,7 @@ namespace Guichet
         public void AfficherSoldeCompte()
         {
             Console.WriteLine("Solde de votre compte: ");
+            Console.WriteLine()
         }
 
         // Méthode pour effectuer un virement entre les comptes

@@ -8,5 +8,7 @@ namespace Guichet
 {
     public class CompteCheque : CompteClient
     {
+        private string typeCompte;
+
     }
 }

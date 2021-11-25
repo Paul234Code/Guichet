@@ -42,7 +42,7 @@ namespace Guichet
         // methode qui retourne le solde du guichet
         public decimal getSoldeGuichet()
         {
-            return solde;
+            return Solde;
         }
         // Affiche le solde du guichet
         public void AfficherSoldeGuichet()

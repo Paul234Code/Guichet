@@ -18,33 +18,22 @@ namespace Guichet
         // 
         public void DeposerArgent(decimal montant)
         {
-            if(montant < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(montant),"Le montant doit etre positif");
-            }
-            if(montant > 10000)
-            {
-                throw new ArgumentOutOfRangeException(nameof(montant), "Le montant maximal doit etre 10000");
-
-            }
-            if(guichet.Solde+ montant > 10000)
-            {
-                throw new ArgumentOutOfRangeException(nameof(montant),"Invalide operation");
-            }
-            if(guichet.Solde + montant < 10000)
-            {
-                throw new ArgumentOutOfRangeException(nameof(montant), "Invalide operation");
-
-            }
-            if(montant+guichet.Solde == 10000)
+            decimal nouveau = guichet.getSoldeGuichet();
+            decimal  difference = 10000 - (nouveau + montant);
+            if (difference == 0)
             {
                 guichet.Solde += montant;
+            }
+            else if(difference > 0)
+            {
+                guichet.Solde += difference;
 
             }
-           
-
-
-            
+            else
+            {
+                throw new ArgumentOutOfRangeException(nameof(montant),"Invalide operation montant eleve");
+            }
+               
 
         }
         // Affiche le solde courant du Guichet

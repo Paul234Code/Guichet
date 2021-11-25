@@ -9,10 +9,12 @@ namespace Guichet
         static void Main(string[] args)
         {
             Console.WriteLine("==============================================================");
+
             //classe CompteClient
-            CompteClient paul = new CompteEpargne("Paul Faye",200,EtatDuCompte.ACTIF);
+            CompteClient paul = new CompteEpargne("Paul Faye",2000,EtatDuCompte.ACTIF);
             CompteClient jonam = new CompteEpargne("Firdaous El Mabrooki", 200, EtatDuCompte.ACTIF);
             CompteClient firdaous = new CompteEpargne("Jonam Dessureault", 200, EtatDuCompte.ACTIF);
+
             // des comptes cheques
             CompteClient paulCheque = new CompteCheque("Paul Faye", 2000, EtatDuCompte.ACTIF);
             CompteClient jonamCheque = new CompteCheque("Firdaous El Mabrooki", 3000, EtatDuCompte.ACTIF);
@@ -24,20 +26,24 @@ namespace Guichet
             Console.WriteLine("==============================================================");
             firdaous.AfficherCompte();
             Console.WriteLine();
+
             Console.WriteLine("Deposer 2000$ pour jonam , paul et Firdaous:");
             paul.Deposer(2000, DateTime.Now, "Payment salaire");
             firdaous.Deposer(2000, DateTime.Now, "Payment salaire");
             jonam.Deposer(2000, DateTime.Now, "Depot");
+
             Console.WriteLine("Les nouveaux soldes apres un depot de 2000$ : ");
             paul.AfficherCompte();
             Console.WriteLine("==============================================================");
             jonam.AfficherCompte();
             Console.WriteLine("==============================================================");
             firdaous.AfficherCompte();
+
             Console.WriteLine("Retirer 500$ pour jonam , paul et Firdaous:");
             paul.Retirer(500, DateTime.Now, "Retrait");
             firdaous.Retirer(500, DateTime.Now, "Retrait");
             jonam.Retirer(500, DateTime.Now, "Retrait");
+
             Console.WriteLine("Les nouveaux soldes apres un retrait de 500$ : ");
             paul.AfficherCompte();
             Console.WriteLine("==============================================================");
@@ -50,35 +56,38 @@ namespace Guichet
             //classes Guichet
             Console.WriteLine("==============================================================");
 
-            Guichet guichet = new Guichet();
-            Console.WriteLine(guichet.getSoldeGuichet());
+            Guichet guichet = new Guichet(); // 10000$
+            Console.WriteLine(guichet.getSoldeGuichet()); //10000$
             Console.WriteLine(guichet.Mode);
             Console.WriteLine("==============================================================");
 
             //List<Client> ListeClients = new List<Client>();
-            Usager user =  new Usager(paul,paulCheque,guichet);
-
-            Administrateur admin  =  new Administrateur(guichet);
+            Usager usager =  new Usager(paul,paulCheque,guichet);
             try
             {
-                user.Debiter(1200);
+                usager.RetirerMontant(200);
 
             }
-            catch (ArgumentOutOfRangeException ex)
+            catch (Exception ex)
             {
-                Console.WriteLine(ex.StackTrace);
-            }
-
-            try
-            {
-                admin.DeposerArgent(1200);
-
-            }
-            catch (ArgumentOutOfRangeException ex)
-            {
-                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine(ex.Message);
             }
             
+            Console.WriteLine("nouveau solde guichet: "+ guichet.getSoldeGuichet()); //9800$
+
+            Administrateur admin  =  new Administrateur(guichet);  //9800$   
+
+            try
+            {
+                admin.DeposerArgent(200); //10000$ ????
+
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message+"ligne 45");
+            }
+            Console.WriteLine("nouveau solde guichet deuxieme: " + guichet.getSoldeGuichet());
+            Console.WriteLine("==============================================================");
             Console.WriteLine(admin.GetAdministrateurId());
             Console.WriteLine(admin.GetAdministrateurPassword());
             Console.WriteLine("==============================================================");

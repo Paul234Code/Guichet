@@ -15,7 +15,7 @@ namespace Guichet
         private char[] userPassword = new char[4];
         // Les proprietes
         public CompteClient getCompteCheque { get;  }
-        public Guichet getGuichet { get; set; }
+        public Guichet Guichet { get; set; }
         public  CompteClient    getCompteEpargne { get; }
         // Le constructeur
         public Usager(CompteClient compteEpargne,CompteClient compteCheque,Guichet guichet)
@@ -36,8 +36,12 @@ namespace Guichet
 
         }
         // Fonction qui permet de retirer un montant
-        public void RetirerMontant()
+        public void RetirerMontant(decimal montant)
         {
+            compteCheque.Retirer(montant, DateTime.Now, "Retrait ");
+            //compteEpargne.Retirer(montant, DateTime.Now, "Retrait ");
+            guichet.Debiter(montant);
+
 
         }
         // Afficher le solde du compte

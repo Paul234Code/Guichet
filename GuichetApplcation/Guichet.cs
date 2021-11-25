@@ -61,6 +61,14 @@ namespace Guichet
         // Methode pour debiter un montant du Guichet
         public void Debiter(decimal montant)
         {
+            if(montant <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(montant),"montant du retrait doit etre positif");
+            }
+            if(montant > solde)
+            {
+                throw new ArgumentOutOfRangeException(nameof(montant), "operation de retrait impossible ");
+            }
             solde -= montant;
 
         }

@@ -13,8 +13,12 @@ namespace Guichet
         private Guichet guichet;
         private static char[] nomUtilisateur = new char[8];
         private char[] userPassword = new char[4];
+        // Les proprietes
+        public CompteClient getCompteCheque { get;  }
+        public Guichet getGuichet { get; set; }
+        public  CompteClient    getCompteEpargne { get; }
         // Le constructeur
-        public Usager(CompteEpargne compteEpargne,CompteCheque compteCheque,Guichet guichet)
+        public Usager(CompteClient compteEpargne,CompteClient compteCheque,Guichet guichet)
         {
             this.compteCheque = compteCheque;
             this.compteEpargne = compteEpargne;
@@ -26,7 +30,35 @@ namespace Guichet
         {
 
         }
-        // 
+        // Fonction  qui permet de deposer un monant dans un compte
+        public void DeposerMontant(decimal montant)
+        {
+
+        }
+        // Fonction qui permet de retirer un montant
+        public void RetirerMontant()
+        {
+
+        }
+        // Afficher le solde du compte
+        public void AfficherSoldeCompte()
+        {
+
+        }
+        // Faire un virement entre deux compte
+        public void FaireVirement()
+        {
+
+        }
+        // Payer une facture
+        public void PayerFacture()
+        {
+
+        }
+        public void FermerSession()
+        {
+
+        }
 
     }
 }

@@ -13,6 +13,11 @@ namespace Guichet
             CompteClient paul = new CompteEpargne("Paul Faye",200,EtatDuCompte.ACTIF);
             CompteClient jonam = new CompteEpargne("Firdaous El Mabrooki", 200, EtatDuCompte.ACTIF);
             CompteClient firdaous = new CompteEpargne("Jonam Dessureault", 200, EtatDuCompte.ACTIF);
+            // des comptes cheques
+            CompteClient paulCheque = new CompteCheque("Paul Faye", 2000, EtatDuCompte.ACTIF);
+            CompteClient jonamCheque = new CompteCheque("Firdaous El Mabrooki", 3000, EtatDuCompte.ACTIF);
+            CompteClient firdaousCheque = new CompteCheque("Jonam Dessureault", 8000, EtatDuCompte.ACTIF);
+
             paul.AfficherCompte();
             Console.WriteLine("==============================================================");
             jonam.AfficherCompte();
@@ -51,9 +56,29 @@ namespace Guichet
             Console.WriteLine("==============================================================");
 
             //List<Client> ListeClients = new List<Client>();
-            guichet.ListeClients.
+            Usager user =  new Usager(paul,paulCheque,guichet);
 
             Administrateur admin  =  new Administrateur(guichet);
+            try
+            {
+                user.Debiter(1200);
+
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+
+            try
+            {
+                admin.DeposerArgent(1200);
+
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+            
             Console.WriteLine(admin.GetAdministrateurId());
             Console.WriteLine(admin.GetAdministrateurPassword());
             Console.WriteLine("==============================================================");

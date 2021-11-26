@@ -12,16 +12,18 @@ namespace Guichet
         private string numeroFacture;
         private string nomFacture;
         private decimal montantFacture;
+        private DateTime dateFacture;
         // Les proprietes
         public string NumeroFacture { get;  } //mettre get sans set parcq on a pas besoin de modifier le nom et le montant
         public decimal MontantFacture { get; }
         public string NomFacture { get; } 
         // Le constructeur de la classe
-        public Facture( string nomFacture,decimal montantFacture)
+        public Facture( string nomFacture,decimal montantFacture,DateTime dateFacture)
         {
             numeroFacture = identifiantFacture.ToString();
             this.nomFacture = nomFacture;
             this.montantFacture = montantFacture;
+            this.dateFacture = dateFacture;
             identifiantFacture++;
 
         }
@@ -33,7 +35,7 @@ namespace Guichet
         public void AfficherInformationFacture()
         {
             Console.WriteLine("numero\t nom Facture\tmontantFacture");
-            Console.WriteLine($"{numeroFacture}\t{nomFacture}\t{montantFacture}");
+            Console.WriteLine($"{numeroFacture}\t{nomFacture}\t{montantFacture}\t{dateFacture}");
             
 
         }

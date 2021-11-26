@@ -8,6 +8,7 @@ namespace Guichet
     {
         static void Main(string[] args)
         {
+            /*
             Console.WriteLine("==============================================================");
 
             //classe CompteEpargne
@@ -83,9 +84,9 @@ namespace Guichet
             Console.WriteLine(admin.GetAdministrateurPassword());
             Console.WriteLine("==============================================================");
             // class Facture
-            Facture facture1 = new Facture("Telephone", 200);
-            Facture facture2 = new Facture("Internet", 300);
-            Facture facture3 = new Facture("Television", 400);
+            Facture facture1 = new Facture("Telephone", 200,DateTime.Now);
+            Facture facture2 = new Facture("Internet", 300,DateTime.Now);
+            Facture facture3 = new Facture("Television", 400,DateTime.Now);
             Console.WriteLine(facture1.ToString());
             Console.WriteLine(facture2.ToString());
             Console.WriteLine(facture3.ToString());
@@ -98,9 +99,21 @@ namespace Guichet
             service1.AjouterFacture(facture1);
             service1.AjouterFacture(facture2);
             service1.AjouterFacture(facture3);
-            service1.AfficherService();
-           
+            service1.AfficherService(); */
+            Guichet guichet = new Guichet();
+            guichet.MenuPrincipal();
+            string choice = Console.ReadLine();
+            guichet.SelectionCompte(choice);
+            Administrateur admin = new Administrateur(guichet);
+            admin.seconnecterAdmin();
+            string choixadmin = Console.ReadLine();
+            admin.SelectChoixAdmin(choixadmin);
 
+
+            CompteClient paulEpargne = new CompteEpargne("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
+            CompteClient paulCheque = new CompteCheque("Paul Faye", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
+           Usager usager =  new Usager(paulEpargne,paulCheque,guichet);
+            usager.verrouillerCompte();
 
         }
 

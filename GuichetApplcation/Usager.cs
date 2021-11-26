@@ -44,6 +44,14 @@ namespace Guichet
 
 
         }
+        public void verrouillerCompte()
+        {
+            Console.WriteLine("Compte verouiller!!!");
+            while (true)
+            {
+
+            }
+        }
         // Afficher le solde du compte
         public void AfficherSoldeCompte()
         {

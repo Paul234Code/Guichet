@@ -11,7 +11,8 @@ namespace Guichet
         // Attributs de la classe
 
         private List<Client> listeClients;
-        private EtatDuSysteme mode = EtatDuSysteme.ON; // mode par defaut       
+        private EtatDuSysteme mode = EtatDuSysteme.ACTIF; // mode par defaut
+        private Administrateur admin;                                                  // 
         private decimal solde = 10000;
         // Les proprietes
         public List<Client> ListeClients { get; set; }
@@ -33,53 +34,25 @@ namespace Guichet
         // Menu Utilisateur
         public void MenuPrincipal()
         {
-            Console.WriteLine(" Menu principal");
+            Console.WriteLine("Veuillez choisir l'une des actions suivantes:");
             Console.WriteLine("1-Se connecter à votre compte d'utilisateur"); //ajouter consolereadline + switch pour choix de menu     
             Console.WriteLine("2- Se connecter comme administrateur");
             Console.WriteLine("3- Quitter");
 
       
         }
-         public void SelectionCompte(string choix)
-        {
-            switch (choix)
-            {
-                case "1":
-                    seconnecterutilisateur();
-                    break;
-                case "2":
-                    seconnecteradmin();
-                    break;
-                case "3":
-                    quitter();
-                    break;
-  
-            }
-        }
+        
 
-        private void seconnecterutilisateur()
+        private void seconnecterUtilisateur()
         {
            
         }
-        private void seconnecteradmin()
-        {
-           
-            Console.WriteLine("Enter votre nom Utilisateur :");
-            string userAmdin = Console.ReadLine();
-            Console.WriteLine("Enter your password:");
-            string password = Console.ReadLine();   
-
-        }
-
-        private void quitter()
-        {
-            throw new NotImplementedException();
-        }
+       
 
         // créer menu personnel
         //consolewriteline+consolereadline+switch choix de menu
 
-        public void MenuPersonnel()
+        public void MenuComptePersonnel()
         {
             Console.WriteLine(" 1- Changer le mot de passe ");
             Console.WriteLine(" 2- Déposer un montant dans un compte");
@@ -90,6 +63,7 @@ namespace Guichet
             Console.WriteLine(" 7- Fermer session");
     
         }
+        // Choix des operations dans le menu du compte personnel
          public void SelectOperation(string operation,Usager usager,CompteCheque cheque,decimal montant)
         {
            switch (operation)
@@ -121,38 +95,18 @@ namespace Guichet
         
 
 
-        // creer menu administrateur
-        //consolewriteline + consolereadline + switch choix de menu
+        // Les choix du menu  de l'administrateur
+        
         public void MenuAdmin()
         {
             Console.WriteLine(" 1- Remettre le guichet en fonction");
             Console.WriteLine(" 2- Déposer de l'arget dans le guichet");
             Console.WriteLine(" 3- Voir le solde du guichet");
             Console.WriteLine(" 4- Voir la liste des comptes ");
-            Console.WriteLine(" 5- Retour au menu principal");
+            Console.WriteLine(" 5- Retourner au menu principal");
          
         }
-         public void SelectChoixAdmin(string choixadmin,Administrateur admin)
-        {
-            switch (choixadmin)
-            {
-                case "1":
-                    admin.RemettreGuichetEnFonction();
-                    break;
-                case "2":
-                    admin.DeposerArgent(800);
-                    break;
-                case "3":
-                    admin.VoirSoldeGuichet();
-                    break;
-                case "4":
-                    admin.VoirListeDesCompte();
-                    break;
-                case "5":
-                    admin.RetournerMenuPrincipal();
-                    break;
-            }
-        } 
+       
           public void MenuFournisseur()
         {
             Console.WriteLine(" 1- Amazon");
@@ -185,6 +139,29 @@ namespace Guichet
             }
             solde -= montant;
 
+        }
+
+        // Les choix des operations de l'administrateur
+        public void SelectChoixAdmin(string choixadmin, Administrateur admin)
+        {
+            switch (choixadmin)
+            {
+                case "1":
+                    admin.RemettreGuichetEnFonction();
+                    break;
+                case "2":
+                    admin.DeposerArgent(800);
+                    break;
+                case "3":
+                    admin.VoirSoldeGuichet();
+                    break;
+                case "4":
+                    admin.VoirListeDesCompte();
+                    break;
+                case "5":
+                    admin.RetournerMenuPrincipal();
+                    break;
+            }
         }
     }
 }

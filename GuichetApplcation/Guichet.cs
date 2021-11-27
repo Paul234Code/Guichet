@@ -23,6 +23,7 @@ namespace Guichet
         {
             listeClients = new List<Client>();
            solde = 10000;
+            
 
         }
         // methode qui ajoute un client dans la liste
@@ -43,7 +44,7 @@ namespace Guichet
         }
         
 
-        private void seconnecterUtilisateur()
+        public void ConnectionModeUtilisateur()
         {
            
         }
@@ -52,17 +53,7 @@ namespace Guichet
         // créer menu personnel
         //consolewriteline+consolereadline+switch choix de menu
 
-        public void MenuComptePersonnel()
-        {
-            Console.WriteLine(" 1- Changer le mot de passe ");
-            Console.WriteLine(" 2- Déposer un montant dans un compte");
-            Console.WriteLine(" 3- Retirer un montant d'un compte");
-            Console.WriteLine(" 4- Afficher le solde du compte chèque ou épargne");
-            Console.WriteLine(" 5- Effectuer un virment entre les comptes");
-            Console.WriteLine(" 6- Payer une facture");
-            Console.WriteLine(" 7- Fermer session");
-    
-        }
+        
         // Choix des operations dans le menu du compte personnel
          public void SelectOperation(string operation,Usager usager,CompteCheque cheque,decimal montant)
         {
@@ -161,6 +152,22 @@ namespace Guichet
                 case "5":
                     admin.RetournerMenuPrincipal();
                     break;
+            }
+        }
+        public void SelectionCompte(string choix)
+        {
+            switch (choix)
+            {
+                case "1":
+                    ConnectionModeUtilisateur();
+                    break;
+                case "2":
+                    admin.ConnectionModeAdministrateur();
+                    break;
+                case "3":
+                    Environment.Exit(0);
+                    break;
+
             }
         }
     }

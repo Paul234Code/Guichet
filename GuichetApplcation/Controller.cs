@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
+
 
 namespace Guichet
 {
@@ -8,6 +10,7 @@ namespace Guichet
     {
         static void Main(string[] args)
         {
+            var controller = new Controller();
             /*
             Console.WriteLine("==============================================================");
 
@@ -101,11 +104,12 @@ namespace Guichet
             service1.AjouterFacture(facture3);
             service1.AfficherService(); */
             Guichet guichet = new Guichet();
+            Administrateur admin = new Administrateur(guichet);
             guichet.MenuPrincipal();
             string choice = Console.ReadLine();
             guichet.SelectionCompte(choice);
-            Administrateur admin = new Administrateur(guichet);
-            admin.seconnecterAdmin();
+            
+            admin.ConnectionModeAdministrateur();
             string choixadmin = Console.ReadLine();
             admin.SelectChoixAdmin(choixadmin);
 
@@ -113,9 +117,18 @@ namespace Guichet
             CompteClient paulEpargne = new CompteEpargne("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
             CompteClient paulCheque = new CompteCheque("Paul Faye", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
            Usager usager =  new Usager(paulEpargne,paulCheque,guichet);
-            usager.verrouillerCompte();
+            usager.verrouillerCompte(); 
+            char[] tab1 = new char[] { '1', '2', '3', '4' };
+            char[] tab2 = new char[] { '1', '2', '3', '4','6' };
+            Console.WriteLine(controller.Egalite(tab1,tab2));
 
         }
+        private bool Egalite(char[] tab1, char[] tab2)
+        {
+            return tab1.SequenceEqual(tab2);
+        }
+
+        
 
     }
 }

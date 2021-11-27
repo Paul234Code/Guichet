@@ -74,23 +74,23 @@ namespace Guichet
             return administrateurPassword;
         }
         // Fonction qui valide le mot de passe et le nom utilisateur
-        public bool Validation(string userAdmin, string password)
+        public bool ValidationAdministrateur(string userAdmin, string password)
         {
             return password.Equals(GetAdministrateurPassword()) && userAdmin.Equals(GetAdministrateurId());
         }
         // Fonction qui valide la connection d'un administrateur
-        public void seconnecterAdmin()
-        {
+        public void ConnectionModeAdministrateur()
+        { 
             int compteur = 0;
             string userAdmin;
             string password;
             while (compteur < 3) 
             {
-                Console.WriteLine("Enter  Administrator Username");
+                Console.WriteLine("Nom Administrator: ");
                 userAdmin = Console.ReadLine();
-                Console.WriteLine("Enter Administrator password");
+                Console.WriteLine("Mot de passe Administrator:");
                 password = Console.ReadLine();
-                if(!Validation(userAdmin, password))
+                if(!ValidationAdministrateur(userAdmin, password))
                 {
                     Console.WriteLine("Nom utilisateur ou mot de passe incorrecte");
                     Console.WriteLine();
@@ -133,22 +133,7 @@ namespace Guichet
                     break;
             }
         }
-        public void SelectionCompte(string choix)
-        {
-            switch (choix)
-            {
-                case "1":
-                    seconnecterUtilisateur();
-                    break;
-                case "2":
-                    seconnecterAdmin();
-                    break;
-                case "3":
-                    Environment.Exit(0);
-                    break;
-
-            }
-        }
+        
 
     }
 }

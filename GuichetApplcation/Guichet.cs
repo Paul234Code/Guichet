@@ -38,9 +38,7 @@ namespace Guichet
             Console.WriteLine("Veuillez choisir l'une des actions suivantes:");
             Console.WriteLine("1-Se connecter à votre compte d'utilisateur"); //ajouter consolereadline + switch pour choix de menu     
             Console.WriteLine("2- Se connecter comme administrateur");
-            Console.WriteLine("3- Quitter");
-
-      
+            Console.WriteLine("3- Quitter");     
         }
         
 
@@ -48,12 +46,7 @@ namespace Guichet
         {
            
         }
-       
-
-        // créer menu personnel
-        //consolewriteline+consolereadline+switch choix de menu
-
-        
+             
         // Choix des operations dans le menu du compte personnel
          public void SelectOperation(string operation,Usager usager,CompteCheque cheque,decimal montant)
         {
@@ -63,7 +56,7 @@ namespace Guichet
                     usager.ChangerMotdePasse();
                     break;
                 case "2":
-                    usager.DeposerMontant(montant);
+                    usager.DeposerMontant();
                     break;
                 case "3":
                     usager.RetirerMontant(montant);
@@ -80,34 +73,28 @@ namespace Guichet
                 case "7":
                     usager.FermerSession();
                     break;
-
             }
         }
         
-
-
-        // Les choix du menu  de l'administrateur
-        
+        // Les choix du menu  de l'administrateur       
         public void MenuAdmin()
         {
             Console.WriteLine(" 1- Remettre le guichet en fonction");
             Console.WriteLine(" 2- Déposer de l'arget dans le guichet");
             Console.WriteLine(" 3- Voir le solde du guichet");
             Console.WriteLine(" 4- Voir la liste des comptes ");
-            Console.WriteLine(" 5- Retourner au menu principal");
-         
+            Console.WriteLine(" 5- Retourner au menu principal");        
         }
-       
-          public void MenuFournisseur()
+        // Fonction qui affiche le menu fournisseur
+        public void MenuFournisseur()
         {
             Console.WriteLine(" 1- Amazon");
             Console.WriteLine(" 2- Bell");
             Console.WriteLine(" 3- Vidéotron");
         }
-       
-        
+
         // methode qui retourne le solde du guichet
-        public  decimal getSoldeGuichet()
+        public decimal getSoldeGuichet()
         {
             return solde;
         }
@@ -118,7 +105,7 @@ namespace Guichet
 
         }
         // Methode pour debiter un montant du Guichet
-        public void Debiter(decimal montant)
+        public void DebiterGuichet(decimal montant)
         {
             if(montant <= 0)
             {

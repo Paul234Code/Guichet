@@ -30,15 +30,45 @@ namespace Guichet
         {
             return userPassword;
         }
+        // Methode qui modifie le mot de passe
+        public void SetUsagerPassword(char[] password)
+        {
+           
+          Array.Copy(password, userPassword,  userPassword.Length);
+        }
         // Methode qui retourne le le nom utilisateur de l'usager
         public char[] getUsagerId()
         {
             return nomUtilisateur;
         }
-        // pour changer le mot de passe
+        // Fonction qui permet de changer le mot de passe de l'usager
         public  void ChangerMotdePasse()
         {
+            Console.WriteLine("Entrer le mot de passe actuel:");
+            char[] actuelMotPasse = Console.ReadLine().ToArray();
+            Console.WriteLine("Entrer le nouveau mot de passe:");
+            char[] nouveauMotPasse = Console.ReadLine().ToArray();
+            Console.WriteLine("Confirmer le nouveau mot de passe :");
+            char[] confirmation = Console.ReadLine().ToArray();
 
+            if (!nouveauMotPasse.Length.Equals(actuelMotPasse.Length))
+            {
+                Console.WriteLine("Le format du nouveau mot de passe est incorrect");
+            }
+            else if (nouveauMotPasse.SequenceEqual(actuelMotPasse))
+            {
+                Console.WriteLine("Le nouveau de mot de passe doit etre different de l'actuel mot de passe");
+            }
+            else if(confirmation.SequenceEqual(nouveauMotPasse))
+            {
+                Array.Copy(nouveauMotPasse, actuelMotPasse, actuelMotPasse.Length);
+                Console.WriteLine("Changement de mot de passe effectif");
+                MenuComptePersonnel();
+            }
+            else
+            {
+                Console.WriteLine("Veuillez le nouveau Mot de passe ");
+            }
         }
         // Fonction  qui permet de deposer un monant dans un compte
         public void DeposerMontant()
@@ -49,8 +79,8 @@ namespace Guichet
             if (resultat)
             {
                 Console.WriteLine("dans quel compte le dépôt doit être effectué?");
-                Console.WriteLine("1- Cheque");
-                Console.WriteLine("2- Epargne");
+                Console.WriteLine("1- Compte Cheque");
+                Console.WriteLine("2- Compte Epargne");
                 string compte = Console.ReadLine(); 
                 switch (compte)
                 {
@@ -87,10 +117,10 @@ namespace Guichet
                 while(!decimal.TryParse(valeur,out  montant))
                 {
                     Console.WriteLine("Montant invalide!");
-                    Console.WriteLine("Entrer le montant du depot:");
+                    Console.WriteLine("Entrer le montant du depot: ");
                     valeur = Console.ReadLine();
                 }
-                Console.WriteLine("dans quel compte le dépôt doit être effectué?");
+                Console.WriteLine("Dans quel compte le dépôt doit être effectué ?");
                 string compte = Console.ReadLine();
                 switch (compte)
                 {
@@ -111,10 +141,10 @@ namespace Guichet
         // Fonction qui permet de retirer un montant
         public void RetirerMontant(decimal montant)
         {
-            Console.WriteLine("choix du compte à débiter");
+            Console.WriteLine("Choix du compte à débiter");
             Console.WriteLine();
-            Console.WriteLine("1- Cheque");
-            Console.WriteLine("2- Epargne");
+            Console.WriteLine("1- Compte Cheque");
+            Console.WriteLine("2- Compte Epargne");
             string choice = Console.ReadLine();
             switch (choice)
             {

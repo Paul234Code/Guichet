@@ -113,6 +113,7 @@ namespace Guichet
             //usager.ConnectionModeUtilisateur(); 
             usager.DeposerMontant();
             usager.AfficherSoldeCompte();
+            usager.ChangerMotdePasse();
             Point p =  new Point() { X =  50, Y = 70};
             List<Point> points = new List<Point>() {
                 new Point{X= 10,Y= 20},
@@ -127,6 +128,7 @@ namespace Guichet
             decimal money = 9000m;
             string formatted = $"{money:C}";
             Console.WriteLine(formatted);
+           
 
 
 

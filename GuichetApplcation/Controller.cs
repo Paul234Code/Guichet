@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
+
 
 namespace Guichet
 {
@@ -8,6 +10,8 @@ namespace Guichet
     {
         static void Main(string[] args)
         {
+            var controller = new Controller();
+            /*
             Console.WriteLine("==============================================================");
 
             //classe CompteEpargne
@@ -58,22 +62,18 @@ namespace Guichet
             //classes Guichet
             Console.WriteLine("==============================================================");
 
-            Guichet guichet = new Guichet() { }; // 10000$
+            Guichet guichet = new Guichet(); // 10000$
             Console.WriteLine("Solde initial guichet:  "+ guichet.getSoldeGuichet()); //10000$
             Console.WriteLine("Etat initial:  "+ guichet.Mode);
             Console.WriteLine("==============================================================");
 
-            //List<Client> ListeClients = new List<Client>();
+          
             Usager usager =  new Usager(paulEpargne,paulCheque,guichet);
            
              usager.RetirerMontant(200);
                        
             Console.WriteLine("nouveau solde guichet: "+ guichet.getSoldeGuichet()); //9800$
-
-            Administrateur admin  =  new Administrateur(guichet);  //9800$   
-
-           
-           
+            Administrateur admin  =  new Administrateur(guichet);  //9800$             
             admin.DeposerArgent(200); //10000$ ????
             Console.WriteLine("solde guichet dans try :" + guichet.Solde);
 
@@ -83,9 +83,9 @@ namespace Guichet
             Console.WriteLine(admin.GetAdministrateurPassword());
             Console.WriteLine("==============================================================");
             // class Facture
-            Facture facture1 = new Facture("Telephone", 200);
-            Facture facture2 = new Facture("Internet", 300);
-            Facture facture3 = new Facture("Television", 400);
+            Facture facture1 = new Facture("Telephone", 200,DateTime.Now);
+            Facture facture2 = new Facture("Internet", 300,DateTime.Now);
+            Facture facture3 = new Facture("Television", 400,DateTime.Now);
             Console.WriteLine(facture1.ToString());
             Console.WriteLine(facture2.ToString());
             Console.WriteLine(facture3.ToString());
@@ -98,11 +98,62 @@ namespace Guichet
             service1.AjouterFacture(facture1);
             service1.AjouterFacture(facture2);
             service1.AjouterFacture(facture3);
-            service1.AfficherService();
+            service1.AfficherService(); */
+            /*;
+           
+            guichet.MenuPrincipal();
+            string choice = Console.ReadLine();
+            guichet.SelectionCompte(choice); */
+            Guichet guichet = new Guichet();
+            CompteClient paulEpargne = new CompteEpargne("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
+            CompteClient paulCheque = new CompteCheque("Paul Faye", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
+           Usager usager =  new Usager(paulEpargne,paulCheque,guichet);
+            Administrateur admin = new Administrateur(guichet);
+            //admin.ConnectionModeAdministrateur();
+            //usager.ConnectionModeUtilisateur(); 
+            usager.DeposerMontant();
+            usager.AfficherSoldeCompte();
+            usager.ChangerMotdePasse();
+            Point p =  new Point() { X =  50, Y = 70};
+            List<Point> points = new List<Point>() {
+                new Point{X= 10,Y= 20},
+                new Point{X = 20, Y = 10},
+                new Point{X = 20, Y =  30},
+                new Point{X = 40, Y = 50},
+                new Point{X = 50, Y = 70},
+            };
+            // creation d'un predicate
+             bool pointFind = points.Exists(p =>(p.X,p.Y) == (50,70));
+            Console.WriteLine("pointFind = "+ pointFind);
+            decimal money = 9000m;
+            string formatted = $"{money:C}";
+            Console.WriteLine(formatted);
            
 
 
-        }
 
+
+        }
+        
+
+        
+
+    }
+    public class Point
+    {
+        public delegate bool Predicate<in Point>(Point obj);
+        public int X { get; set; }
+        public int Y { get; set; }
+        public Point()
+        {
+            X = 0;
+            Y = 0;
+        }
+        public bool FindPoints(int x, int y)
+        {
+            return  X.Equals(y) && Y.Equals(x);
+            
+
+        }
     }
 }

@@ -11,18 +11,20 @@ namespace Guichet
         private CompteClient compteCheque;
         private CompteClient compteEpargne;
         private Guichet guichet;
+        private FournisseurService fournisseurService;
         private  char[] nomUtilisateur = new char[8] {'p','a','u','l','1','9','8','8'};
         private char[] userPassword = new char[4] {'1','2','3','4'};
         // Les proprietes
         public CompteClient getCompteCheque { get;  }
         public Guichet Guichet { get; set; }
         public  CompteClient    getCompteEpargne { get; }
-        // Le constructeur
-        public Usager(CompteClient compteEpargne,CompteClient compteCheque,Guichet guichet)
+        // Le constructeur de la classe Usager
+        public Usager(CompteClient compteEpargne,CompteClient compteCheque,Guichet guichet,FournisseurService fournisseurService)
         {
             this.compteCheque = compteCheque;
             this.compteEpargne = compteEpargne;
             this.guichet = guichet;
+            this.fournisseurService = fournisseurService;
 
         }
         // Retourne le mot de passe de l'usager
@@ -202,6 +204,30 @@ namespace Guichet
         // Methode qui permet a l'usager de payer une facture
         public void PayerFacture()
         {
+            // affiche les fournisseurs
+            Console.WriteLine("Amazon");
+            Console.WriteLine("Bell");
+            Console.WriteLine("Vidéotron");
+            Console.WriteLine("Veuillez choisir un des fournisseurs suivant :");
+            string fournisseur = Console.ReadLine();
+            switch (fournisseur)
+            {
+                case "Amazon":
+                    fournisseurService.AfficherService();
+                    break;
+                case "Bell":
+                    fournisseurService.AfficherService();
+                    break;
+                case "Videotron":
+                    fournisseurService.AfficherService();
+                    break ;
+                default :
+                    Console.WriteLine("Operation invalide");
+                    break ;
+
+
+            }
+
 
 
         }

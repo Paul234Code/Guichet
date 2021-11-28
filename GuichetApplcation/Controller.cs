@@ -106,8 +106,9 @@ namespace Guichet
             guichet.SelectionCompte(choice); */
             Guichet guichet = new Guichet();
             CompteClient paulEpargne = new CompteEpargne("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
+            FournisseurService service1 = new FournisseurService("Bell");
             CompteClient paulCheque = new CompteCheque("Paul Faye", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
-           Usager usager =  new Usager(paulEpargne,paulCheque,guichet);
+           Usager usager =  new Usager(paulEpargne,paulCheque,guichet,service1);
             Administrateur admin = new Administrateur(guichet);
             //admin.ConnectionModeAdministrateur();
             //usager.ConnectionModeUtilisateur(); 

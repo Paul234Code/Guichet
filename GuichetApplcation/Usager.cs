@@ -63,6 +63,7 @@ namespace Guichet
         public void PayerFacture()
         {
 
+
         }
         public void FermerSession()
         {

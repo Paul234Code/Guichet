@@ -9,8 +9,8 @@ namespace Guichet
 {
     public class Usager : Client
     {
-        private CompteClient compteCheque;
-        private CompteClient compteEpargne;
+        private CompteCheque compteCheque;
+        private CompteEpargne compteEpargne;
         private Guichet guichet;
         private FournisseurService fournisseurService;
         private  char[] nomUtilisateur = new char[8] {'p','a','u','l','1','9','8','8'};
@@ -20,7 +20,7 @@ namespace Guichet
         public Guichet Guichet { get; set; }
         public  CompteClient    getCompteEpargne { get; }
         // Le constructeur de la classe Usager
-        public Usager(CompteClient compteEpargne,CompteClient compteCheque,Guichet guichet,FournisseurService fournisseurService)
+        public Usager(CompteEpargne compteEpargne,CompteCheque compteCheque,Guichet guichet,FournisseurService fournisseurService)
         {
             this.compteCheque = compteCheque;
             this.compteEpargne = compteEpargne;
@@ -159,6 +159,7 @@ namespace Guichet
             Console.WriteLine("Votre Compte est verouiller!!!");
             while (true)
             {
+               
 
             }
         }
@@ -291,14 +292,14 @@ namespace Guichet
                 switch (compte)
                 {
                     case TypeDuCompte.Cheque:
-                        compteCheque.Retirer(montant, DateTime.Now, "Retrait");
-                        compteEpargne.Deposer(montant, DateTime.Now, "Depot");
-                        compteCheque.AfficherSoldeCompte();
-                        compteCheque.AfficherSoldeCompte();
+                        compteCheque.Virer(compteEpargne, montant);
+                        compteCheque.AfficherSoldeCheque();
+                        compteEpargne.AfficherSoldeEpargne();
                         break;
                     case TypeDuCompte.Epargne:
-                        compteEpargne.Retirer(montant, DateTime.Now, "Retrait");
-                        compteCheque.Deposer(montant, DateTime.Now, "Depot");
+                        compteEpargne.Virer(compteCheque, montant);
+                        compteCheque.AfficherSoldeCheque();
+                        compteEpargne.AfficherSoldeEpargne();
                         break ;
                     default:
                         Console.WriteLine("Veuillez effectuer un choix valide");
@@ -315,14 +316,14 @@ namespace Guichet
                 switch (compte)
                 {
                     case TypeDuCompte.Cheque:
-                        compteCheque.Retirer(montant, DateTime.Now, "Retrait");
-                        compteEpargne.Deposer(montant, DateTime.Now, "Depot");
-                        compteCheque.AfficherSoldeCompte();
-                        compteCheque.AfficherSoldeCompte();
+                        compteCheque.Virer(compteEpargne, montant);
+                        compteCheque.AfficherSoldeCheque();
+                        compteEpargne.AfficherSoldeEpargne();
                         break;
                     case TypeDuCompte.Epargne:
-                        compteEpargne.Retirer(montant, DateTime.Now, "Retrait");
-                        compteCheque.Deposer(montant, DateTime.Now, "Depot");
+                        compteEpargne.Virer(compteCheque, montant);
+                        compteCheque.AfficherSoldeCheque();
+                        compteEpargne.AfficherSoldeEpargne();
                         break;
                     default:
                         Console.WriteLine("Veuillez effectuer un choix valide");

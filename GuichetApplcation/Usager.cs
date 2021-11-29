@@ -144,7 +144,7 @@ namespace Guichet
         // Fonction qui permet de retirer un montant
         public void RetirerMontant(decimal montant)
         {
-            Console.WriteLine("Choix du compte à débiter");
+             Console.WriteLine("Veuillez choisir lecompte à débiter");
             Console.WriteLine();
             Console.WriteLine("1- Compte Cheque");
             Console.WriteLine("2- Compte Epargne");
@@ -152,26 +152,22 @@ namespace Guichet
             switch (choice)
             {
                 case "1":
+                    guichet.DebiterGuichet(montant);
+                    compteCheque.Retirer(montant, DateTime.Now, "Retrait");
                     break;
                 case "2":
+                    guichet.DebiterGuichet(montant);
+                    compteEpargne.Retirer(montant, DateTime.Now, "Retrait");
                     break;
                 default:
                     Console.WriteLine("Operation  invalide");
                     break;
             }
-            compteCheque.Retirer(montant, DateTime.Now, "Retrait ");
+             compteCheque.Retirer(montant, DateTime.Now, "Retrait ");
             //compteEpargne.Retirer(montant, DateTime.Now, "Retrait ");
             guichet.DebiterGuichet(montant);
         }
-        // Methode qui permet de verouiller un compte
-        public void VerrouillerCompte()
-        {
-            Console.WriteLine("Votre Compte est verouiller!!!");
-            while (true)
-            {
-
-            }
-        }
+     }
         // Afficher le solde du compte
         public void AfficherSoldeCompte()
         {

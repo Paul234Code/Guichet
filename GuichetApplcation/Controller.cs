@@ -108,11 +108,11 @@ namespace Guichet
             CompteEpargne paulEpargne = new CompteEpargne("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
             FournisseurService service1 = new FournisseurService("Bell");
             CompteCheque paulCheque = new CompteCheque("Paul Faye", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
-           Usager usager =  new Usager(paulEpargne,paulCheque,guichet,service1);
-            Administrateur admin = new Administrateur(guichet);
-           // guichet.MenuPrincipal();
-           //string choice = Console.ReadLine();
-            //guichet.SelectionCompte(choice,admin,usager);
+            Usager usager =  new Usager(paulEpargne,paulCheque,guichet,service1,"1234","paul1988");
+            Administrateur admin = new Administrateur(guichet); 
+             guichet.MenuPrincipal();
+            string choice = Console.ReadLine();
+            guichet.SelectionCompte(choice,admin,usager);
             //admin.ConnectionModeAdministrateur();
             //usager.ConnectionModeUtilisateur();
             //Console.WriteLine("solde du guichet = "+guichet.Solde);
@@ -120,7 +120,10 @@ namespace Guichet
             //Console.WriteLine("Nouveau solde du guichet = " + guichet.Solde);
             //usager.DeposerMontant();
             //usager.AfficherSoldeCompte();
+            Console.WriteLine("nom utilisateur = "+ usager.NomUtilisaeur);
+            Console.WriteLine("password actuel = " + usager.Password);
             usager.ChangerMotdePasse();
+            Console.WriteLine(" nouveau password  = " + usager.Password);
             //paulCheque.AfficherSoldeCheque();
             //paulEpargne.AfficherSoldeEpargne();
             //usager.FaireVirement(1000);

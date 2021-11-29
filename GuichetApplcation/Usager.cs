@@ -13,66 +13,66 @@ namespace Guichet
         private CompteEpargne compteEpargne;
         private Guichet guichet;
         private FournisseurService fournisseurService;
-        private  char[] nomUtilisateur = new char[8] {'p','a','u','l','1','9','8','8'};
-        private char[] userPassword = new char[4] {'1','2','3','4'};
+        private string nomUtilisateur ;
+        private string password ;
         // Les proprietes
         public CompteClient getCompteCheque { get;  }
         public Guichet Guichet { get; set; }
-        public  CompteClient    getCompteEpargne { get; }
+        public  CompteClient  getCompteEpargne { get; }
+        public string Password { get; set; } 
+        public string NomUtilisaeur{ get; set; }
         // Le constructeur de la classe Usager
-        public Usager(CompteEpargne compteEpargne,CompteCheque compteCheque,Guichet guichet,FournisseurService fournisseurService)
+        public Usager(CompteEpargne compteEpargne,CompteCheque compteCheque,Guichet guichet,FournisseurService fournisseurService,string password, string nomUtilisateur)
         {
             this.compteCheque = compteCheque;
             this.compteEpargne = compteEpargne;
             this.guichet = guichet;
             this.fournisseurService = fournisseurService;
+            this.password = password;
+            this.nomUtilisateur = nomUtilisateur;
 
         }
-        // Retourne le mot de passe de l'usager
-        public char[] GetUsagerPassword()
-        {
-            return userPassword;
-        }
-        // Methode qui modifie le mot de passe
-        public void SetUsagerPassword(char[] password)
-        {
-           
-          Array.Copy(password, userPassword,  userPassword.Length);
-        }
-        // Methode qui retourne le le nom utilisateur de l'usager
-        public char[] getUsagerId()
-        {
-            return nomUtilisateur;
-        }
+       
         // Fonction qui permet de changer le mot de passe de l'usager
         public  void ChangerMotdePasse()
         {
             Console.WriteLine("Entrer le mot de passe actuel:");
-            char[] actuelMotPasse = Console.ReadLine().ToArray();
+            string actuelMotPasse = Console.ReadLine();
             Console.WriteLine("Entrer le nouveau mot de passe:");
-            char[] nouveauMotPasse = Console.ReadLine().ToArray();
+            string nouveauMotPasse = Console.ReadLine();
             Console.WriteLine("Confirmer le nouveau mot de passe :");
-            char[] confirmation = Console.ReadLine().ToArray();
-
+            string confirmation = Console.ReadLine();
             if (!nouveauMotPasse.Length.Equals(actuelMotPasse.Length))
             {
                 Console.WriteLine("Le format du nouveau mot de passe est incorrect");
             }
-            else if (nouveauMotPasse.SequenceEqual(actuelMotPasse))
+            else if (nouveauMotPasse.Equals(actuelMotPasse))
             {
                 Console.WriteLine("Le nouveau de mot de passe doit etre different de l'actuel mot de passe");
             }
-            else if(confirmation.SequenceEqual(nouveauMotPasse))
+            else if(confirmation.Equals(nouveauMotPasse))
             {
-                Array.Copy(nouveauMotPasse, actuelMotPasse, actuelMotPasse.Length);
+                password = nouveauMotPasse;
                 Console.WriteLine("Changement de mot de passe effectif");
-                Console.WriteLine();
-                MenuComptePersonnel();
+                Console.WriteLine();               
             }
             else
             {
-                Console.WriteLine("Veuillez le nouveau Mot de passe ");
+                while (!confirmation.Equals(nouveauMotPasse))
+                {
+                    Console.WriteLine("Veuillez confirmer le nouveau Mot de passe ");
+                    confirmation = Console.ReadLine();
+                    if(confirmation.Equals(nouveauMotPasse))
+                    {
+                        Console.WriteLine("Changement de mot de passe effecuté avec success");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Mot de passe confirmation doit etre egale au nouveau mot de passe");
+                    }
+                }
             }
+            MenuComptePersonnel();
         }
         // Fonction  qui permet de deposer un monant dans un compte
         public void DeposerMontant()
@@ -102,8 +102,7 @@ namespace Guichet
                 }
             }
             else
-            {
-                
+            {               
                 while(!decimal.TryParse(valeur,out  montant))
                 {
                     Console.WriteLine("Montant invalide!");
@@ -214,16 +213,11 @@ namespace Guichet
                     break;
                 case "Videotron":
                     fournisseurService.AfficherService();
-                    break ;
-                default :
+                    break;
+                default:
                     Console.WriteLine("Operation invalide");
-                    break ;
-
-
+                    break;
             }
-
-
-
         }
         public void FermerSession()
         {
@@ -231,9 +225,9 @@ namespace Guichet
 
         }
         // Fonction qui permet de comparer l'egalite de deux tableaux de caraetres
-        public bool Egalite(char[] tab1, char[] tab2)
+        public bool Egalite(string str1, string str2)
         {
-            return tab1.SequenceEqual(tab2);
+            return str1.Equals(str2);
         }
         // Fonction qui valide la connection d'un usager
         public void ConnectionModeUtilisateur() 
@@ -244,13 +238,12 @@ namespace Guichet
             while (compteur < 3) {
 
                  Console.WriteLine("Enter nom utilisateur:");
-                 usagerLogin = Console.ReadLine();
+                  usagerLogin = Console.ReadLine();
                  Console.WriteLine("Entrer mot de passe:");
                  password = Console.ReadLine();
                  // Convertit la saisie en tableau de caractere ;
-                 char[] tabLogin = usagerLogin.ToCharArray();
-                 char[] tabPassword = password.ToCharArray();
-                if (Egalite(tabLogin, getUsagerId()) && Egalite(tabPassword, GetUsagerPassword()))
+                 
+                if (Egalite(usagerLogin, nomUtilisateur) && Egalite(password,this.password))
                 {                 
                     break;
                 }

@@ -148,7 +148,7 @@ namespace Guichet
             Console.WriteLine("Nouveau solde du guichet = " + guichet.Solde);
             usager.DeposerMontant();
             usager.AfficherSoldeCompte();
-            usager.ChangerMotdePasse();
+            usager.ChangerMotDePasse();
             Point p =  new Point() { X =  50, Y = 70};
             List<Point> points = new List<Point>() {
                 new Point{X= 10,Y= 20},

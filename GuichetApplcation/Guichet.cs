@@ -34,9 +34,12 @@ namespace Guichet
         public void MenuPrincipal()
         {
             Console.WriteLine("Veuillez choisir l'une des actions suivantes:");
-            Console.WriteLine("1-Se connecter à votre compte d'utilisateur"); //ajouter consolereadline + switch pour choix de menu     
+            Console.WriteLine("1- Se connecter à votre compte d'utilisateur"); //ajouter consolereadline + switch pour choix de menu     
             Console.WriteLine("2- Se connecter comme administrateur");
-            Console.WriteLine("3- Quitter");     
+            Console.WriteLine("3- Quitter");
+            string choixMenuPrincipal = Console.ReadLine();
+            SelectionCompte(choixMenuPrincipal);
+
         }
         
 
@@ -85,13 +88,29 @@ namespace Guichet
             Console.WriteLine(" 3- Voir le solde du guichet");
             Console.WriteLine(" 4- Voir la liste des comptes ");
             Console.WriteLine(" 5- Retourner au menu principal");
+            string choixMenuAdmin = Console.ReadLine();
+            SelectOperationsAdmin(choixMenuAdmin);
+
         }
         // Fonction qui affiche le menu fournisseur
         public void MenuFournisseur()
         {
+            
             Console.WriteLine(" 1- Amazon");
             Console.WriteLine(" 2- Bell");
             Console.WriteLine(" 3- Vidéotron");
+            string choixFournisseur = Console.ReadLine();
+            return choixFournisseur;
+
+
+        }
+
+        public FournisseurService getFournisseurService(FournisseurService choix)
+        {
+            Console.WriteLine("Entrer un fournisseur");
+            FournisseurService choixFournisseur = Console.ReadLine();
+            return choix;
+
         }
 
         // methode qui retourne le solde du guichet
@@ -176,5 +195,10 @@ namespace Guichet
 
             }
         }
+
+        //public void EtatDePanne(){}
+        
+           
+        
     }
 }

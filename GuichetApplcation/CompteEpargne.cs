@@ -17,7 +17,6 @@ namespace Guichet
         {
             this.typeCompte = typeCompte;
 
-
         }
     }
 }

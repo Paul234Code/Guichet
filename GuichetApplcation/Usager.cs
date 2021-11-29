@@ -88,25 +88,11 @@ namespace Guichet
                 switch (compte)
                 {
                     case "1":
-                        try
-                        {
-                            compteCheque.Deposer(montant, DateTime.Now, "Depot");
-                        }
-                        catch (ArgumentOutOfRangeException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
+                        compteCheque.Deposer(montant, DateTime.Now, "Depot");                        
                         Console.WriteLine("Nouveau Solde du compte cheque : " + compteCheque.Balance);
                         break;
-                    case "2":
-                        try
-                        {
-                            compteEpargne.Deposer(montant, DateTime.Now, "Depot");
-                        }
-                        catch (ArgumentOutOfRangeException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
+                    case "2":                      
+                        compteEpargne.Deposer(montant, DateTime.Now, "Depot");                        
                         Console.WriteLine("Nouveau Solde du compte epargne : " + compteEpargne.Balance);
                         break;
                     default:
@@ -142,6 +128,33 @@ namespace Guichet
             }
         }
 
+        // Fonction qui permet de retirer un montant
+        public void RetirerMontant(decimal montant)
+        {
+            Console.WriteLine("Veuillez choisir le compte à débiter");
+            Console.WriteLine();
+            Console.WriteLine("1- Compte Cheque");
+            Console.WriteLine("2- Compte Epargne");
+            string choice = Console.ReadLine();
+            switch (choice)
+            {
+                case "1":
+                    guichet.DebiterGuichet(montant);
+                    compteCheque.Retirer(montant, DateTime.Now, "Retrait");
+                    break;
+                case "2":
+                    guichet.DebiterGuichet(montant);
+                    compteEpargne.Retirer(montant, DateTime.Now, "Retrait");
+                    break;
+                default:
+                    Console.WriteLine("Operation  invalide");
+                    break;
+            }
+            compteCheque.Retirer(montant, DateTime.Now, "Retrait ");
+            //compteEpargne.Retirer(montant, DateTime.Now, "Retrait ");
+            guichet.DebiterGuichet(montant);
+        }
+
         // Methode qui permet de verouiller un compte
         public void VerrouillerCompte()
         {
@@ -154,7 +167,7 @@ namespace Guichet
         // Afficher le solde du compte
         public void AfficherSoldeCompte()
         {
-            Console.WriteLine("solde du compte Chèque ou du compte Epargne?");
+            Console.WriteLine("Solde du compte Chèque ou du compte Epargne?");
             Console.WriteLine("1- Cheque");
             Console.WriteLine("2- Epargne");
             string choice = Console.ReadLine();
@@ -185,39 +198,62 @@ namespace Guichet
         public void PayerFacture()
         {
             // affiche les fournisseurs
+            Console.WriteLine("Veuillez choisir un des fournisseurs suivant :");
             Console.WriteLine("Amazon");
             Console.WriteLine("Bell");
             Console.WriteLine("Vidéotron");
-            Console.WriteLine("Veuillez choisir un des fournisseurs suivant :");
+
             string fournisseur = Console.ReadLine();
+
             switch (fournisseur)
             {
                 case "Amazon":
                     fournisseurService.AfficherService();
+                    fournisseurService.PayementDuService();
+                    //Retirer(decimal amount, DateTime date, string information);
                     break;
+
                 case "Bell":
                     fournisseurService.AfficherService();
+                    fournisseurService.PayementDuService();
+                    //Retirer(decimal amount, DateTime date, string information);
                     break;
+
                 case "Videotron":
                     fournisseurService.AfficherService();
-                    break;
-                default:
-                    Console.WriteLine("Operation invalide");
+                    fournisseurService.PayementDuService();
+                    //Retirer(decimal amount, DateTime date, string information);
                     break;
 
+                default:
+                    Console.WriteLine("Opération invalide");
+                    break;
 
             }
-
-
-
-
         
     }
         public void FermerSession()
         {
             
         }
-        // Fonction qui permet de comparer l'egalite de deux tableaux de caraetres
+        //Fonction pour choisir le type de compte
+        public void ChoixCompte()
+        {
+            Console.WriteLine("Veuillez choisir le compte");
+            string saisie = Console.ReadLine();
+            TypeDuCompte choixcompte =(TypeDuCompte)Enum.Parse(typeof(TypeDuCompte),saisie);
+            switch(choixcompte)
+            {
+                case TypeDuCompte.Cheque:
+                
+                    break;
+
+                case TypeDuCompte.Epargne:
+
+                    break;
+            }
+        }
+        // Fonction qui permet de comparer l'égalité de deux tableaux de caractères
         public bool Egalite(char[] tab1, char[] tab2)
         {
             return tab1.SequenceEqual(tab2);

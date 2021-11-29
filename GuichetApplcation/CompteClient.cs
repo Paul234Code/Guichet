@@ -60,11 +60,11 @@ namespace Guichet
         {
             if (amount <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(amount), "montant du retrait doit etre positif");
+                throw new ArgumentOutOfRangeException(nameof(amount), "Le montant du retrait doit être positif");
             }
             if (Balance - amount < 0)
             {
-                throw new InvalidOperationException("Fonds insufisant pour le retrait");
+                throw new InvalidOperationException("Fonds insuffisants pour le retrait");
             }
             var retrait = new Transaction(-amount, date, information);
             allTransactions.Add(retrait);
@@ -104,5 +104,8 @@ namespace Guichet
         {
             Console.WriteLine("Solde du compte: " + Balance );
         }
+
+        
+
     }
 }

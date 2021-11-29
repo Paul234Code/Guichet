@@ -43,14 +43,27 @@ namespace Guichet
         }
         public void PayementDuService(decimal frais = 2)
         {
-            Console.WriteLine("Enter le numero de la facture");
+            Console.WriteLine("Entrer le numéro de la facture");
             string numero = Console.ReadLine();
             Console.WriteLine(numero);
             int index =  listeFacture.FindIndex(facture =>facture.NumeroFacture == numero);
             Console.WriteLine(index);
-            Console.WriteLine("Enter le montant de la facture");
-            string montant = Console.ReadLine();
+            Console.WriteLine("Entrer le montant de la facture");
+            string saisie = Console.ReadLine();
+            bool resultat = decimal.TryParse(saisie, out decimal montant);
+            if (resultat)
+            {
+                //CompteClient.Retirer(saisie);
+            }
+            if (!resultat)
+            {
+                Console.WriteLine("Veuillez entrer un montant valide.");
+                while (!resultat)
+                {
+                    Console.WriteLine("Veuillez entrer un montant valide.");
+                }
 
+            }
         }
 
 

@@ -87,25 +87,12 @@ namespace Guichet
                 string compte = Console.ReadLine(); 
                 switch (compte)
                 {
-                    case "1":
-                       
-                            compteCheque.Deposer(montant, DateTime.Now, "Depot");
-                      
-                        catch (ArgumentOutOfRangeException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
+                    case "1":                      
+                        compteCheque.Deposer(montant, DateTime.Now, "Depot");                                           
                         Console.WriteLine("Nouveau Solde du compte cheque : " + compteCheque.Balance);
                         break;
-                    case "2":
-                        try
-                        {
-                            compteEpargne.Deposer(montant, DateTime.Now, "Depot");
-                        }
-                        catch (ArgumentOutOfRangeException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
+                    case "2":                     
+                        compteEpargne.Deposer(montant, DateTime.Now, "Depot");                   
                         Console.WriteLine("Nouveau Solde du compte epargne : " + compteEpargne.Balance);
                         break ;
                     default:

@@ -297,6 +297,7 @@ namespace Guichet
         // Methode qui affiche le menu d'un compte usager
         public void MenuComptePersonnel()
         {
+            Console.WriteLine("Menu du compte personnel:");
             Console.WriteLine(" 1- Changer le mot de passe ");
             Console.WriteLine(" 2- Déposer un montant dans un compte");
             Console.WriteLine(" 3- Retirer un montant d'un compte");
@@ -304,6 +305,9 @@ namespace Guichet
             Console.WriteLine(" 5- Effectuer un virment entre les comptes");
             Console.WriteLine(" 6- Payer une facture");
             Console.WriteLine(" 7- Fermer session");
+            int choixComptePerso = Convert.ToInt32(Console.ReadLine());
+            //SelectOperationsUsager(choixComptePerso);
+                
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Guichet
         }
        public void RemettreGuichetEnFonction()
        {
-            Console.WriteLine("Voulez-vous remettre le systeme en fonction (O/N)?");
+            Console.WriteLine("Voulez-vous remettre le système en fonction (O/N)?");
             string choice = Console.ReadLine();
             switch (choice)
             {
@@ -21,10 +21,10 @@ namespace Guichet
                     break;
                 
                 case "N":
-                    Console.WriteLine("Systeme Hors Service,guichet en " + EtatDuSysteme.PANNE);
+                    Console.WriteLine("Système hors-service, guichet en " + EtatDuSysteme.PANNE);
                     break;
                 default:
-                    Console.WriteLine("Operation invalide");
+                    Console.WriteLine("Opération invalide");
                     break;
             }
 
@@ -32,7 +32,7 @@ namespace Guichet
         // 
         public void DeposerArgent()
         {
-            Console.WriteLine("Entrer le montant du depot du guichet");
+            Console.WriteLine("Entrer le montant du dépôt du guichet");
             string saisie = Console.ReadLine();
             bool resulatConversion = decimal.TryParse(saisie, out decimal montant);
             decimal soldeCourant = guichet.getSoldeGuichet(); // le restant dans le guichet 5000$
@@ -40,8 +40,8 @@ namespace Guichet
             {
                 if(soldeCourant + montant > 10000 || soldeCourant + montant < 10000)
                 {
-                    Console.WriteLine("Montant le montant maximal doit etre 10000$");              
-                    Console.WriteLine("Enter le montant du depot");
+                    Console.WriteLine("Le montant maximal doit être de 10000$");              
+                    Console.WriteLine("Entrer le montant du dépôt");
                     saisie = Console.ReadLine();
                     resulatConversion = decimal.TryParse(saisie, out montant);
                     

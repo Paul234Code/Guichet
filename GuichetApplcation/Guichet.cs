@@ -14,6 +14,9 @@ namespace Guichet
         private EtatDuSysteme mode ; // mode par defaut
         private Administrateur admin;                                                  // 
         private decimal solde ;
+        private Administrateur administrateur;
+        private Usager usager;
+
         // Les proprietes
         public List<Client> ListeClients { get; set; }
         public EtatDuSysteme Mode { get; set; }
@@ -43,10 +46,6 @@ namespace Guichet
         }
         
 
-        public void ConnectionModeUtilisateur()
-        {
-           
-        }
              
         // Choix des operations dans le menu du compte personnel
          public void SelectOperationsUsager(string operation,Usager usager,CompteCheque cheque,decimal montant)
@@ -100,16 +99,15 @@ namespace Guichet
             Console.WriteLine(" 2- Bell");
             Console.WriteLine(" 3- Vidéotron");
             string choixFournisseur = Console.ReadLine();
-            return choixFournisseur;
 
 
         }
 
-        public FournisseurService getFournisseurService(FournisseurService choix)
+        public FournisseurService getFournisseurService()
         {
-            Console.WriteLine("Entrer un fournisseur");
-            FournisseurService choixFournisseur = Console.ReadLine();
-            return choix;
+            Console.WriteLine("Entrer le nom  fournisseur");
+            string choixFournisseur = Console.ReadLine();
+            return  new FournisseurService(choixFournisseur);
 
         }
 
@@ -181,10 +179,10 @@ namespace Guichet
             switch (choix)
             {
                 case "1":
-                    ConnectionModeUtilisateur();
+                    usager.ConnectionModeUtilisateur();
                     break;
                 case "2":
-                    admin.ConnectionModeAdministrateur();
+                    administrateur.ConnectionModeAdministrateur();
                     break;
                 case "3":
                     Environment.Exit(0);
@@ -195,10 +193,5 @@ namespace Guichet
 
             }
         }
-
-        //public void EtatDePanne(){}
-        
-           
-        
     }
 }

@@ -12,7 +12,7 @@ namespace Guichet
 
         private List<Client> listeClients;
         private EtatDuSysteme mode ; // mode par defaut
-        private Administrateur admin;                                                  // 
+        private Administrateur admin;                                                  
         private decimal solde ;
         // Les proprietes
         public List<Client> ListeClients { get; set; }
@@ -30,7 +30,8 @@ namespace Guichet
             listeClients.Add(client);
         }
 
-        // Menu Utilisateur
+        // menu principal
+
         public void MenuPrincipal()
         {
             Console.WriteLine("Veuillez choisir l'une des actions suivantes:");
@@ -77,7 +78,7 @@ namespace Guichet
             }
         }
 
-        // Les choix du menu  de l'administrateur       
+            //choix menu de l'administrateur       
         public void MenuAdmin()
         {
             Console.WriteLine(" 1- Remettre le guichet en fonction");

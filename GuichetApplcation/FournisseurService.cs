@@ -41,6 +41,17 @@ namespace Guichet
         {
             ListeFacture.Add(facture);
         }
+        public void PayementDuService(decimal frais = 2)
+        {
+            Console.WriteLine("Enter le numero de la facture");
+            string numero = Console.ReadLine();
+            Console.WriteLine(numero);
+            int index =  listeFacture.FindIndex(facture =>facture.NumeroFacture == numero);
+            Console.WriteLine(index);
+            Console.WriteLine("Enter le montant de la facture");
+            string montant = Console.ReadLine();
+
+        }
 
 
     }

@@ -8,7 +8,7 @@ namespace Guichet
 {
     public enum EtatDuSysteme
     {
-        ON,
-        OFF
+        ACTIF,
+        PANNE,
     }
 }

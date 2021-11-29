@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
+
 
 namespace Guichet
 {
@@ -8,6 +10,8 @@ namespace Guichet
     {
         static void Main(string[] args)
         {
+            var controller = new Controller();
+            /*
             Console.WriteLine("==============================================================");
 
             //classe CompteEpargne
@@ -58,22 +62,18 @@ namespace Guichet
             //classes Guichet
             Console.WriteLine("==============================================================");
 
-            Guichet guichet = new Guichet() { }; // 10000$
+            Guichet guichet = new Guichet(); // 10000$
             Console.WriteLine("Solde initial guichet:  "+ guichet.getSoldeGuichet()); //10000$
             Console.WriteLine("Etat initial:  "+ guichet.Mode);
             Console.WriteLine("==============================================================");
 
-            //List<Client> ListeClients = new List<Client>();
+          
             Usager usager =  new Usager(paulEpargne,paulCheque,guichet);
            
              usager.RetirerMontant(200);
                        
             Console.WriteLine("nouveau solde guichet: "+ guichet.getSoldeGuichet()); //9800$
-
-            Administrateur admin  =  new Administrateur(guichet);  //9800$   
-
-           
-           
+            Administrateur admin  =  new Administrateur(guichet);  //9800$             
             admin.DeposerArgent(200); //10000$ ????
             Console.WriteLine("solde guichet dans try :" + guichet.Solde);
 
@@ -83,51 +83,81 @@ namespace Guichet
             Console.WriteLine(admin.GetAdministrateurPassword());
             Console.WriteLine("==============================================================");
             // class Facture
-            Facture factureBell1 = new Facture("Telephone", 200);
-            Facture factureBell2 = new Facture("Internet", 300);
-            Facture factureBell3 = new Facture("Television", 400);
-            Facture factureAmazon1 = new Facture("Telephone", 201);
-            Facture factureAmazon2 = new Facture("Internet", 301);
-            Facture factureAmazon3 = new Facture("Television", 401);
-            Facture factureVideotron1 = new Facture("Telephone", 202);
-            Facture factureVideotron2 = new Facture("Internet", 302);
-            Facture factureVideotron3 = new Facture("Television", 402);
-
-            Console.WriteLine(factureBell1.ToString());
-            Console.WriteLine(factureBell2.ToString());
-            Console.WriteLine(factureBell3.ToString());
-            Console.WriteLine(factureAmazon1.ToString());
-            Console.WriteLine(factureAmazon2.ToString());
-            Console.WriteLine(factureAmazon3.ToString());
-            Console.WriteLine(factureVideotron1.ToString());
-            Console.WriteLine(factureVideotron2.ToString());
-            Console.WriteLine(factureVideotron3.ToString());
-
-            factureBell1.AfficherInformationFacture();
+            Facture facture1 = new Facture("Telephone", 200,DateTime.Now);
+            Facture facture2 = new Facture("Internet", 300,DateTime.Now);
+            Facture facture3 = new Facture("Television", 400,DateTime.Now);
+            Console.WriteLine(facture1.ToString());
+            Console.WriteLine(facture2.ToString());
+            Console.WriteLine(facture3.ToString());
+            facture1.AfficherInformationFacture();
             // Class Fournisseur de Services
             FournisseurService service1 = new FournisseurService("Bell");
             FournisseurService service2 = new FournisseurService("Amazon");
             FournisseurService service3 = new FournisseurService("Videotron");
             Console.WriteLine("==============================================================");
-            service1.AjouterFacture(factureBell1);
-            service1.AjouterFacture(factureBell2);
-            service1.AjouterFacture(factureBell3);
-
-            service2.AjouterFacture(factureAmazon1);
-            service2.AjouterFacture(factureAmazon2);
-            service2.AjouterFacture(factureAmazon3);
-
-            service3.AjouterFacture(factureVideotron1);
-            service3.AjouterFacture(factureVideotron2);
-            service3.AjouterFacture(factureVideotron3);
-
-            service1.AfficherService();
-
-            //Cré
+            service1.AjouterFacture(facture1);
+            service1.AjouterFacture(facture2);
+            service1.AjouterFacture(facture3);
+            service1.AfficherService(); */
+            /*;
+           
+            guichet.MenuPrincipal();
+            string choice = Console.ReadLine();
+            guichet.SelectionCompte(choice); */
+            Guichet guichet = new Guichet(){ Solde = 9000, Mode = EtatDuSysteme.ACTIF};
+            CompteClient paulEpargne = new CompteEpargne("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
+            FournisseurService service1 = new FournisseurService("Bell");
+            CompteClient paulCheque = new CompteCheque("Paul Faye", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
+           Usager usager =  new Usager(paulEpargne,paulCheque,guichet,service1);
+            Administrateur admin = new Administrateur(guichet);
+            //admin.ConnectionModeAdministrateur();
+            //usager.ConnectionModeUtilisateur();
+            Console.WriteLine("solde du guichet = "+guichet.Solde);
+            admin.DeposerArgent();
+            Console.WriteLine("Nouveau solde du guichet = " + guichet.Solde);
+            usager.DeposerMontant();
+            usager.AfficherSoldeCompte();
+            usager.ChangerMotdePasse();
+            Point p =  new Point() { X =  50, Y = 70};
+            List<Point> points = new List<Point>() {
+                new Point{X= 10,Y= 20},
+                new Point{X = 20, Y = 10},
+                new Point{X = 20, Y =  30},
+                new Point{X = 40, Y = 50},
+                new Point{X = 50, Y = 70},
+            };
+            // creation d'un predicate
+             bool pointFind = points.Exists(p =>(p.X,p.Y) == (50,70));
+            Console.WriteLine("pointFind = "+ pointFind);
+            decimal money = 9000m;
+            string formatted = $"{money:C}";
+            Console.WriteLine(formatted);
            
 
 
-        }
 
+
+        }
+        
+
+        
+
+    }
+    public class Point
+    {
+        public delegate bool Predicate<in Point>(Point obj);
+        public int X { get; set; }
+        public int Y { get; set; }
+        public Point()
+        {
+            X = 0;
+            Y = 0;
+        }
+        public bool FindPoints(int x, int y)
+        {
+            return  X.Equals(y) && Y.Equals(x);
+            
+
+        }
     }
 }

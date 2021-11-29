@@ -167,7 +167,6 @@ namespace Guichet
             //compteEpargne.Retirer(montant, DateTime.Now, "Retrait ");
             guichet.DebiterGuichet(montant);
         }
-     }
         // Afficher le solde du compte
         public void AfficherSoldeCompte()
         {
@@ -287,3 +286,5 @@ namespace Guichet
         }
     }
 }
+}
+

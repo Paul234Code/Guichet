@@ -13,14 +13,14 @@ namespace Guichet
         private CompteClient compteEpargne;
         private Guichet guichet;
         private FournisseurService fournisseurService;
-        private  char[] nomUtilisateur = new char[8] {'p','a','u','l','1','9','8','8'};
-        private char[] userPassword = new char[4] {'1','2','3','4'};
+        private char[] nomUtilisateur = new char[8] { 'p', 'a', 'u', 'l', '1', '9', '8', '8' };
+        private char[] userPassword = new char[4] { '1', '2', '3', '4' };
         // Les proprietes
-        public CompteClient getCompteCheque { get;  }
+        public CompteClient getCompteCheque { get; }
         public Guichet Guichet { get; set; }
-        public  CompteClient    getCompteEpargne { get; }
+        public CompteClient getCompteEpargne { get; }
         // Le constructeur de la classe Usager
-        public Usager(CompteClient compteEpargne,CompteClient compteCheque,Guichet guichet,FournisseurService fournisseurService)
+        public Usager(CompteClient compteEpargne, CompteClient compteCheque, Guichet guichet, FournisseurService fournisseurService)
         {
             this.compteCheque = compteCheque;
             this.compteEpargne = compteEpargne;
@@ -36,8 +36,8 @@ namespace Guichet
         // Methode qui modifie le mot de passe
         public void SetUsagerPassword(char[] password)
         {
-           
-          Array.Copy(password, userPassword,  userPassword.Length);
+
+            Array.Copy(password, userPassword, userPassword.Length);
         }
         // Methode qui retourne le le nom utilisateur de l'usager
         public char[] getUsagerId()
@@ -45,7 +45,7 @@ namespace Guichet
             return nomUtilisateur;
         }
         // Fonction qui permet de changer le mot de passe de l'usager
-        public  void ChangerMotdePasse()
+        public void ChangerMotDePasse()
         {
             Console.WriteLine("Entrer le mot de passe actuel:");
             char[] actuelMotPasse = Console.ReadLine().ToArray();
@@ -62,7 +62,7 @@ namespace Guichet
             {
                 Console.WriteLine("Le nouveau de mot de passe doit etre different de l'actuel mot de passe");
             }
-            else if(confirmation.SequenceEqual(nouveauMotPasse))
+            else if (confirmation.SequenceEqual(nouveauMotPasse))
             {
                 Array.Copy(nouveauMotPasse, actuelMotPasse, actuelMotPasse.Length);
                 Console.WriteLine("Changement de mot de passe effectif");
@@ -84,7 +84,7 @@ namespace Guichet
                 Console.WriteLine("dans quel compte le dépôt doit être effectué?");
                 Console.WriteLine("1- Compte Cheque");
                 Console.WriteLine("2- Compte Epargne");
-                string compte = Console.ReadLine(); 
+                string compte = Console.ReadLine();
                 switch (compte)
                 {
                     case "1":
@@ -108,7 +108,7 @@ namespace Guichet
                             Console.WriteLine(ex.Message);
                         }
                         Console.WriteLine("Nouveau Solde du compte epargne : " + compteEpargne.Balance);
-                        break ;
+                        break;
                     default:
                         Console.WriteLine("Operation  invalide");
                         break;
@@ -116,8 +116,8 @@ namespace Guichet
             }
             else
             {
-                
-                while(!decimal.TryParse(valeur,out  montant))
+
+                while (!decimal.TryParse(valeur, out montant))
                 {
                     Console.WriteLine("Montant invalide!");
                     Console.WriteLine("Entrer le montant du depot: ");
@@ -141,28 +141,7 @@ namespace Guichet
                 }
             }
         }
-        // Fonction  qui permet de déposer un montant dans un compte
-        public void DeposerMontant(decimal amount)
-        {
-            Console.WriteLine("Choix du compte à débiter");
-            Console.WriteLine();
-            Console.WriteLine("1- Compte Cheque");
-            Console.WriteLine("2- Compte Epargne");
-            string choice = Console.ReadLine();
-            switch (choice)
-            {
-                case "1":
-                    break;
-                case "2":
-                    break;
-                default:
-                    Console.WriteLine("Operation  invalide");
-                    break;
-            }
-            compteCheque.Retirer(montant, DateTime.Now, "Retrait ");
-            //compteEpargne.Retirer(montant, DateTime.Now, "Retrait ");
-            guichet.DebiterGuichet(montant);
-        }
+
         // Methode qui permet de verouiller un compte
         public void VerrouillerCompte()
         {
@@ -185,10 +164,10 @@ namespace Guichet
                     compteCheque.AfficherSoldeCompte();
                     MenuComptePersonnel();
                     break;
-                case"2":
-                   compteEpargne.AfficherSoldeCompte();
+                case "2":
+                    compteEpargne.AfficherSoldeCompte();
                     MenuComptePersonnel();
-                   break ;
+                    break;
                 default:
                     Console.WriteLine("Operation  invalide");
                     break;
@@ -198,7 +177,7 @@ namespace Guichet
         public void FaireVirement(CompteCheque cheque, decimal montant)
         {
             // virer du compteEpargne vers compteCheque
-           compteEpargne.Virer(cheque, montant);
+            compteEpargne.Virer(cheque, montant);
 
 
         }
@@ -221,26 +200,25 @@ namespace Guichet
                     break;
                 case "Videotron":
                     fournisseurService.AfficherService();
-                    break ;
-                default :
+                    break;
+                default:
                     Console.WriteLine("Operation invalide");
-                    break ;
+                    break;
 
 
             }
 
 
 
-                }
-            }
-        }
+
+        
+    }
         public void FermerSession()
         {
             
-
         }
         // Fonction qui permet de comparer l'egalite de deux tableaux de caraetres
-        private bool Egalite(char[] tab1, char[] tab2)
+        public bool Egalite(char[] tab1, char[] tab2)
         {
             return tab1.SequenceEqual(tab2);
         }

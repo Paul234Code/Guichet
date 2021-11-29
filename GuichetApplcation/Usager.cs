@@ -66,6 +66,7 @@ namespace Guichet
             {
                 Array.Copy(nouveauMotPasse, actuelMotPasse, actuelMotPasse.Length);
                 Console.WriteLine("Changement de mot de passe effectif");
+                Console.WriteLine();
                 MenuComptePersonnel();
             }
             else

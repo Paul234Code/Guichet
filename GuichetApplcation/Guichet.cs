@@ -14,6 +14,8 @@ namespace Guichet
         private EtatDuSysteme mode ; // mode par defaut
         private Administrateur admin;                                                  // 
         private decimal solde ;
+        //private Administrateur administrateur ;
+        //private Usager usager;
         // Les proprietes
         public List<Client> ListeClients { get; set; }
         public EtatDuSysteme Mode { get; set; }
@@ -22,6 +24,7 @@ namespace Guichet
         public Guichet()
         {
             listeClients = new List<Client>();
+           
             
         }
         // methode qui ajoute un client dans la liste
@@ -38,13 +41,7 @@ namespace Guichet
             Console.WriteLine("2- Se connecter comme administrateur");
             Console.WriteLine("3- Quitter");     
         }
-        
-
-        public void ConnectionModeUtilisateur()
-        {
-           
-        }
-             
+                   
         // Choix des operations dans le menu du compte personnel
          public void SelectOperationsUsager(string operation,Usager usager,CompteCheque cheque,decimal montant)
         {
@@ -63,7 +60,7 @@ namespace Guichet
                     usager.AfficherSoldeCompte();
                     break;
                 case "5":
-                    usager.FaireVirement(cheque,montant);
+                    usager.FaireVirement(montant);
                     break;
                 case "6":
                     usager.PayerFacture();
@@ -157,15 +154,15 @@ namespace Guichet
             }
         }
         // Fonction qui permet de choisir une option dans le menu principal
-        public void SelectionCompte(string choix)
+        public void SelectionCompte(string choix, Administrateur admin, Usager usager)
         {
             switch (choix)
             {
                 case "1":
-                    ConnectionModeUtilisateur();
+                    usager.ConnectionModeUtilisateur();
                     break;
                 case "2":
-                    admin.ConnectionModeAdministrateur();
+                    admin. ConnectionModeAdministrateur();
                     break;
                 case "3":
                     Environment.Exit(0);

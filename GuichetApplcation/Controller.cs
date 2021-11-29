@@ -105,19 +105,28 @@ namespace Guichet
             string choice = Console.ReadLine();
             guichet.SelectionCompte(choice); */
             Guichet guichet = new Guichet(){ Solde = 9000, Mode = EtatDuSysteme.ACTIF};
-            CompteClient paulEpargne = new CompteEpargne("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
+            CompteEpargne paulEpargne = new CompteEpargne("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
             FournisseurService service1 = new FournisseurService("Bell");
-            CompteClient paulCheque = new CompteCheque("Paul Faye", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
-           Usager usager =  new Usager(paulEpargne,paulCheque,guichet,service1);
-            Administrateur admin = new Administrateur(guichet);
+            CompteCheque paulCheque = new CompteCheque("Paul Faye", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
+            Usager usager =  new Usager(paulEpargne,paulCheque,guichet,service1,"1234","paul1988");
+            Administrateur admin = new Administrateur(guichet); 
+             guichet.MenuPrincipal();
+            string choice = Console.ReadLine();
+            guichet.SelectionCompte(choice,admin,usager);
             //admin.ConnectionModeAdministrateur();
             //usager.ConnectionModeUtilisateur();
-            Console.WriteLine("solde du guichet = "+guichet.Solde);
-            admin.DeposerArgent();
-            Console.WriteLine("Nouveau solde du guichet = " + guichet.Solde);
-            usager.DeposerMontant();
-            usager.AfficherSoldeCompte();
+            //Console.WriteLine("solde du guichet = "+guichet.Solde);
+            //admin.DeposerArgent();
+            //Console.WriteLine("Nouveau solde du guichet = " + guichet.Solde);
+            //usager.DeposerMontant();
+            //usager.AfficherSoldeCompte();
+            Console.WriteLine("nom utilisateur = "+ usager.NomUtilisaeur);
+            Console.WriteLine("password actuel = " + usager.Password);
             usager.ChangerMotdePasse();
+            Console.WriteLine(" nouveau password  = " + usager.Password);
+            //paulCheque.AfficherSoldeCheque();
+            //paulEpargne.AfficherSoldeEpargne();
+            //usager.FaireVirement(1000);
             Point p =  new Point() { X =  50, Y = 70};
             List<Point> points = new List<Point>() {
                 new Point{X= 10,Y= 20},
@@ -128,10 +137,8 @@ namespace Guichet
             };
             // creation d'un predicate
              bool pointFind = points.Exists(p =>(p.X,p.Y) == (50,70));
-            Console.WriteLine("pointFind = "+ pointFind);
-            decimal money = 9000m;
-            string formatted = $"{money:C}";
-            Console.WriteLine(formatted);
+            //Console.WriteLine("pointFind = "+ pointFind);
+            
            
 
 

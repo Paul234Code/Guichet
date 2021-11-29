@@ -88,10 +88,9 @@ namespace Guichet
                 switch (compte)
                 {
                     case "1":
-                        try
-                        {
+                       
                             compteCheque.Deposer(montant, DateTime.Now, "Depot");
-                        }
+                      
                         catch (ArgumentOutOfRangeException ex)
                         {
                             Console.WriteLine(ex.Message);
@@ -144,7 +143,7 @@ namespace Guichet
         // Fonction qui permet de retirer un montant
         public void RetirerMontant(decimal montant)
         {
-            Console.WriteLine("Choix du compte à débiter");
+            Console.WriteLine("Veuillez choisir lecompte à débiter");
             Console.WriteLine();
             Console.WriteLine("1- Compte Cheque");
             Console.WriteLine("2- Compte Epargne");
@@ -152,8 +151,12 @@ namespace Guichet
             switch (choice)
             {
                 case "1":
+                    guichet.DebiterGuichet(montant);
+                    compteCheque.Retirer(montant, DateTime.Now, "Retrait");
                     break;
                 case "2":
+                    guichet.DebiterGuichet(montant);
+                    compteEpargne.Retirer(montant, DateTime.Now, "Retrait");
                     break;
                 default:
                     Console.WriteLine("Operation  invalide");
@@ -238,7 +241,7 @@ namespace Guichet
 
         }
         // Fonction qui permet de comparer l'egalite de deux tableaux de caraetres
-        private bool Egalite(char[] tab1, char[] tab2)
+        public bool Egalite(char[] tab1, char[] tab2)
         {
             return tab1.SequenceEqual(tab2);
         }

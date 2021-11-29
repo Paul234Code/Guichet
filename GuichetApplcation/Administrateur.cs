@@ -38,13 +38,20 @@ namespace Guichet
             decimal soldeCourant = guichet.getSoldeGuichet(); // le restant dans le guichet 5000$
             while(resulatConversion)
             {
-                if(soldeCourant + montant > 10000 || soldeCourant + montant < 10000)
+  
+                if(soldeCourant + montant < = 10000)
                 {
-                    Console.WriteLine("Montant le montant maximal doit etre 10000$");              
-                    Console.WriteLine("Enter le montant du depot");
+                    Console.WriteLine("montant valide dépôt bien effectué");           
                     saisie = Console.ReadLine();
                     resulatConversion = decimal.TryParse(saisie, out montant);
-                    
+                   
+                    if(soldeCourant + montant > 10000)
+                    {
+                       Console.WriteLine(" montant est invalide dépôt maximal est 10000 ");
+                         saisie = Console.ReadLine();
+                       resulatConversion = decimal.TryParse(saisie, out montant);
+
+                    }   
                 }
                 else
                 {

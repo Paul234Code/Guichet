@@ -83,22 +83,47 @@ namespace Guichet
             Console.WriteLine(admin.GetAdministrateurPassword());
             Console.WriteLine("==============================================================");
             // class Facture
-            Facture facture1 = new Facture("Telephone", 200);
-            Facture facture2 = new Facture("Internet", 300);
-            Facture facture3 = new Facture("Television", 400);
-            Console.WriteLine(facture1.ToString());
-            Console.WriteLine(facture2.ToString());
-            Console.WriteLine(facture3.ToString());
-            facture1.AfficherInformationFacture();
+            Facture factureBell1 = new Facture("Telephone", 200);
+            Facture factureBell2 = new Facture("Internet", 300);
+            Facture factureBell3 = new Facture("Television", 400);
+            Facture factureAmazon1 = new Facture("Telephone", 201);
+            Facture factureAmazon2 = new Facture("Internet", 301);
+            Facture factureAmazon3 = new Facture("Television", 401);
+            Facture factureVideotron1 = new Facture("Telephone", 202);
+            Facture factureVideotron2 = new Facture("Internet", 302);
+            Facture factureVideotron3 = new Facture("Television", 402);
+
+            Console.WriteLine(factureBell1.ToString());
+            Console.WriteLine(factureBell2.ToString());
+            Console.WriteLine(factureBell3.ToString());
+            Console.WriteLine(factureAmazon1.ToString());
+            Console.WriteLine(factureAmazon2.ToString());
+            Console.WriteLine(factureAmazon3.ToString());
+            Console.WriteLine(factureVideotron1.ToString());
+            Console.WriteLine(factureVideotron2.ToString());
+            Console.WriteLine(factureVideotron3.ToString());
+
+            factureBell1.AfficherInformationFacture();
             // Class Fournisseur de Services
             FournisseurService service1 = new FournisseurService("Bell");
             FournisseurService service2 = new FournisseurService("Amazon");
             FournisseurService service3 = new FournisseurService("Videotron");
             Console.WriteLine("==============================================================");
-            service1.AjouterFacture(facture1);
-            service1.AjouterFacture(facture2);
-            service1.AjouterFacture(facture3);
+            service1.AjouterFacture(factureBell1);
+            service1.AjouterFacture(factureBell2);
+            service1.AjouterFacture(factureBell3);
+
+            service2.AjouterFacture(factureAmazon1);
+            service2.AjouterFacture(factureAmazon2);
+            service2.AjouterFacture(factureAmazon3);
+
+            service3.AjouterFacture(factureVideotron1);
+            service3.AjouterFacture(factureVideotron2);
+            service3.AjouterFacture(factureVideotron3);
+
             service1.AfficherService();
+
+            //Cré
            
 
 

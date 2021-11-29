@@ -53,7 +53,7 @@ namespace Guichet
         public void RetirerMontant(decimal amount)
         {
             compteCheque.Retirer(amount, DateTime.Now, "retrait");
-            compteEpargne.Retirer(amount, DateTime.Now, "depot");
+            compteEpargne.Retirer(amount, DateTime.Now, "retrait");
         }
         // Afficher le solde du compte
         public void AfficherSoldeCompte()
@@ -70,7 +70,26 @@ namespace Guichet
         // Payer une facture
         public void PayerFacture()
         {
+            Console.WriteLine("Veuillez choisir parmis l'un des fournisseurs: ");
+            Console.WriteLine("1- Amazon");
+            Console.WriteLine("2- Bell");
+            Console.WriteLine("3- Vidéotron");
+            int choixFournisseur = Convert.ToInt32(Console.ReadLine());
+            if(choixFournisseur) // Pour payer une facture il faut avoir une liste de facture ? 
+            Console.WriteLine("Veuillez choisir le montant à payer: ");
+            int montantAPayer = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Veuillez sélectionner un compte: ");
+            Console.WriteLine("1- Chèque");
+            Console.WriteLine("2- Épargne");
+            int choixCompte = Convert.ToInt32(Console.ReadLine());
 
+            if (choixCompte == 1)
+            {
+                RetirerMontant()
+                {
+
+                }
+            }
         }
         public void FermerSession()
         {

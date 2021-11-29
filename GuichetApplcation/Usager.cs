@@ -130,7 +130,7 @@ namespace Guichet
         // Fonction qui permet de retirer un montant
         public void RetirerMontant(decimal montant)
         {
-            Console.WriteLine("Veuillez choisir lecompte à débiter");
+            Console.WriteLine("Veuillez choisir le compte à débiter");
             Console.WriteLine();
             Console.WriteLine("1- Compte Cheque");
             Console.WriteLine("2- Compte Epargne");

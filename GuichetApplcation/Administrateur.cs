@@ -67,6 +67,15 @@ namespace Guichet
         {
             return administrateurPassword;
         }
+        private void SeconnecterAdmin()
+
+        {
+            Console.WriteLine("Entrer votre nom d'utilisateur");
+            string userAdmin = Console.ReadLine();
+            Console.WriteLine("Entrer votre mot de passe");
+            string motdepasse = Console.ReadLine();
+        }
+
 
     }
 }

@@ -50,9 +50,9 @@ namespace Guichet
 
         }
         // Faire un virement entre deux compte
-        public void FaireVirement()
+        public void FaireVirement(CompteCheque cheque, decimal montant)
         {
-
+            compteEpargne.Retirer(montant);
         }
         // Payer une facture
         public void PayerFacture()

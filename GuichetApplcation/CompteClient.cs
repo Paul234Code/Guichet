@@ -10,7 +10,7 @@ namespace Guichet
     {
         // attributs de la classe
         private List<Transaction> allTransactions = new List<Transaction>();
-        private static int numeroID = 1234567890;
+        private static int numeroID = 1234567890; //permet de donner un nouveau num de compte à chaque fois.
         protected string numero;
         protected string nomProprietaire;
         protected decimal balance;
@@ -97,6 +97,11 @@ namespace Guichet
                 report.AppendLine($"{item.Date.ToShortDateString()}\t{item.Amount}\t{balance}\t{item.Notes}");
             }
             return report.ToString();
+        }
+        // Fonction qui affiche seulement le solde du compte
+        public void AfficherSoldeCompte()
+        {
+            Console.WriteLine("Solde du compte: " + Balance );
         }
     }
 }

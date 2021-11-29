@@ -8,9 +8,9 @@ namespace Guichet
 {
     public enum TypeDuCompte
     {
-        Epargne;
+        Epargne,
         Cheque,
-        Hypotheque
+      
 
     }
 }

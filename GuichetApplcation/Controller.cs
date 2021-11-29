@@ -129,9 +129,7 @@ namespace Guichet
             // creation d'un predicate
              bool pointFind = points.Exists(p =>(p.X,p.Y) == (50,70));
             Console.WriteLine("pointFind = "+ pointFind);
-            decimal money = 9000m;
-            string formatted = $"{money:C}";
-            Console.WriteLine(formatted);
+            
            
 
 

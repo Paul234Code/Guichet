@@ -19,5 +19,10 @@ namespace Guichet
 
 
         }
+        // Fonction qui affiche le solde du compte Epargne
+        public void afficherSoldeEpargne()
+        {
+
+        }
     }
 }

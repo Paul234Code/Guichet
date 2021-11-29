@@ -185,11 +185,9 @@ namespace Guichet
             }
         }
         // Faire un virement entre deux compte
-        public void FaireVirement(CompteCheque cheque, decimal montant)
+        public void FaireVirement(decimal montant)
         {
-            // virer du compteEpargne vers compteCheque
-           compteEpargne.Virer(cheque, montant);
-
+            ValidationVirement(montant);
 
         }
         // Methode qui permet a l'usager de payer une facture
@@ -205,6 +203,9 @@ namespace Guichet
             {
                 case "Amazon":
                     fournisseurService.AfficherService();
+                    // fonction pour choisir la facture a payer
+                    // fonction pour choisir le compte (cheque ou epargne)
+                    //fonction pour completer la transaction 
                     break;
                 case "Bell":
                     fournisseurService.AfficherService();
@@ -278,6 +279,58 @@ namespace Guichet
             Console.WriteLine(" 5- Effectuer un virment entre les comptes");
             Console.WriteLine(" 6- Payer une facture");
             Console.WriteLine(" 7- Fermer session");
+        }
+        // Fonction qui valide les virement dans un compte
+        public void ValidationVirement(decimal montant)
+        {
+            if( montant <= 1000)
+            {
+                Console.WriteLine("Entrer le compte de provenance");
+                string choice = Console.ReadLine();
+                TypeDuCompte compte = (TypeDuCompte)Enum.Parse(typeof(TypeDuCompte),choice);
+                switch (compte)
+                {
+                    case TypeDuCompte.Cheque:
+                        compteCheque.Retirer(montant, DateTime.Now, "Retrait");
+                        compteEpargne.Deposer(montant, DateTime.Now, "Depot");
+                        compteCheque.AfficherSoldeCompte();
+                        compteCheque.AfficherSoldeCompte();
+                        break;
+                    case TypeDuCompte.Epargne:
+                        compteEpargne.Retirer(montant, DateTime.Now, "Retrait");
+                        compteCheque.Deposer(montant, DateTime.Now, "Depot");
+                        break ;
+                    default:
+                        Console.WriteLine("Veuillez effectuer un choix valide");
+                        break;
+
+                }
+            }
+            else
+            {
+                ConnectionModeUtilisateur();
+                Console.WriteLine("Entrer le compte de provenance");
+                string choice = Console.ReadLine();
+                TypeDuCompte compte = (TypeDuCompte)Enum.Parse(typeof(TypeDuCompte), choice);
+                switch (compte)
+                {
+                    case TypeDuCompte.Cheque:
+                        compteCheque.Retirer(montant, DateTime.Now, "Retrait");
+                        compteEpargne.Deposer(montant, DateTime.Now, "Depot");
+                        compteCheque.AfficherSoldeCompte();
+                        compteCheque.AfficherSoldeCompte();
+                        break;
+                    case TypeDuCompte.Epargne:
+                        compteEpargne.Retirer(montant, DateTime.Now, "Retrait");
+                        compteCheque.Deposer(montant, DateTime.Now, "Depot");
+                        break;
+                    default:
+                        Console.WriteLine("Veuillez effectuer un choix valide");
+                        break;
+
+                }
+            }
+
         }
     }
 }

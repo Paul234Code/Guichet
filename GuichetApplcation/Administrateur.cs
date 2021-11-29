@@ -13,26 +13,45 @@ namespace Guichet
         }
        public void RemettreGuichetEnFonction()
        {
+            Console.WriteLine("Voulez-vous remettre le systeme en fonction (O/N)?");
+            string choice = Console.ReadLine();
+            switch (choice)
+            {
+                case "O":
+                    break;
+                
+                case "N":
+                    Console.WriteLine("Systeme Hors Service,guichet en " + EtatDuSysteme.PANNE);
+                    break;
+                default:
+                    Console.WriteLine("Operation invalide");
+                    break;
+            }
 
        }
         // 
-        public void DeposerArgent(decimal montant)
+        public void DeposerArgent()
         {
-            decimal nouveau = guichet.getSoldeGuichet(); // le restant dans le guichet 5000$
-            decimal  difference = 10000 - (nouveau + montant); // 4000$
-            if (difference == 0)
+            Console.WriteLine("Entrer le montant du depot du guichet");
+            string saisie = Console.ReadLine();
+            bool resulatConversion = decimal.TryParse(saisie, out decimal montant);
+            decimal soldeCourant = guichet.getSoldeGuichet(); // le restant dans le guichet 5000$
+            while (resulatConversion)
             {
-                guichet.Solde += montant;
-            }
-            else if(difference > 0)
-            {
-                guichet.Solde += difference;
-
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException(nameof(montant),"Invalide operation montant eleve");
-            }
+                if(soldeCourant + montant > 10000 || soldeCourant + montant < 10000)
+                {
+                    Console.WriteLine("Enter le montant du depot");
+                    saisie = Console.ReadLine();
+                    resulatConversion = decimal.TryParse(saisie, out montant);
+                }
+                else
+                {
+                    guichet.Solde += montant;
+                    break;
+                }
+               
+            }           
+            
                
 
         }
@@ -120,7 +139,7 @@ namespace Guichet
                     RemettreGuichetEnFonction();
                     break;
                 case "2":
-                    DeposerArgent(800);
+                    DeposerArgent();
                     break;
                 case "3":
                     VoirSoldeGuichet();

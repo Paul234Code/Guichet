@@ -11,9 +11,9 @@ namespace Guichet
         // Attributs de la classe
 
         private List<Client> listeClients;
-        private EtatDuSysteme mode = EtatDuSysteme.ACTIF; // mode par defaut
+        private EtatDuSysteme mode ; // mode par defaut
         private Administrateur admin;                                                  // 
-        private decimal solde = 10000;
+        private decimal solde ;
         // Les proprietes
         public List<Client> ListeClients { get; set; }
         public EtatDuSysteme Mode { get; set; }
@@ -22,9 +22,7 @@ namespace Guichet
         public Guichet()
         {
             listeClients = new List<Client>();
-           solde = 10000;
             
-
         }
         // methode qui ajoute un client dans la liste
         public  void AjouterClient(Client client)
@@ -48,7 +46,7 @@ namespace Guichet
         }
              
         // Choix des operations dans le menu du compte personnel
-         public void SelectOperation(string operation,Usager usager,CompteCheque cheque,decimal montant)
+         public void SelectOperationsUsager(string operation,Usager usager,CompteCheque cheque,decimal montant)
         {
            switch (operation)
             {
@@ -73,9 +71,12 @@ namespace Guichet
                 case "7":
                     usager.FermerSession();
                     break;
+                default:
+                    Console.WriteLine("Votre choix est invalide");
+                    break;
             }
         }
-        
+
         // Les choix du menu  de l'administrateur       
         public void MenuAdmin()
         {
@@ -83,7 +84,7 @@ namespace Guichet
             Console.WriteLine(" 2- Déposer de l'arget dans le guichet");
             Console.WriteLine(" 3- Voir le solde du guichet");
             Console.WriteLine(" 4- Voir la liste des comptes ");
-            Console.WriteLine(" 5- Retourner au menu principal");        
+            Console.WriteLine(" 5- Retourner au menu principal");
         }
         // Fonction qui affiche le menu fournisseur
         public void MenuFournisseur()
@@ -101,10 +102,21 @@ namespace Guichet
         // Affiche le solde du guichet
         public void AfficherSoldeGuichet()
         {
-            Console.WriteLine("Solde Guichet:  "+ solde);
+            Console.WriteLine("Solde Guichet:  "+ getSoldeGuichet());
 
         }
-        // Methode pour debiter un montant du Guichet
+        // Methode pour Deposer un montant dans le guichet
+        public void DeposerGuichet( decimal montant )
+        {
+            if(montant <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(montant), "montant du retrait doit etre positif");
+
+            }
+            solde += montant;
+
+        }
+        // Methode pour debiter un montant dans le  Guichet
         public void DebiterGuichet(decimal montant)
         {
             if(montant <= 0)
@@ -120,7 +132,7 @@ namespace Guichet
         }
 
         // Les choix des operations de l'administrateur
-        public void SelectChoixAdmin(string choixadmin, Administrateur admin)
+        public void SelectOperationsAdmin(string choixadmin)
         {
             switch (choixadmin)
             {
@@ -128,7 +140,7 @@ namespace Guichet
                     admin.RemettreGuichetEnFonction();
                     break;
                 case "2":
-                    admin.DeposerArgent(800);
+                    admin.DeposerArgent();
                     break;
                 case "3":
                     admin.VoirSoldeGuichet();
@@ -139,8 +151,12 @@ namespace Guichet
                 case "5":
                     admin.RetournerMenuPrincipal();
                     break;
+                default:
+                    Console.WriteLine("Votre choix est invalide");
+                    break;
             }
         }
+        // Fonction qui permet de choisir une option dans le menu principal
         public void SelectionCompte(string choix)
         {
             switch (choix)
@@ -153,6 +169,9 @@ namespace Guichet
                     break;
                 case "3":
                     Environment.Exit(0);
+                    break;
+                default:
+                    Console.WriteLine("Votre choix est invalide");
                     break;
 
             }

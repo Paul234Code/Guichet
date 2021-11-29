@@ -104,14 +104,17 @@ namespace Guichet
             guichet.MenuPrincipal();
             string choice = Console.ReadLine();
             guichet.SelectionCompte(choice); */
-            Guichet guichet = new Guichet();
+            Guichet guichet = new Guichet(){ Solde = 9000, Mode = EtatDuSysteme.ACTIF};
             CompteClient paulEpargne = new CompteEpargne("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
             FournisseurService service1 = new FournisseurService("Bell");
             CompteClient paulCheque = new CompteCheque("Paul Faye", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
            Usager usager =  new Usager(paulEpargne,paulCheque,guichet,service1);
             Administrateur admin = new Administrateur(guichet);
             //admin.ConnectionModeAdministrateur();
-            //usager.ConnectionModeUtilisateur(); 
+            //usager.ConnectionModeUtilisateur();
+            Console.WriteLine("solde du guichet = "+guichet.Solde);
+            admin.DeposerArgent();
+            Console.WriteLine("Nouveau solde du guichet = " + guichet.Solde);
             usager.DeposerMontant();
             usager.AfficherSoldeCompte();
             usager.ChangerMotdePasse();

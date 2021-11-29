@@ -9,16 +9,18 @@ namespace Guichet
 {
     public class Usager : Client
     {
+        // Les attributs de la classe Usager
         private CompteCheque compteCheque;
         private CompteEpargne compteEpargne;
         private Guichet guichet;
         private FournisseurService fournisseurService;
         private string nomUtilisateur ;
         private string password ;
-        // Les proprietes
+        // Les proprietes de la classe Usager
         public CompteClient getCompteCheque { get;  }
         public Guichet Guichet { get; set; }
-        public  CompteClient  getCompteEpargne { get; }
+        public FournisseurService getFournisseur { get; set; }  
+        public  CompteClient  getCompteEpargne { get; } 
         public string Password { get; set; } 
         public string NomUtilisaeur{ get; set; }
         // Le constructeur de la classe Usager
@@ -126,6 +128,8 @@ namespace Guichet
                         break;
                 }
             }
+            Console.WriteLine();
+            MenuComptePersonnel();
         }
         // Fonction qui permet de retirer un montant
         public void RetirerMontant(decimal montant)
@@ -140,30 +144,32 @@ namespace Guichet
                 case "1":
                     guichet.DebiterGuichet(montant);
                     compteCheque.Retirer(montant, DateTime.Now, "Retrait");
+                    Console.WriteLine("Nouveau Solde du compte cheque : " + compteCheque.Balance);
                     break;
                 case "2":
                     guichet.DebiterGuichet(montant);
                     compteEpargne.Retirer(montant, DateTime.Now, "Retrait");
+                    Console.WriteLine("Nouveau Solde du compte Epargne : " + compteCheque.Balance);
                     break;
                 default:
                     Console.WriteLine("Operation  invalide");
                     break;
             }
-            compteCheque.Retirer(montant, DateTime.Now, "Retrait ");
-            //compteEpargne.Retirer(montant, DateTime.Now, "Retrait ");
-            guichet.DebiterGuichet(montant);
+           
+            Console.WriteLine();
+            MenuComptePersonnel();
         }
         // Methode qui permet de verouiller un compte
         public void VerrouillerCompte()
         {
-            Console.WriteLine("Votre Compte est verouiller!!!");
+            Console.WriteLine("Votre Compte est verouiller Veuillez contacter le service a la clientele!");
             while (true)
             {
                
 
             }
         }
-        // Afficher le solde du compte
+        // Afficher le solde du compte Cheque ou Epargne
         public void AfficherSoldeCompte()
         {
             Console.WriteLine("solde du compte Chèque ou du compte Epargne?");
@@ -173,11 +179,12 @@ namespace Guichet
             switch (choice)
             {
                 case "1":
-                    compteCheque.AfficherSoldeCompte();
+                    compteCheque.AfficherSoldeCheque();
+                    Console.WriteLine();
                     MenuComptePersonnel();
                     break;
                 case"2":
-                   compteEpargne.AfficherSoldeCompte();
+                   compteEpargne.AfficherSoldeEpargne();
                     MenuComptePersonnel();
                    break ;
                 default:
@@ -189,7 +196,6 @@ namespace Guichet
         public void FaireVirement(decimal montant)
         {
             ValidationVirement(montant);
-
         }
         // Methode qui permet a l'usager de payer une facture
         public void PayerFacture()
@@ -219,12 +225,12 @@ namespace Guichet
                     break;
             }
         }
+        // Fonction qui ferme la session et retourne au menu principal de l'application
         public void FermerSession()
         {
-            
-
+            guichet.MenuPrincipal();
         }
-        // Fonction qui permet de comparer l'egalite de deux tableaux de caraetres
+        // Fonction qui permet de comparer l'egalite de deux chaines de caracteres
         public bool Egalite(string str1, string str2)
         {
             return str1.Equals(str2);
@@ -298,7 +304,6 @@ namespace Guichet
                     default:
                         Console.WriteLine("Veuillez effectuer un choix valide");
                         break;
-
                 }
             }
             else
@@ -322,7 +327,6 @@ namespace Guichet
                     default:
                         Console.WriteLine("Veuillez effectuer un choix valide");
                         break;
-
                 }
             }
 

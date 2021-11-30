@@ -191,9 +191,9 @@ namespace Guichet
             }
         }
         // Faire un virement entre deux compte
-        public void FaireVirement(decimal montant)
-        {
-            ValidationVirement(montant);
+        public void FaireVirement()
+        {           
+            ValidationVirement();
         }
         // Methode qui permet a l'usager de payer une facture
         public void PayerFacture()
@@ -278,9 +278,12 @@ namespace Guichet
             Console.WriteLine(" 7- Fermer session");
         }
         // Fonction qui valide les virement dans un compte
-        public void ValidationVirement(decimal montant)
+        public void ValidationVirement()
         {
-            if( montant <= 1000)
+            Console.WriteLine("Entrer le montant de la transaction:");
+            string saisie = Console.ReadLine();
+            bool resultatConversion = decimal.TryParse(saisie, out decimal montant);
+            if(resultatConversion && montant <= 1000)
             {
                 Console.WriteLine("Entrer le compte de provenance");
                 string choice = Console.ReadLine();

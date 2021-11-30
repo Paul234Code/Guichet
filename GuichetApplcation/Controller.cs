@@ -105,7 +105,8 @@ namespace Guichet
             string choice = Console.ReadLine();
             guichet.SelectionCompte(choice); */
             Guichet guichet = new (5000, EtatDuSysteme.ACTIF) ;
-            //guichet.AfficherEtatGuichet();
+            guichet.AfficherEtatGuichet();
+            Console.WriteLine("----------------------------------------------------");
             CompteEpargne paulEpargne = new ("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
             //paulEpargne.AfficherCompte();
             FournisseurService service1 = new ("Bell");
@@ -121,10 +122,11 @@ namespace Guichet
             //admin.ConnectionModeAdministrateur();
             //usager.ConnectionModeUtilisateur();
             //Console.WriteLine("solde du guichet = "+guichet.Solde);
-            //admin.DeposerMontantGuichet();
-            //guichet.AfficherEtatGuichet();
+            admin.DeposerMontantGuichet2();
+            Console.WriteLine("------------------------------------------------------");
+            guichet.AfficherEtatGuichet();
             //Console.WriteLine("Nouveau solde du guichet = " + guichet.Solde);
-           // usager.DeposerMontant();
+            // usager.DeposerMontant();
             //usager.AfficherSoldeCompte();
             //Console.WriteLine("nom utilisateur = "+ usager.NomUtilisaeur);
             //Console.WriteLine("password actuel = " + usager.Password);
@@ -134,7 +136,8 @@ namespace Guichet
             //Console.WriteLine(" nouveau password  = " + usager.Password);
             //paulCheque.AfficherSoldeCheque();
             //paulEpargne.AfficherSoldeEpargne();
-            //usager.FaireVirement(1000);
+            
+               // usager.FaireVirement(1000);
             Point p =  new () { X =  50, Y = 70};
             List<Point> points = new () {
                 new Point{X= 10,Y= 20},
@@ -146,7 +149,7 @@ namespace Guichet
             // creation d'un predicate
              bool pointFind = points.Exists(p =>(p.X,p.Y) == (50,70));
             //Console.WriteLine("pointFind = "+ pointFind);
-            usager.PayerFacture();
+            //usager.PayerFacture();
             
            
 

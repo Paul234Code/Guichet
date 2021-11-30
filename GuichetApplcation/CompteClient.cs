@@ -49,7 +49,7 @@ namespace Guichet
         {
             if (amount <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(amount), "montant du depot doit etre positif");
+                throw new ArgumentOutOfRangeException("montant du depot doit etre positif");
             }
             var depot = new Transaction(amount, date, information);
             allTransactions.Add(depot);
@@ -59,7 +59,7 @@ namespace Guichet
         {
             if (amount <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(amount), "montant du retrait doit etre positif");
+                throw new ArgumentOutOfRangeException("montant du retrait doit etre positif");
             }
             if (Balance - amount < 0)
             {

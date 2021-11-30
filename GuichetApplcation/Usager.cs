@@ -22,7 +22,7 @@ namespace Guichet
         public FournisseurService getFournisseur { get; set; }  
         public  CompteClient  getCompteEpargne { get; } 
         public string Password { get; set; } 
-        public string NomUtilisaeur{ get; set; }
+        public string NomUtilisaeur { get; set; }
         // Le constructeur de la classe Usager
         public Usager(CompteEpargne compteEpargne,CompteCheque compteCheque,Guichet guichet,FournisseurService fournisseurService,string password, string nomUtilisateur)
         {
@@ -32,9 +32,7 @@ namespace Guichet
             this.fournisseurService = fournisseurService;
             this.password = password;
             this.nomUtilisateur = nomUtilisateur;
-
-        }
-       
+        }  
         // Fonction qui permet de changer le mot de passe de l'usager
         public  void ChangerMotdePasse()
         {
@@ -154,8 +152,7 @@ namespace Guichet
                 default:
                     Console.WriteLine("Operation  invalide");
                     break;
-            }
-           
+            }          
             Console.WriteLine();
             MenuComptePersonnel();
         }
@@ -185,6 +182,7 @@ namespace Guichet
                     break;
                 case"2":
                    compteEpargne.AfficherSoldeEpargne();
+                    Console.WriteLine();
                     MenuComptePersonnel();
                    break ;
                 default:
@@ -242,13 +240,11 @@ namespace Guichet
             string usagerLogin;
             string password;
             while (compteur < 3) {
-
                  Console.WriteLine("Enter nom utilisateur:");
                   usagerLogin = Console.ReadLine();
                  Console.WriteLine("Entrer mot de passe:");
                  password = Console.ReadLine();
-                 // Convertit la saisie en tableau de caractere ;
-                 
+                 // Convertit la saisie en tableau de caractere ;                 
                 if (Egalite(usagerLogin, nomUtilisateur) && Egalite(password,this.password))
                 {                 
                     break;
@@ -330,6 +326,12 @@ namespace Guichet
                 }
             }
 
+        }
+        // Fonction qui affiche le nom utilisateur et le mot de passe
+        public void AfficherIdentifiantsUsager()
+        {
+            Console.WriteLine("Nom utilisateur = "+ nomUtilisateur);
+            Console.WriteLine("Mot de passe =  " +password);
         }
     }
 }

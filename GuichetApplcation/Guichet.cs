@@ -96,6 +96,11 @@ namespace Guichet
         {
             return solde;
         }
+        // Fonction qui modifie le solde du guichet
+        public void setSoldeGuichet(decimal solde)
+        {
+            this.solde = solde;
+        }
         // Affiche le solde du guichet
         public void AfficherSoldeGuichet()
         {

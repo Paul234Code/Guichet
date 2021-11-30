@@ -7,10 +7,13 @@ namespace Guichet
         private string administrateurPassword = "123456";
         private Guichet guichet;
         // Le constructeur de la classe Guichet
-        public Administrateur(Guichet guichet)
+        public Administrateur(Guichet guichet,string administrateurId, string administrateurPassword)
         {
             this.guichet = guichet;
+            this.administrateurId = administrateurId;
+            this.administrateurPassword = administrateurPassword;
         }
+        // Fonction qui permet de remettre le guichet en fonction
        public void RemettreGuichetEnFonction()
        {
             Console.WriteLine("Voulez-vous remettre le systeme en fonction (O/N)?");
@@ -29,48 +32,44 @@ namespace Guichet
             }
 
        }
-       
-        public void DeposerArgent()
+        // Fonction qui permet de deposer un montant dans le guichet
+        public void DeposerMontantGuichet()
         {
-            Console.WriteLine("Entrer le montant du depot du guichet");
+            Console.WriteLine("Entrer le montant du depot ");
             string saisie = Console.ReadLine();
             bool resulatConversion = decimal.TryParse(saisie, out decimal montant);
             decimal soldeCourant = guichet.getSoldeGuichet(); // le restant dans le guichet 5000$
-            while(resulatConversion)
+            decimal somme = soldeCourant + montant;
+            if(resulatConversion && somme == 10000)
             {
-  
-                if(soldeCourant + montant <= 10000)
+               guichet.setSoldeGuichet(somme);
+
+            }
+            else
+            {
+                while (!somme.Equals(10000)&& resulatConversion)
                 {
-                    Console.WriteLine("montant valide dépôt bien effectué");           
+                    Console.WriteLine("Le solde maximal du guichet doit etre 10000$");
+                    Console.WriteLine("Entrer le montant du depot ");
                     saisie = Console.ReadLine();
                     resulatConversion = decimal.TryParse(saisie, out montant);
-                } 
-                    if(soldeCourant + montant > 10000)
-                    {
-                       Console.WriteLine(" montant est invalide dépôt maximal est 10000 ");
-                         saisie = Console.ReadLine();
-                       resulatConversion = decimal.TryParse(saisie, out montant);
+                    soldeCourant = guichet.getSoldeGuichet(); // le restant dans le guichet 5000$
+                    somme = soldeCourant + montant;
 
-                    }   
-                
-                else
-                {
-                    guichet.Solde += montant;
-                    break;
                 }
-               
-            }           
+                guichet.setSoldeGuichet(somme);
+            }
             
                
 
         }
-        // Affiche le solde courant du Guichet
+        // Fonction qui Affiche le solde courant du Guichet
         public void VoirSoldeGuichet()
         {
             Console.WriteLine(guichet.getSoldeGuichet());
 
         }
-        // Afficher la liste des comptes 
+        // Fonction qui Affiche la liste des comptes 
         public  void VoirListeDesCompte()
         {
             foreach (var client in guichet.ListeClients)
@@ -148,7 +147,7 @@ namespace Guichet
                     RemettreGuichetEnFonction();
                     break;
                 case "2":
-                    DeposerArgent();
+                    DeposerMontantGuichet();
                     break;
                 case "3":
                     VoirSoldeGuichet();

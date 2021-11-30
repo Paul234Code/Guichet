@@ -17,5 +17,11 @@ namespace Guichet
             this.typeCompte = typeCompte;
 
         }
+        // Fonction qui affiche le solde du compte Cheque
+        public void AfficherSoldeCheque()
+        {
+            Console.WriteLine("Solde du compte Cheque : " + Balance);
+
+        }
     }
 }

@@ -18,6 +18,12 @@ namespace Guichet
             this.typeCompte = typeCompte;
 
 
+        } 
+        // Fonction qui affiche le solde du compte Epargne
+        public void AfficherSoldeEpargne()
+        {
+            Console.WriteLine("Solde du compte Epargne: "+ Balance);
+
         }
     }
 }

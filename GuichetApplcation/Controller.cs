@@ -113,7 +113,7 @@ namespace Guichet
             CompteCheque paulCheque = new ("Paul Faye", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
             //paulCheque.AfficherCompte();
             Usager usager =  new (paulEpargne,paulCheque,guichet,service1,"1234","paul1988");
-            Administrateur admin = new (guichet);
+            Administrateur admin = new (guichet,"admin","123456");
             //usager.AfficherIdentifiantsUsager();
             guichet.MenuPrincipal();
             //string choice = Console.ReadLine();

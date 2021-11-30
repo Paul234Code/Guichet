@@ -7,9 +7,11 @@ namespace Guichet
         private string administrateurPassword = "123456";
         private Guichet guichet;
         // Le constructeur de la classe Guichet
-        public Administrateur(Guichet guichet)
+        public Administrateur(Guichet guichet,string administrateurId, string administrateurPassword)
         {
             this.guichet = guichet;
+            this.administrateurId = administrateurId;
+            this.administrateurPassword = administrateurPassword;
         }
        public void RemettreGuichetEnFonction()
        {

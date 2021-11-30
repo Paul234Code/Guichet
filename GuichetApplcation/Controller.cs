@@ -105,7 +105,6 @@ namespace Guichet
             string choice = Console.ReadLine();
             guichet.SelectionCompte(choice); */
             Guichet guichet = new (5000, EtatDuSysteme.ACTIF) ;
-            guichet.AfficherEtatGuichet();
             CompteEpargne paulEpargne = new ("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
             //paulEpargne.AfficherCompte();
             FournisseurService service1 = new ("Bell");
@@ -116,12 +115,13 @@ namespace Guichet
             Administrateur admin = new (guichet,"admin","123456");
             //usager.AfficherIdentifiantsUsager();
             guichet.MenuPrincipal();
+            guichet.AfficherEtatGuichet();
             //string choice = Console.ReadLine();
             //guichet.SelectionCompte(choice,admin,usager);
             //admin.ConnectionModeAdministrateur();
             //usager.ConnectionModeUtilisateur();
             //Console.WriteLine("solde du guichet = "+guichet.Solde);
-            //admin.DeposerMontantGuichet();
+            admin.DeposerMontantGuichet();
             //guichet.AfficherEtatGuichet();
             //Console.WriteLine("Nouveau solde du guichet = " + guichet.Solde);
            // usager.DeposerMontant();

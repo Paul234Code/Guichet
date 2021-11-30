@@ -142,12 +142,12 @@ namespace Guichet
                 case "1":
                     guichet.DebiterGuichet(montant);
                     compteCheque.Retirer(montant, DateTime.Now, "Retrait");
-                    Console.WriteLine("Nouveau Solde du compte cheque : " + compteCheque.Balance);
+                    compteCheque.AfficherSoldeCheque();
                     break;
                 case "2":
                     guichet.DebiterGuichet(montant);
                     compteEpargne.Retirer(montant, DateTime.Now, "Retrait");
-                    Console.WriteLine("Nouveau Solde du compte Epargne : " + compteCheque.Balance);
+                    compteEpargne.AfficherSoldeEpargne();
                     break;
                 default:
                     Console.WriteLine("Operation  invalide");

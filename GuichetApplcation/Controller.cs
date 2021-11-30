@@ -105,7 +105,7 @@ namespace Guichet
             string choice = Console.ReadLine();
             guichet.SelectionCompte(choice); */
             Guichet guichet = new (5000, EtatDuSysteme.ACTIF) ;
-            guichet.AfficherEtatGuichet();
+            //guichet.AfficherEtatGuichet();
             CompteEpargne paulEpargne = new ("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
             //paulEpargne.AfficherCompte();
             FournisseurService service1 = new ("Bell");
@@ -115,7 +115,7 @@ namespace Guichet
             Usager usager =  new (paulEpargne,paulCheque,guichet,service1,"1234","paul1988");
             Administrateur admin = new (guichet,"admin","123456");
             //usager.AfficherIdentifiantsUsager();
-            guichet.MenuPrincipal();
+            //guichet.MenuPrincipal();
             //string choice = Console.ReadLine();
             //guichet.SelectionCompte(choice,admin,usager);
             //admin.ConnectionModeAdministrateur();
@@ -146,6 +146,7 @@ namespace Guichet
             // creation d'un predicate
              bool pointFind = points.Exists(p =>(p.X,p.Y) == (50,70));
             //Console.WriteLine("pointFind = "+ pointFind);
+            usager.PayerFacture();
             
            
 

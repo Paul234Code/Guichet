@@ -134,10 +134,14 @@ namespace Guichet
             //Console.WriteLine();
             //usager.AfficherIdentifiantsUsager();
             //Console.WriteLine(" nouveau password  = " + usager.Password);
-            //paulCheque.AfficherSoldeCheque();
-            //paulEpargne.AfficherSoldeEpargne();
-            
-               // usager.FaireVirement(1000);
+            Console.WriteLine("------------------------------------------------------");
+            paulCheque.AfficherSoldeCheque();
+            paulEpargne.AfficherSoldeEpargne();
+            Console.WriteLine("------------------------------------------------------");
+            usager.FaireVirement();
+            Console.WriteLine("------------------------------------------------------");
+            paulCheque.AfficherSoldeCheque();
+            paulEpargne.AfficherSoldeEpargne();
             Point p =  new () { X =  50, Y = 70};
             List<Point> points = new () {
                 new Point{X= 10,Y= 20},

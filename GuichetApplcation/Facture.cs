@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Guichet
 {
@@ -14,11 +10,11 @@ namespace Guichet
         private decimal montantFacture;
         private DateTime dateFacture;
         // Les proprietes
-        public string NumeroFacture { get;  } //mettre get sans set parcq on a pas besoin de modifier le nom et le montant
+        public string NumeroFacture { get; } //mettre get sans set parcq on a pas besoin de modifier le nom et le montant
         public decimal MontantFacture { get; }
-        public string NomFacture { get; } 
+        public string NomFacture { get; }
         // Le constructeur de la classe
-        public Facture( string nomFacture,decimal montantFacture,DateTime dateFacture)
+        public Facture(string nomFacture, decimal montantFacture, DateTime dateFacture)
         {
             numeroFacture = identifiantFacture.ToString();
             this.nomFacture = nomFacture;
@@ -36,7 +32,7 @@ namespace Guichet
         {
             Console.WriteLine("numero\t nom Facture\tmontantFacture");
             Console.WriteLine($"{numeroFacture}\t{nomFacture}\t{montantFacture}\t{dateFacture}");
-            
+
 
         }
     }

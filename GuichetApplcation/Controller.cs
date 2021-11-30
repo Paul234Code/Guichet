@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+﻿using System.Collections.Generic;
 
 
 namespace Guichet
@@ -104,15 +101,15 @@ namespace Guichet
             guichet.MenuPrincipal();
             string choice = Console.ReadLine();
             guichet.SelectionCompte(choice); */
-            Guichet guichet = new (2500, EtatDuSysteme.ACTIF) ;
-            CompteEpargne paulEpargne = new ("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
+            Guichet guichet = new(2500, EtatDuSysteme.ACTIF);
+            CompteEpargne paulEpargne = new("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
             //paulEpargne.AfficherCompte();
-            FournisseurService service1 = new ("Bell");
+            FournisseurService service1 = new("Bell");
             //service1.AfficherService();
-            CompteCheque paulCheque = new ("Paul Faye", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
+            CompteCheque paulCheque = new("Paul Faye", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
             //paulCheque.AfficherCompte();
-            Usager usager =  new (paulEpargne,paulCheque,guichet,service1,"1234","paul1988");
-            Administrateur admin = new (guichet,"admin","123456");
+            Usager usager = new(paulEpargne, paulCheque, guichet, service1, "1234", "paul1988");
+            Administrateur admin = new(guichet, "admin", "123456");
             //usager.AfficherIdentifiantsUsager();
             guichet.MenuPrincipal();
             guichet.AfficherEtatGuichet();
@@ -124,7 +121,7 @@ namespace Guichet
             admin.DeposerMontantGuichet();
             guichet.AfficherEtatGuichet();
             //Console.WriteLine("Nouveau solde du guichet = " + guichet.Solde);
-           // usager.DeposerMontant();
+            // usager.DeposerMontant();
             //usager.AfficherSoldeCompte();
             //Console.WriteLine("nom utilisateur = "+ usager.NomUtilisaeur);
             //Console.WriteLine("password actuel = " + usager.Password);
@@ -135,27 +132,28 @@ namespace Guichet
             //paulCheque.AfficherSoldeCheque();
             //paulEpargne.AfficherSoldeEpargne();
             //usager.FaireVirement(1000);
-            Point p =  new () { X =  50, Y = 70};
-            List<Point> points = new () {
-                new Point{X= 10,Y= 20},
-                new Point{X = 20, Y = 10},
-                new Point{X = 20, Y =  30},
-                new Point{X = 40, Y = 50},
-                new Point{X = 50, Y = 70},
-            }; 
+            Point p = new() { X = 50, Y = 70 };
+            List<Point> points = new()
+            {
+                new Point { X = 10, Y = 20 },
+                new Point { X = 20, Y = 10 },
+                new Point { X = 20, Y = 30 },
+                new Point { X = 40, Y = 50 },
+                new Point { X = 50, Y = 70 },
+            };
             // creation d'un predicate
-             bool pointFind = points.Exists(p =>(p.X,p.Y) == (50,70));
+            bool pointFind = points.Exists(p => (p.X, p.Y) == (50, 70));
             //Console.WriteLine("pointFind = "+ pointFind);
-            
-           
+
+
 
 
 
 
         }
-        
 
-        
+
+
 
     }
     public class Point
@@ -170,8 +168,8 @@ namespace Guichet
         }
         public bool FindPoints(int x, int y)
         {
-            return  X.Equals(y) && Y.Equals(x);
-            
+            return X.Equals(y) && Y.Equals(x);
+
 
         }
     }

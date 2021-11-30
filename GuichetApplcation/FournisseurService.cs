@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Guichet
 {
@@ -9,7 +9,7 @@ namespace Guichet
         private List<Facture> listeFacture;
         // Les proprietes
         public string NomFournisseur { get; set; }
-        public List<Facture> ListeFacture { get; set; } 
+        public List<Facture> ListeFacture { get; set; }
         // Le  Constructeur de la classe Fournisseur
         public FournisseurService(string nomFournisseur)
         {
@@ -25,19 +25,20 @@ namespace Guichet
         public void AfficherService()
         {
             Console.WriteLine(nomFournisseur);
-            foreach(Facture facture in listeFacture)
+            foreach (Facture facture in listeFacture)
             {
-                Console.WriteLine("\t"+facture.ToString());
+                Console.WriteLine("\t" + facture.ToString());
             }
 
-            
+
         }
         public void PayementDuService(decimal frais = 2)
         {
             Console.WriteLine("Enter le numero de la facture");
             string numero = Console.ReadLine();
             Console.WriteLine(numero);
-            int index =  listeFacture.FindIndex(facture =>facture.NumeroFacture == numero);
+            // Chercher l'indice du numero de facture correspondant
+            int index = listeFacture.FindIndex(facture => facture.NumeroFacture == numero);
             Console.WriteLine(index);
             Console.WriteLine("Enter le montant de la facture");
             string montant = Console.ReadLine();

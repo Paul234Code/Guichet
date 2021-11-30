@@ -1,28 +1,28 @@
 ﻿using System;
 namespace Guichet
 {
-    public class Administrateur:Client
+    public class Administrateur : Client
     {
         private string administrateurId = "admin";
         private string administrateurPassword = "123456";
         private Guichet guichet;
         // Le constructeur de la classe Guichet
-        public Administrateur(Guichet guichet,string administrateurId, string administrateurPassword)
+        public Administrateur(Guichet guichet, string administrateurId, string administrateurPassword)
         {
             this.guichet = guichet;
             this.administrateurId = administrateurId;
             this.administrateurPassword = administrateurPassword;
         }
         // Fonction qui permet de remettre le guichet en fonction
-       public void RemettreGuichetEnFonction()
-       {
+        public void RemettreGuichetEnFonction()
+        {
             Console.WriteLine("Voulez-vous remettre le systeme en fonction (O/N)?");
             string choice = Console.ReadLine();
             switch (choice)
             {
                 case "O":
                     break;
-                
+
                 case "N":
                     Console.WriteLine("Systeme Hors Service,guichet en " + EtatDuSysteme.PANNE);
                     break;
@@ -31,7 +31,7 @@ namespace Guichet
                     break;
             }
 
-       }
+        }
         // Fonction qui permet de deposer un montant dans le guichet
         public void DeposerMontantGuichet()
         {
@@ -40,14 +40,14 @@ namespace Guichet
             bool resulatConversion = decimal.TryParse(saisie, out decimal montant);
             decimal soldeCourant = guichet.getSoldeGuichet(); // le restant dans le guichet 5000$
             decimal somme = soldeCourant + montant;
-            if(resulatConversion && somme == 10000)
+            if (resulatConversion && somme == 10000)
             {
-               guichet.setSoldeGuichet(somme);
+                guichet.setSoldeGuichet(somme);
 
             }
             else
             {
-                while (!somme.Equals(10000)&& resulatConversion)
+                while (!somme.Equals(10000) && resulatConversion)
                 {
                     Console.WriteLine("Le solde maximal du guichet doit etre 10000$");
                     Console.WriteLine("Entrer le montant du depot ");
@@ -59,8 +59,8 @@ namespace Guichet
                 }
                 guichet.setSoldeGuichet(somme);
             }
-            
-               
+
+
 
         }
         // Fonction qui Affiche le solde courant du Guichet
@@ -70,12 +70,12 @@ namespace Guichet
 
         }
         // Fonction qui Affiche la liste des comptes 
-        public  void VoirListeDesCompte()
+        public void VoirListeDesCompte()
         {
             foreach (var client in guichet.ListeClients)
             {
                 //Usager usager = client as Usager;
-                if(client is Usager usager)
+                if (client is Usager usager)
                 {
                     usager.getCompteCheque.AfficherCompte();
                     usager.getCompteEpargne.AfficherCompte();
@@ -83,7 +83,7 @@ namespace Guichet
 
             }
 
-            
+
 
         }
         public void RetournerMenuPrincipal()
@@ -107,24 +107,24 @@ namespace Guichet
         }
         // Fonction qui valide la connection d'un administrateur
         public void ConnectionModeAdministrateur()
-        { 
+        {
             int compteur = 0;
             string userAdmin;
             string password;
-            while (compteur < 3) 
+            while (compteur < 3)
             {
                 Console.WriteLine("Nom Administrator: ");
                 userAdmin = Console.ReadLine();
                 Console.WriteLine("Mot de passe Administrator:");
                 password = Console.ReadLine();
-                if(!ValidationAdministrateur(userAdmin, password))
+                if (!ValidationAdministrateur(userAdmin, password))
                 {
                     Console.WriteLine("Nom utilisateur ou mot de passe incorrecte");
                     Console.WriteLine();
                 }
                 else
-                {                   
-                    break;                   
+                {
+                    break;
                 }
                 compteur++;
             }
@@ -153,14 +153,14 @@ namespace Guichet
                     VoirSoldeGuichet();
                     break;
                 case "4":
-                   VoirListeDesCompte();
+                    VoirListeDesCompte();
                     break;
                 case "5":
                     RetournerMenuPrincipal();
                     break;
             }
         }
-        
+
 
     }
 }

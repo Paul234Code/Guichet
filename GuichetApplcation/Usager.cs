@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace Guichet
@@ -14,17 +10,17 @@ namespace Guichet
         private CompteEpargne compteEpargne;
         private Guichet guichet;
         private FournisseurService fournisseurService;
-        private string nomUtilisateur ;
-        private string password ;
+        private string nomUtilisateur;
+        private string password;
         // Les proprietes de la classe Usager
-        public CompteClient getCompteCheque { get;  }
+        public CompteClient getCompteCheque { get; }
         public Guichet Guichet { get; set; }
-        public FournisseurService getFournisseur { get; set; }  
-        public  CompteClient  getCompteEpargne { get; } 
-        public string Password { get; set; } 
+        public FournisseurService getFournisseur { get; set; }
+        public CompteClient getCompteEpargne { get; }
+        public string Password { get; set; }
         public string NomUtilisaeur { get; set; }
         // Le constructeur de la classe Usager
-        public Usager(CompteEpargne compteEpargne,CompteCheque compteCheque,Guichet guichet,FournisseurService fournisseurService,string password, string nomUtilisateur)
+        public Usager(CompteEpargne compteEpargne, CompteCheque compteCheque, Guichet guichet, FournisseurService fournisseurService, string password, string nomUtilisateur)
         {
             this.compteCheque = compteCheque;
             this.compteEpargne = compteEpargne;
@@ -32,9 +28,9 @@ namespace Guichet
             this.fournisseurService = fournisseurService;
             this.password = password;
             this.nomUtilisateur = nomUtilisateur;
-        }  
+        }
         // Fonction qui permet de changer le mot de passe de l'usager
-        public  void ChangerMotdePasse()
+        public void ChangerMotdePasse()
         {
             Console.WriteLine("Entrer le mot de passe actuel:");
             string actuelMotPasse = Console.ReadLine();
@@ -50,11 +46,11 @@ namespace Guichet
             {
                 Console.WriteLine("Le nouveau de mot de passe doit etre different de l'actuel mot de passe");
             }
-            else if(confirmation.Equals(nouveauMotPasse))
+            else if (confirmation.Equals(nouveauMotPasse))
             {
                 password = nouveauMotPasse;
                 Console.WriteLine("Changement de mot de passe effectif");
-                Console.WriteLine();               
+                Console.WriteLine();
             }
             else
             {
@@ -62,7 +58,7 @@ namespace Guichet
                 {
                     Console.WriteLine("Veuillez confirmer le nouveau Mot de passe ");
                     confirmation = Console.ReadLine();
-                    if(confirmation.Equals(nouveauMotPasse))
+                    if (confirmation.Equals(nouveauMotPasse))
                     {
                         Console.WriteLine("Changement de mot de passe effecuté avec success");
                     }
@@ -85,25 +81,25 @@ namespace Guichet
                 Console.WriteLine("dans quel compte le dépôt doit être effectué?");
                 Console.WriteLine("1- Compte Cheque");
                 Console.WriteLine("2- Compte Epargne");
-                string compte = Console.ReadLine(); 
+                string compte = Console.ReadLine();
                 switch (compte)
                 {
-                    case "1":                      
-                        compteCheque.Deposer(montant, DateTime.Now, "Depot");                                           
+                    case "1":
+                        compteCheque.Deposer(montant, DateTime.Now, "Depot");
                         Console.WriteLine("Nouveau Solde du compte cheque : " + compteCheque.Balance);
                         break;
-                    case "2":                     
-                        compteEpargne.Deposer(montant, DateTime.Now, "Depot");                   
+                    case "2":
+                        compteEpargne.Deposer(montant, DateTime.Now, "Depot");
                         Console.WriteLine("Nouveau Solde du compte epargne : " + compteEpargne.Balance);
-                        break ;
+                        break;
                     default:
                         Console.WriteLine("Operation  invalide");
                         break;
                 }
             }
             else
-            {               
-                while(!decimal.TryParse(valeur,out  montant))
+            {
+                while (!decimal.TryParse(valeur, out montant))
                 {
                     Console.WriteLine("Montant invalide!");
                     Console.WriteLine("Entrer le montant du depot: ");
@@ -152,7 +148,7 @@ namespace Guichet
                 default:
                     Console.WriteLine("Operation  invalide");
                     break;
-            }          
+            }
             Console.WriteLine();
             MenuComptePersonnel();
         }
@@ -162,7 +158,7 @@ namespace Guichet
             Console.WriteLine("Votre Compte est verouiller Veuillez contacter le service a la clientele!");
             while (true)
             {
-               
+
 
             }
         }
@@ -180,11 +176,11 @@ namespace Guichet
                     Console.WriteLine();
                     MenuComptePersonnel();
                     break;
-                case"2":
-                   compteEpargne.AfficherSoldeEpargne();
+                case "2":
+                    compteEpargne.AfficherSoldeEpargne();
                     Console.WriteLine();
                     MenuComptePersonnel();
-                   break ;
+                    break;
                 default:
                     Console.WriteLine("Operation  invalide");
                     break;
@@ -234,19 +230,20 @@ namespace Guichet
             return str1.Equals(str2);
         }
         // Fonction qui valide la connection d'un usager
-        public void ConnectionModeUtilisateur() 
+        public void ConnectionModeUtilisateur()
         {
-            int compteur = 0; 
+            int compteur = 0;
             string usagerLogin;
             string password;
-            while (compteur < 3) {
-                 Console.WriteLine("Enter nom utilisateur:");
-                  usagerLogin = Console.ReadLine();
-                 Console.WriteLine("Entrer mot de passe:");
-                 password = Console.ReadLine();
-                 // Convertit la saisie en tableau de caractere ;                 
-                if (Egalite(usagerLogin, nomUtilisateur) && Egalite(password,this.password))
-                {                 
+            while (compteur < 3)
+            {
+                Console.WriteLine("Enter nom utilisateur:");
+                usagerLogin = Console.ReadLine();
+                Console.WriteLine("Entrer mot de passe:");
+                password = Console.ReadLine();
+                // Convertit la saisie en tableau de caractere ;                 
+                if (Egalite(usagerLogin, nomUtilisateur) && Egalite(password, this.password))
+                {
                     break;
                 }
                 else
@@ -280,11 +277,11 @@ namespace Guichet
         // Fonction qui valide les virement dans un compte
         public void ValidationVirement(decimal montant)
         {
-            if( montant <= 1000)
+            if (montant <= 1000)
             {
                 Console.WriteLine("Entrer le compte de provenance");
                 string choice = Console.ReadLine();
-                TypeDuCompte compte = (TypeDuCompte)Enum.Parse(typeof(TypeDuCompte),choice);
+                TypeDuCompte compte = (TypeDuCompte)Enum.Parse(typeof(TypeDuCompte), choice);
                 switch (compte)
                 {
                     case TypeDuCompte.Cheque:
@@ -296,7 +293,7 @@ namespace Guichet
                         compteEpargne.Virer(compteCheque, montant);
                         compteCheque.AfficherSoldeCheque();
                         compteEpargne.AfficherSoldeEpargne();
-                        break ;
+                        break;
                     default:
                         Console.WriteLine("Veuillez effectuer un choix valide");
                         break;
@@ -330,8 +327,8 @@ namespace Guichet
         // Fonction qui affiche le nom utilisateur et le mot de passe
         public void AfficherIdentifiantsUsager()
         {
-            Console.WriteLine("Nom utilisateur = "+ nomUtilisateur);
-            Console.WriteLine("Mot de passe =  " +password);
+            Console.WriteLine("Nom utilisateur = " + nomUtilisateur);
+            Console.WriteLine("Mot de passe =  " + password);
         }
     }
 }

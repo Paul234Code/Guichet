@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Guichet
 {
@@ -11,7 +7,7 @@ namespace Guichet
         private TypeDuCompte typeCompte;
         public TypeDuCompte TypeCompte { get; set; }
 
-        public CompteCheque(string nomProprietaire,decimal balance,EtatDuCompte etatDuCompte,TypeDuCompte typeCompte):
+        public CompteCheque(string nomProprietaire, decimal balance, EtatDuCompte etatDuCompte, TypeDuCompte typeCompte) :
             base(nomProprietaire, balance, etatDuCompte)
         {
             this.typeCompte = typeCompte;

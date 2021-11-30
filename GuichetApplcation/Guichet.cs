@@ -148,7 +148,7 @@ namespace Guichet
                     admin.RemettreGuichetEnFonction();
                     break;
                 case "2":
-                    admin.DeposerArgent();
+                    admin.DeposerMontantGuichet();
                     break;
                 case "3":
                     admin.VoirSoldeGuichet();

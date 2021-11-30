@@ -30,7 +30,7 @@ namespace Guichet
 
        }
         // 
-        public void DeposerArgent()
+        public void DeposerMontantGuichet()
         {
             Console.WriteLine("Entrer le montant du depot ");
             string saisie = Console.ReadLine();
@@ -144,7 +144,7 @@ namespace Guichet
                     RemettreGuichetEnFonction();
                     break;
                 case "2":
-                    DeposerArgent();
+                    DeposerMontantGuichet();
                     break;
                 case "3":
                     VoirSoldeGuichet();

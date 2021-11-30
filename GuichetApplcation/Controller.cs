@@ -114,15 +114,15 @@ namespace Guichet
             //paulCheque.AfficherCompte();
             Usager usager =  new (paulEpargne,paulCheque,guichet,service1,"1234","paul1988");
             Administrateur admin = new (guichet);
-            usager.AfficherIdentifiantsUsager();
-            //guichet.MenuPrincipal();
+            //usager.AfficherIdentifiantsUsager();
+            guichet.MenuPrincipal();
             //string choice = Console.ReadLine();
             //guichet.SelectionCompte(choice,admin,usager);
             //admin.ConnectionModeAdministrateur();
             //usager.ConnectionModeUtilisateur();
             //Console.WriteLine("solde du guichet = "+guichet.Solde);
-            admin.DeposerArgent();
-            guichet.AfficherEtatGuichet();
+            //admin.DeposerMontantGuichet();
+            //guichet.AfficherEtatGuichet();
             //Console.WriteLine("Nouveau solde du guichet = " + guichet.Solde);
            // usager.DeposerMontant();
             //usager.AfficherSoldeCompte();
@@ -142,7 +142,7 @@ namespace Guichet
                 new Point{X = 20, Y =  30},
                 new Point{X = 40, Y = 50},
                 new Point{X = 50, Y = 70},
-            };
+            }; 
             // creation d'un predicate
              bool pointFind = points.Exists(p =>(p.X,p.Y) == (50,70));
             //Console.WriteLine("pointFind = "+ pointFind);

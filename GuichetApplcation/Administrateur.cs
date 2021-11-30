@@ -30,29 +30,32 @@ namespace Guichet
 
        }
         // 
-        public void DeposerArgent()
+        public void DeposerMontantGuichet()
         {
-            Console.WriteLine("Entrer le montant du depot du guichet");
+            Console.WriteLine("Entrer le montant du depot ");
             string saisie = Console.ReadLine();
             bool resulatConversion = decimal.TryParse(saisie, out decimal montant);
             decimal soldeCourant = guichet.getSoldeGuichet(); // le restant dans le guichet 5000$
-            while(resulatConversion)
+            decimal somme = soldeCourant + montant;
+            if(resulatConversion && somme == 10000)
             {
-                if(soldeCourant + montant > 10000 || soldeCourant + montant < 10000)
+               guichet.setSoldeGuichet(somme);
+
+            }
+            else
+            {
+                while (!somme.Equals(10000)&& resulatConversion)
                 {
-                    Console.WriteLine("Montant le montant maximal doit etre 10000$");              
-                    Console.WriteLine("Enter le montant du depot");
+                    Console.WriteLine("Le solde maximal du guichet doit etre 10000$");
+                    Console.WriteLine("Entrer le montant du depot ");
                     saisie = Console.ReadLine();
                     resulatConversion = decimal.TryParse(saisie, out montant);
-                    
+                    soldeCourant = guichet.getSoldeGuichet(); // le restant dans le guichet 5000$
+                    somme = soldeCourant + montant;
+
                 }
-                else
-                {
-                    guichet.Solde += montant;
-                    break;
-                }
-               
-            }           
+                guichet.setSoldeGuichet(somme);
+            }
             
                
 
@@ -141,7 +144,7 @@ namespace Guichet
                     RemettreGuichetEnFonction();
                     break;
                 case "2":
-                    DeposerArgent();
+                    DeposerMontantGuichet();
                     break;
                 case "3":
                     VoirSoldeGuichet();

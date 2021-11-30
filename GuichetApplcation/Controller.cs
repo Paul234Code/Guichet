@@ -104,7 +104,7 @@ namespace Guichet
             guichet.MenuPrincipal();
             string choice = Console.ReadLine();
             guichet.SelectionCompte(choice); */
-            Guichet guichet = new (5000, EtatDuSysteme.ACTIF) ;
+            Guichet guichet = new (2500, EtatDuSysteme.ACTIF) ;
             CompteEpargne paulEpargne = new ("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
             //paulEpargne.AfficherCompte();
             FournisseurService service1 = new ("Bell");
@@ -122,7 +122,7 @@ namespace Guichet
             //usager.ConnectionModeUtilisateur();
             //Console.WriteLine("solde du guichet = "+guichet.Solde);
             admin.DeposerMontantGuichet();
-            //guichet.AfficherEtatGuichet();
+            guichet.AfficherEtatGuichet();
             //Console.WriteLine("Nouveau solde du guichet = " + guichet.Solde);
            // usager.DeposerMontant();
             //usager.AfficherSoldeCompte();

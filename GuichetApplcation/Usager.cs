@@ -167,6 +167,15 @@ namespace Guichet
             //compteEpargne.Retirer(montant, DateTime.Now, "Retrait ");
             guichet.DebiterGuichet(montant);
         }
+         // Methode qui permet de verouiller un compte
+        public void VerrouillerCompte()
+        {
+            Console.WriteLine("Votre Compte est verouiller!!!");
+            while (true) // boucle a l'infini, tant que l'appli est active le compte reste verouillé
+            {
+
+            }
+        }
         // Afficher le solde du compte
         public void AfficherSoldeCompte()
         {
@@ -286,5 +295,5 @@ namespace Guichet
         }
     }
 }
-}
+
 

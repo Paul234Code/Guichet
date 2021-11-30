@@ -29,7 +29,7 @@ namespace Guichet
             }
 
        }
-        // 
+       
         public void DeposerArgent()
         {
             Console.WriteLine("Entrer le montant du depot du guichet");
@@ -39,12 +39,12 @@ namespace Guichet
             while(resulatConversion)
             {
   
-                if(soldeCourant + montant < = 10000)
+                if(soldeCourant + montant <= 10000)
                 {
                     Console.WriteLine("montant valide dépôt bien effectué");           
                     saisie = Console.ReadLine();
                     resulatConversion = decimal.TryParse(saisie, out montant);
-                   
+                } 
                     if(soldeCourant + montant > 10000)
                     {
                        Console.WriteLine(" montant est invalide dépôt maximal est 10000 ");
@@ -52,7 +52,7 @@ namespace Guichet
                        resulatConversion = decimal.TryParse(saisie, out montant);
 
                     }   
-                }
+                
                 else
                 {
                     guichet.Solde += montant;

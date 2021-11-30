@@ -104,12 +104,14 @@ namespace Guichet
             guichet.MenuPrincipal();
             string choice = Console.ReadLine();
             guichet.SelectionCompte(choice); */
-            Guichet guichet = new Guichet(){ Solde = 9000, Mode = EtatDuSysteme.ACTIF};
-            CompteEpargne paulEpargne = new CompteEpargne("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
-            FournisseurService service1 = new FournisseurService("Bell");
-            CompteCheque paulCheque = new CompteCheque("Paul Faye", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
-            Usager usager =  new Usager(paulEpargne,paulCheque,guichet,service1,"1234","paul1988");
-            Administrateur admin = new Administrateur(guichet); 
+            Guichet guichet = new (9000, EtatDuSysteme.ACTIF) ;
+            guichet.AfficherEtatGuichet();
+            CompteEpargne paulEpargne = new ("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
+            FournisseurService service1 = new ("Bell");
+            CompteCheque paulCheque = new ("Paul Faye", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
+            Usager usager =  new (paulEpargne,paulCheque,guichet,service1,"1234","paul1988");
+            Administrateur admin = new (guichet);
+            Console.WriteLine(usager.NomUtilisaeur);
             //guichet.MenuPrincipal();
             //string choice = Console.ReadLine();
             //guichet.SelectionCompte(choice,admin,usager);
@@ -127,8 +129,8 @@ namespace Guichet
             //paulCheque.AfficherSoldeCheque();
             //paulEpargne.AfficherSoldeEpargne();
             //usager.FaireVirement(1000);
-            Point p =  new Point() { X =  50, Y = 70};
-            List<Point> points = new List<Point>() {
+            Point p =  new () { X =  50, Y = 70};
+            List<Point> points = new () {
                 new Point{X= 10,Y= 20},
                 new Point{X = 20, Y = 10},
                 new Point{X = 20, Y =  30},

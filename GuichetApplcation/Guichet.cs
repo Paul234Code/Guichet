@@ -21,11 +21,11 @@ namespace Guichet
         public EtatDuSysteme Mode { get; set; }
         public decimal Solde { get; set; }
         // Le constructeur de la classe Guichet
-        public Guichet()
+        public Guichet(decimal solde,EtatDuSysteme mode)
         {
-            listeClients = new List<Client>();
-           
-            
+            this.solde = solde;
+            this.mode = mode;
+            listeClients = new List<Client>();           
         }
         // methode qui ajoute un client dans la liste
         public  void AjouterClient(Client client)
@@ -101,6 +101,12 @@ namespace Guichet
         {
             Console.WriteLine("Solde Guichet:  "+ getSoldeGuichet());
 
+        }
+        // Fonction qui affiche l'etat du Guichet
+        public void AfficherEtatGuichet()
+        {
+            AfficherSoldeGuichet();
+            Console.WriteLine("Etat du Systeme:  "+ EtatDuSysteme.ACTIF);
         }
         // Methode pour Deposer un montant dans le guichet
         public void DeposerGuichet( decimal montant )

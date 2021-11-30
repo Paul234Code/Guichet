@@ -13,6 +13,7 @@ namespace Guichet
             this.administrateurId = administrateurId;
             this.administrateurPassword = administrateurPassword;
         }
+        // Fonction qui permet de remettre le guichet en fonction
        public void RemettreGuichetEnFonction()
        {
             Console.WriteLine("Voulez-vous remettre le systeme en fonction (O/N)?");
@@ -31,7 +32,7 @@ namespace Guichet
             }
 
        }
-        // 
+        // Fonction qui permet de deposer un montant dans le guichet
         public void DeposerMontantGuichet()
         {
             Console.WriteLine("Entrer le montant du depot ");
@@ -62,13 +63,13 @@ namespace Guichet
                
 
         }
-        // Affiche le solde courant du Guichet
+        // Fonction qui Affiche le solde courant du Guichet
         public void VoirSoldeGuichet()
         {
             Console.WriteLine(guichet.getSoldeGuichet());
 
         }
-        // Afficher la liste des comptes 
+        // Fonction qui Affiche la liste des comptes 
         public  void VoirListeDesCompte()
         {
             foreach (var client in guichet.ListeClients)

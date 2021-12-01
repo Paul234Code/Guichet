@@ -138,7 +138,7 @@ namespace Guichet
             paulCheque.AfficherSoldeCheque();
             paulEpargne.AfficherSoldeEpargne();
             Console.WriteLine("------------------------------------------------------");
-            usager.FaireVirement();
+            usager.FaireVirement(300);
             Console.WriteLine("------------------------------------------------------");
             paulCheque.AfficherSoldeCheque();
             paulEpargne.AfficherSoldeEpargne();

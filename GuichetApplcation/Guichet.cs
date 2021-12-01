@@ -60,7 +60,7 @@ namespace Guichet
                     usager.AfficherSoldeCompte();
                     break;
                 case "5":
-                    usager.FaireVirement();
+                    usager.FaireVirement(montant);
                     break;
                 case "6":
                     usager.PayerFacture();

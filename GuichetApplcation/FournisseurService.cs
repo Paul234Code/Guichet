@@ -6,7 +6,7 @@ namespace Guichet
     public class FournisseurService
     {
         private string nomFournisseur;
-        private List<Facture> listeFacture =  new List<Facture>();
+        private List<Facture> listeFacture = new List<Facture>();
         // Les proprietes
         public string NomFournisseur { get; set; }
         public List<Facture> ListeFacture { get; set; }
@@ -33,9 +33,9 @@ namespace Guichet
         public int GetIndex(string numero)
         {
             int index = 0;
-            for(int i = 0; i < listeFacture.Count; i++)
+            for (int i = 0; i < listeFacture.Count; i++)
             {
-                if( listeFacture[i].NumeroFacture == numero)
+                if (listeFacture[i].NumeroFacture == numero)
                 {
                     index = i;
                 }

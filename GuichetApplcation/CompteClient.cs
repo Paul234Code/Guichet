@@ -18,9 +18,9 @@ namespace Guichet
         public string NomProprietaire { get; }
         public EtatDuCompte EtatDuCompte { get; set; }
         public decimal Balance { get; set; }
-        
-            
-        
+
+
+
         // Le constructeur de la classe CompteClient
         public CompteClient(string nomProprietaire, decimal initialBalance, EtatDuCompte etatDuCompte)
         {
@@ -47,11 +47,16 @@ namespace Guichet
             {
                 Console.WriteLine("montant du retrait doit etre positif");
             }
-            if (balance - amount < 0)
+            else if (balance < amount)
             {
-                Console.WriteLine ("Fonds insufisant");
+                Console.WriteLine("Fonds insufisant");
             }
-            balance -= amount;
+            else
+            {
+                balance -= amount;
+
+            }
+
         }
         // Methode qui Affiche les informations d'un compte ( Cheque ou Epargne)
         public void AfficherCompte()

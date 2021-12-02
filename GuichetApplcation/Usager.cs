@@ -3,7 +3,7 @@
 
 namespace Guichet
 {
-    public class Usager : Client
+    public class Usager
     {
         // Les attributs de la classe Usager
         private CompteCheque compteCheque;
@@ -203,7 +203,6 @@ namespace Guichet
             {
                 case "Amazon":
                     Payer();
-                    fournisseurService.AfficherService();
                     break;
                 case "Bell":
                     Payer();
@@ -227,6 +226,7 @@ namespace Guichet
             Console.WriteLine("Entrer le montant de la facture:");
             string saisie = Console.ReadLine();
             bool resultatConversion = decimal.TryParse(saisie, out decimal montant);
+            //compte1 as CompteCheque
             if (resultatConversion)
             {
                 Console.WriteLine("Veuillez choisir le compte a debiter");
@@ -252,7 +252,7 @@ namespace Guichet
             {
                 Console.WriteLine("Entrer un montant de facture valide");
             }
-            
+
         }
         // Fonction qui ferme la session et retourne au menu principal de l'application
         public void FermerSession()

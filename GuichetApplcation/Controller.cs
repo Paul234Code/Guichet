@@ -151,7 +151,7 @@ namespace Guichet
             usager.PayerFacture();
             paulCheque.AfficherSoldeCheque();
             paulEpargne.AfficherSoldeEpargne();
- 
+
         }
-    }   
+    }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Guichet
 {
-    public class Administrateur : Client
+    public class Administrateur
     {
         private string administrateurId = "admin";
         private string administrateurPassword = "123456";

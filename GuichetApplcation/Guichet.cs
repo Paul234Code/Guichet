@@ -113,7 +113,7 @@ namespace Guichet
         {
             if (montant <= 0)
             {
-                Console.WriteLine( "montant du retrait doit etre positif");
+                Console.WriteLine("montant du retrait doit etre positif");
             }
             solde += montant;
         }
@@ -122,7 +122,7 @@ namespace Guichet
         {
             if (montant <= 0)
             {
-                Console.WriteLine( "montant du retrait doit etre positif");
+                Console.WriteLine("montant du retrait doit etre positif");
             }
             if (montant > solde)
             {

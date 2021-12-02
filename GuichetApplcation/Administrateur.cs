@@ -5,8 +5,8 @@ namespace Guichet
     {
         private string administrateurId = "admin";
         private string administrateurPassword = "123456";
-        private Guichet guichet;
-        // Le constructeur de la classe Guichet
+        private Guichet guichet; // parce que c'est l'administrateur qui manipule le guichet, pour acceder aux fonctions de l'objet
+        // Le constructeur de la classe Guichets
         public Administrateur(Guichet guichet,string administrateurId, string administrateurPassword)
         {
             this.guichet = guichet;

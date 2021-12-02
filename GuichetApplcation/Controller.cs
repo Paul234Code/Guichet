@@ -151,7 +151,7 @@ namespace Guichet
             //Console.WriteLine("------------------------------------------------------");
             //usager.PayerFacture();
 
-            Point p = new() { X = 50, Y = 70 };
+           /* Point p = new() { X = 50, Y = 70 };
             List<Point> points = new()
             {
                 new Point { X = 10, Y = 20 },
@@ -159,43 +159,14 @@ namespace Guichet
                 new Point { X = 20, Y = 30 },
                 new Point { X = 40, Y = 50 },
                 new Point { X = 50, Y = 70 },
-            };
+            }; */
             // creation d'un predicate
-            bool pointFind = points.Exists(p => (p.X, p.Y) == (50, 70));
+           // bool pointFind = points.Exists(p => (p.X, p.Y) == (50, 70));
             //Console.WriteLine("pointFind = "+ pointFind);
             usager.PayerFacture();
             paulCheque.AfficherSoldeCheque();
             paulEpargne.AfficherSoldeEpargne();
-            List<string> fruits = new() { "mangue", "orange", "Goyave", "citron", "mandarine" };
-            service.AfficherService()
-
-
-
-
-
-
-
+ 
         }
-
-
-
-
-    }
-    public class Point
-    {
-        public delegate bool Predicate<in Point>(Point obj);
-        public int X { get; set; }
-        public int Y { get; set; }
-        public Point()
-        {
-            X = 0;
-            Y = 0;
-        }
-        public bool FindPoints(int x, int y)
-        {
-            return X.Equals(y) && Y.Equals(x);
-
-
-        }
-    }
+    }   
 }

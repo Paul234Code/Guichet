@@ -2,7 +2,7 @@
 
 namespace Guichet
 {
-    public class CompteCheque : CompteCheque
+    public class CompteCheque : CompteClient
     {
         private TypeDuCompte typeCompte;
         public TypeDuCompte TypeCompte { get; set; }

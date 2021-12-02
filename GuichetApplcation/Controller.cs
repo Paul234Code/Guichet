@@ -8,7 +8,7 @@ namespace Guichet
     {
         static void Main()
         {
-            var controller = new Controller();
+            
             /*
             Console.WriteLine("==============================================================");
 

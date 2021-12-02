@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Guichet
 {
@@ -18,20 +16,21 @@ namespace Guichet
         // Les proprietes
         public string Numero { get; }
         public string NomProprietaire { get; }
-        public EtatDuCompte EtatDuCompte { get; set; } 
+        public EtatDuCompte EtatDuCompte { get; set; }
 
-        public decimal Balance 
+        public decimal Balance
         {
-            get {
-                   decimal balance = 0;
-                   foreach (var item in allTransactions)
-                   {
-                         balance += item.Amount;
-                   }
-                   return balance;
+            get
+            {
+                decimal balance = 0;
+                foreach (var item in allTransactions)
+                {
+                    balance += item.Amount;
+                }
+                return balance;
 
-              }
-          
+            }
+
         }
         // Le constructeur de la classe CompteClient
         public CompteClient(string nomProprietaire, decimal initialBalance, EtatDuCompte etatDuCompte)
@@ -55,7 +54,7 @@ namespace Guichet
             allTransactions.Add(depot);
         }
         // Methode qui retire un montant valide dans un compte
-        public void Retirer(decimal amount, DateTime date, string  information) 
+        public void Retirer(decimal amount, DateTime date, string information)
         {
             if (amount <= 0)
             {
@@ -72,7 +71,7 @@ namespace Guichet
         public void AfficherCompte()
         {
             Console.WriteLine("Numero du compte: " + numero);
-            Console.WriteLine("Nom proprietaire: "+ nomProprietaire);
+            Console.WriteLine("Nom proprietaire: " + nomProprietaire);
             Console.WriteLine("Solde :" + Balance);
             Console.WriteLine("Etat du Compte : " + etatDuCompte);
 
@@ -100,7 +99,7 @@ namespace Guichet
         // Fonction qui affiche seulement le solde du compte
         public void AfficherSoldeCompte()
         {
-            Console.WriteLine("Solde du compte: " + Balance );
+            Console.WriteLine("Solde du compte: " + Balance);
         }
     }
 }

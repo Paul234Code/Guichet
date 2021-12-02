@@ -147,8 +147,8 @@ namespace Guichet
             Console.WriteLine("------------------------------------------------------");
             usager.FaireVirement(300);
             Console.WriteLine("------------------------------------------------------");
-            paulCheque.AfficherSoldeCheque();
-            paulEpargne.AfficherSoldeEpargne();
+            //paulCheque.AfficherSoldeCheque();
+            //paulEpargne.AfficherSoldeEpargne();
             Console.WriteLine("------------------------------------------------------");
             usager.PayerFacture();
 

@@ -224,7 +224,7 @@ namespace Guichet
             string numero = Console.ReadLine();
             // on cherche la facture dans la liste des factures
             int index = fournisseurService.GetIndex(numero);
-            Console.WriteLine(index);
+            Console.WriteLine("index = "+index);
             Console.WriteLine("Entrer le montant de la facture:");
             string saisie = Console.ReadLine();
             bool resultatConversion = decimal.TryParse(saisie, out decimal montant);

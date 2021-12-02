@@ -35,7 +35,8 @@ namespace Guichet
             int index = 0;
             for (int i = 0; i < listeFacture.Count; i++)
             {
-                if (listeFacture[i].NumeroFacture == numero)
+                string numerofacture = listeFacture[i].NumeroFacture;
+                if (numerofacture.Equals(numero))
                 {
                     index = i;
                 }

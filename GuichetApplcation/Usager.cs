@@ -207,22 +207,57 @@ namespace Guichet
             switch (fournisseur)
             {
                 case "Amazon":
-                    fournisseurService.AfficherService();
-                    // fonction pour choisir la facture a payer
-                    // fonction pour choisir le compte (cheque ou epargne)
-                    //fonction pour completer la transaction 
+                    Payer();                    
                     break;
                 case "Bell":
-                    fournisseurService.AfficherService();
+                    Payer();
                     break;
                 case "Videotron":
-                    fournisseurService.AfficherService();
+                    Payer();
                     break;
                 default:
                     Console.WriteLine("Operation invalide");
                     break;
-            }
+            }           
         }
+        // fonction qui permet de retourner un numero de facture
+        public void Payer(decimal frais = 2)
+        {
+            fournisseurService.AfficherService();
+            Console.WriteLine("Entrer le numero de facture:");
+            string numero = Console.ReadLine();
+            // on cherche la facture dans la liste des factures
+            int index = fournisseurService.GetIndex(numero);
+            Console.WriteLine(index);
+            Console.WriteLine("Entrer le montant de la facture:");
+            string saisie = Console.ReadLine();
+            bool resultatConversion =  decimal.TryParse(saisie, out  decimal montant);
+            if (resultatConversion)
+            {
+                Console.WriteLine("Veuillez choisir le compte a debiter");
+                Console.WriteLine("1- Cheque");
+                Console.WriteLine("2- Epargne");
+                string compte = Console.ReadLine();
+                switch (compte)
+                {
+                    case "1":
+                        compteCheque.Retirer(montant+frais, DateTime.Now, "payement facture");
+                        break ;
+                    case "2":
+                        compteEpargne.Retirer(montant+frais, DateTime.Now, "payement facture");
+                        break;
+                    default :
+                        Console.WriteLine("Votre choix de compte est invalide");
+                        break;
+                }
+                // on supprime la facture dans la liste de facture
+                fournisseurService.ListeFacture.RemoveAt(index);
+            }
+            else
+            {
+                Console.WriteLine("Entrer un montant de facture valide");
+            }
+        }       
         // Fonction qui ferme la session et retourne au menu principal de l'application
         public void FermerSession()
         {
@@ -279,11 +314,12 @@ namespace Guichet
         }
         // Fonction qui valide les virement dans un compte
         public void ValidationVirement(decimal montant)
-        {
-            
+        {           
             if(montant <= 1000)
             {
-                Console.WriteLine("Entrer le compte de provenance");
+                Console.WriteLine("Veuillez choisir le compte de provenance");
+                Console.WriteLine("Cheque");
+                Console.WriteLine("Epargne");
                 string choice = Console.ReadLine();
                 TypeDuCompte compte = (TypeDuCompte)Enum.Parse(typeof(TypeDuCompte),choice);
                 switch (compte)
@@ -306,7 +342,9 @@ namespace Guichet
             else
             {
                 ConnectionModeUtilisateur();
-                Console.WriteLine("Entrer le compte de provenance");
+                Console.WriteLine("Veuillez choisir le compte de provenance");
+                Console.WriteLine("Cheque");
+                Console.WriteLine("Epargne");
                 string choice = Console.ReadLine();
                 TypeDuCompte compte = (TypeDuCompte)Enum.Parse(typeof(TypeDuCompte), choice);
                 switch (compte)
@@ -326,7 +364,6 @@ namespace Guichet
                         break;
                 }
             }
-
         }
         // Fonction qui affiche le nom utilisateur et le mot de passe
         public void AfficherIdentifiantsUsager()

@@ -63,6 +63,33 @@ namespace Guichet
 
 
         }
+        // Deuxieme version du depot du montant Guichet
+        public void DeposerMontantGuichet2()
+        {
+            Console.WriteLine("Entrer le montant du depot ");
+            string saisie = Console.ReadLine();
+            bool resulatConversion = decimal.TryParse(saisie, out decimal montant);
+            if (resulatConversion && montant <= 10000)
+            {
+                decimal soldeCourant = guichet.getSoldeGuichet();
+                guichet.setSoldeGuichet(soldeCourant + montant);
+            }
+            else
+            {
+                while (montant > 10000 && resulatConversion)
+                {
+                    Console.WriteLine("Le montant maximal du depot doit etre 10000$");
+                    Console.WriteLine("Entrer le montant du depot ");
+                    saisie = Console.ReadLine();
+                    resulatConversion = decimal.TryParse(saisie, out montant);
+                }
+                decimal soldeCourant = guichet.getSoldeGuichet();
+                guichet.setSoldeGuichet(soldeCourant + montant);
+
+            }
+
+
+        }
         // Fonction qui Affiche le solde courant du Guichet
         public void VoirSoldeGuichet()
         {

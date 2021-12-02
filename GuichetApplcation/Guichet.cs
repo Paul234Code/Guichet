@@ -8,8 +8,8 @@ namespace Guichet
         // Attributs de la classe
 
         private List<Client> listeClients;
-        private EtatDuSysteme mode;     // mode par defaut en ACTIF
-        private Administrateur admin;    // 
+        private EtatDuSysteme mode; // mode par defaut
+        private Administrateur admin;                                                  // 
         private decimal solde;
         //private Administrateur administrateur ;
         //private Usager usager;
@@ -87,7 +87,6 @@ namespace Guichet
             Console.WriteLine(" 2- Bell");
             Console.WriteLine(" 3- Vidéotron");
         }
-
         // methode qui retourne le solde du guichet
         public decimal getSoldeGuichet()
         {
@@ -102,13 +101,12 @@ namespace Guichet
         public void AfficherSoldeGuichet()
         {
             Console.WriteLine("Solde Guichet:  " + getSoldeGuichet());
-
         }
         // Fonction qui affiche l'etat du Guichet
         public void AfficherEtatGuichet()
         {
             AfficherSoldeGuichet();
-            Console.WriteLine("Etat du Systeme:  " + mode);
+            Console.WriteLine("Etat du Systeme:  " + EtatDuSysteme.ACTIF);
         }
         // Methode pour Deposer un montant dans le guichet
         public void DeposerGuichet(decimal montant)
@@ -116,10 +114,8 @@ namespace Guichet
             if (montant <= 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(montant), "montant du retrait doit etre positif");
-
             }
             solde += montant;
-
         }
         // Methode pour debiter un montant dans le  Guichet
         public void DebiterGuichet(decimal montant)
@@ -133,9 +129,7 @@ namespace Guichet
                 throw new ArgumentOutOfRangeException(nameof(montant), "operation de retrait impossible ");
             }
             solde -= montant;
-
         }
-
         // Les choix des operations de l'administrateur
         public void SelectOperationsAdmin(string choixadmin)
         {
@@ -178,7 +172,6 @@ namespace Guichet
                 default:
                     Console.WriteLine("Votre choix est invalide");
                     break;
-
             }
         }
     }

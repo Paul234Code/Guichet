@@ -5,7 +5,7 @@ namespace Guichet
 {
     public class Controller
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var controller = new Controller();
             /*
@@ -88,37 +88,48 @@ namespace Guichet
             Console.WriteLine(facture3.ToString());
             facture1.AfficherInformationFacture();
             // Class Fournisseur de Services
-            FournisseurService service1 = new FournisseurService("Bell");
-            FournisseurService service2 = new FournisseurService("Amazon");
-            FournisseurService service3 = new FournisseurService("Videotron");
-            Console.WriteLine("==============================================================");
-            service1.AjouterFacture(facture1);
-            service1.AjouterFacture(facture2);
-            service1.AjouterFacture(facture3);
-            service1.AfficherService(); */
+             */
             /*;
            
             guichet.MenuPrincipal();
             string choice = Console.ReadLine();
             guichet.SelectionCompte(choice); */
-            Guichet guichet = new(2500, EtatDuSysteme.ACTIF);
+            Guichet guichet = new(5000, EtatDuSysteme.ACTIF);
+            guichet.AfficherEtatGuichet();
+            Console.WriteLine("----------------------------------------------------");
             CompteEpargne paulEpargne = new("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
             //paulEpargne.AfficherCompte();
             FournisseurService service1 = new("Bell");
             //service1.AfficherService();
             CompteCheque paulCheque = new("Paul Faye", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
             //paulCheque.AfficherCompte();
-            Usager usager = new(paulEpargne, paulCheque, guichet, service1, "1234", "paul1988");
+            FournisseurService service = new("Bell")
+            {
+                ListeFacture = new List<Facture>()
+            };
+            Facture facture1 = new("Telephone", 200, DateTime.Now);
+            Facture facture2 = new("Internet", 300, DateTime.Now);
+            Facture facture3 = new("Television", 400, DateTime.Now);
+            Console.WriteLine("==============================================================");
+            service.AjouterFacture(facture1);
+            service.AjouterFacture(facture2);
+            service.AjouterFacture(facture3);
+            foreach (Facture facture in service.ListeFacture)
+            {
+                Console.WriteLine(facture);
+            }
+
+            Usager usager = new(paulEpargne, paulCheque, guichet, service, "1234", "paul1988");
             Administrateur admin = new(guichet, "admin", "123456");
             //usager.AfficherIdentifiantsUsager();
-            guichet.MenuPrincipal();
-            guichet.AfficherEtatGuichet();
+            //guichet.MenuPrincipal();
             //string choice = Console.ReadLine();
             //guichet.SelectionCompte(choice,admin,usager);
             //admin.ConnectionModeAdministrateur();
             //usager.ConnectionModeUtilisateur();
             //Console.WriteLine("solde du guichet = "+guichet.Solde);
-            admin.DeposerMontantGuichet();
+            admin.DeposerMontantGuichet2();
+            Console.WriteLine("------------------------------------------------------");
             guichet.AfficherEtatGuichet();
             //Console.WriteLine("Nouveau solde du guichet = " + guichet.Solde);
             // usager.DeposerMontant();
@@ -129,9 +140,16 @@ namespace Guichet
             //Console.WriteLine();
             //usager.AfficherIdentifiantsUsager();
             //Console.WriteLine(" nouveau password  = " + usager.Password);
+            //Console.WriteLine("------------------------------------------------------");
             //paulCheque.AfficherSoldeCheque();
             //paulEpargne.AfficherSoldeEpargne();
-            //usager.FaireVirement(1000);
+            //Console.WriteLine("------------------------------------------------------");
+            usager.FaireVirement(300);
+            //Console.WriteLine("------------------------------------------------------");
+            //
+            //Console.WriteLine("------------------------------------------------------");
+            //usager.PayerFacture();
+
             Point p = new() { X = 50, Y = 70 };
             List<Point> points = new()
             {
@@ -144,6 +162,12 @@ namespace Guichet
             // creation d'un predicate
             bool pointFind = points.Exists(p => (p.X, p.Y) == (50, 70));
             //Console.WriteLine("pointFind = "+ pointFind);
+            usager.PayerFacture();
+            paulCheque.AfficherSoldeCheque();
+            paulEpargne.AfficherSoldeEpargne();
+            List<string> fruits = new() { "mangue", "orange", "Goyave", "citron", "mandarine" };
+            service.AfficherService()
+
 
 
 

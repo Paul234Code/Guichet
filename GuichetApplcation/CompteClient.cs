@@ -17,7 +17,6 @@ namespace Guichet
         public string Numero { get; }
         public string NomProprietaire { get; }
         public EtatDuCompte EtatDuCompte { get; set; }
-
         public decimal Balance
         {
             get
@@ -28,9 +27,7 @@ namespace Guichet
                     balance += item.Amount;
                 }
                 return balance;
-
             }
-
         }
         // Le constructeur de la classe CompteClient
         public CompteClient(string nomProprietaire, decimal initialBalance, EtatDuCompte etatDuCompte)
@@ -39,8 +36,7 @@ namespace Guichet
             this.nomProprietaire = nomProprietaire;
             this.etatDuCompte = etatDuCompte;
             numeroID++;
-            this.Deposer(initialBalance, DateTime.Now, "Solde initial");
-
+            Deposer(initialBalance, DateTime.Now, "Solde initial");
         }
         // Methode qui depose un montant positif dans un compte
 
@@ -48,7 +44,7 @@ namespace Guichet
         {
             if (amount <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(amount), "montant du depot doit etre positif");
+                throw new ArgumentOutOfRangeException("montant du depot doit etre positif");
             }
             var depot = new Transaction(amount, date, information);
             allTransactions.Add(depot);
@@ -58,7 +54,7 @@ namespace Guichet
         {
             if (amount <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(amount), "montant du retrait doit etre positif");
+                throw new ArgumentOutOfRangeException("montant du retrait doit etre positif");
             }
             if (Balance - amount < 0)
             {
@@ -74,7 +70,6 @@ namespace Guichet
             Console.WriteLine("Nom proprietaire: " + nomProprietaire);
             Console.WriteLine("Solde :" + Balance);
             Console.WriteLine("Etat du Compte : " + etatDuCompte);
-
         }
         // Methode qui effectue un virement entre deux compte
         public void Virer(CompteClient Receiver, decimal amount)

@@ -21,7 +21,6 @@ namespace Guichet
             this.montantFacture = montantFacture;
             this.dateFacture = dateFacture;
             identifiantFacture++;
-
         }
         public override string ToString()
         {
@@ -32,8 +31,11 @@ namespace Guichet
         {
             Console.WriteLine("numero\t nom Facture\tmontantFacture");
             Console.WriteLine($"{numeroFacture}\t{nomFacture}\t{montantFacture}\t{dateFacture}");
-
-
+        }
+        // Fonction qui retourne le numero de la facture
+        public string GetNumeroFacture()
+        {
+            return numeroFacture;
         }
     }
 }

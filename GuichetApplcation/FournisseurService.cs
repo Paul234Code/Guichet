@@ -6,7 +6,7 @@ namespace Guichet
     public class FournisseurService
     {
         private string nomFournisseur;
-        private List<Facture> listeFacture;
+        private List<Facture> listeFacture =  new List<Facture>();
         // Les proprietes
         public string NomFournisseur { get; set; }
         public List<Facture> ListeFacture { get; set; }
@@ -29,22 +29,18 @@ namespace Guichet
             {
                 Console.WriteLine("\t" + facture.ToString());
             }
-
-
         }
-        public void PayementDuService(decimal frais = 2)
+        public int GetIndex(string numero)
         {
-            Console.WriteLine("Enter le numero de la facture");
-            string numero = Console.ReadLine();
-            Console.WriteLine(numero);
-            // Chercher l'indice du numero de facture correspondant
-            int index = listeFacture.FindIndex(facture => facture.NumeroFacture == numero);
-            Console.WriteLine(index);
-            Console.WriteLine("Enter le montant de la facture");
-            string montant = Console.ReadLine();
-
+            int index = 0;
+            for(int i = 0; i < listeFacture.Count; i++)
+            {
+                if( listeFacture[i].NumeroFacture == numero)
+                {
+                    index = i;
+                }
+            }
+            return index;
         }
-
-
     }
 }

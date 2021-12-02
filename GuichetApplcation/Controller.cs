@@ -102,7 +102,7 @@ namespace Guichet
             //paulEpargne.AfficherCompte();
             FournisseurService service1 = new("Bell");
             //service1.AfficherService();
-            CompteCheque paulCheque = new("Paul Faye", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
+            CompteCheque paulCheque = new("Paul Faye", 5000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
             //paulCheque.AfficherCompte();
             FournisseurService service = new("Bell")
             {
@@ -110,7 +110,7 @@ namespace Guichet
             };
             Facture facture1 = new("Telephone", 200, DateTime.Now);
             Facture facture2 = new("Internet", 300, DateTime.Now);
-            Facture facture3 = new("Television", 400, DateTime.Now);
+            Facture facture3 = new("Television", 2000, DateTime.Now);
             Console.WriteLine("==============================================================");
             service.AjouterFacture(facture1);
             service.AjouterFacture(facture2);
@@ -145,7 +145,7 @@ namespace Guichet
             paulCheque.AfficherSoldeCheque();
             paulEpargne.AfficherSoldeEpargne();
             Console.WriteLine("------------------------------------------------------");
-            usager.FaireVirement(300);
+            usager.FaireVirement(4000);
             //Console.WriteLine("------------------------------------------------------");
             //Console.WriteLine("------------------------------------------------------");
             usager.PayerFacture();

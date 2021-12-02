@@ -113,7 +113,7 @@ namespace Guichet
         {
             if (montant <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(montant), "montant du retrait doit etre positif");
+                Console.WriteLine( "montant du retrait doit etre positif");
             }
             solde += montant;
         }
@@ -122,11 +122,11 @@ namespace Guichet
         {
             if (montant <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(montant), "montant du retrait doit etre positif");
+                Console.WriteLine( "montant du retrait doit etre positif");
             }
             if (montant > solde)
             {
-                throw new ArgumentOutOfRangeException(nameof(montant), "operation de retrait impossible ");
+                Console.WriteLine("operation de retrait impossible");
             }
             solde -= montant;
         }

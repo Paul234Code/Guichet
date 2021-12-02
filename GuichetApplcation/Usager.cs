@@ -85,11 +85,11 @@ namespace Guichet
                 switch (compte)
                 {
                     case "1":
-                        compteCheque.Deposer(montant, DateTime.Now, "Depot");
+                        compteCheque.Deposer(montant);
                         Console.WriteLine("Nouveau Solde du compte cheque : " + compteCheque.Balance);
                         break;
                     case "2":
-                        compteEpargne.Deposer(montant, DateTime.Now, "Depot");
+                        compteEpargne.Deposer(montant);
                         Console.WriteLine("Nouveau Solde du compte epargne : " + compteEpargne.Balance);
                         break;
                     default:
@@ -110,11 +110,11 @@ namespace Guichet
                 switch (compte)
                 {
                     case "cheque":
-                        compteCheque.Deposer(montant, DateTime.Now, "Depot");
+                        compteCheque.Deposer(montant);
                         Console.WriteLine("Nouveau Solde du compte cheque : " + compteCheque.Balance);
                         break;
                     case "epargne":
-                        compteEpargne.Deposer(montant, DateTime.Now, "Depot");
+                        compteEpargne.Deposer(montant);
                         Console.WriteLine("Nouveau Solde du compte epargne : " + compteEpargne.Balance);
                         break;
                     default:
@@ -137,12 +137,12 @@ namespace Guichet
             {
                 case "1":
                     guichet.DebiterGuichet(montant);
-                    compteCheque.Retirer(montant, DateTime.Now, "Retrait");
+                    compteCheque.Retirer(montant);
                     compteCheque.AfficherSoldeCheque();
                     break;
                 case "2":
                     guichet.DebiterGuichet(montant);
-                    compteEpargne.Retirer(montant, DateTime.Now, "Retrait");
+                    compteEpargne.Retirer(montant);
                     compteEpargne.AfficherSoldeEpargne();
                     break;
                 default:
@@ -236,10 +236,10 @@ namespace Guichet
                 switch (compte)
                 {
                     case "1":
-                        compteCheque.Retirer(montant + frais, DateTime.Now, "payement facture");
+                        compteCheque.Retirer(montant + frais);
                         break;
                     case "2":
-                        compteEpargne.Retirer(montant + frais, DateTime.Now, "payement facture");
+                        compteEpargne.Retirer(montant + frais);
                         break;
                     default:
                         Console.WriteLine("Votre choix de compte est invalide");

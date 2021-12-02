@@ -14,8 +14,7 @@ namespace Guichet
         private EtatDuSysteme mode ; // mode par defaut
         private Administrateur admin;                                                  // 
         private decimal solde ;
-        //private Administrateur administrateur ;
-        //private Usager usager;
+        private Usager usager;
         // Les proprietes
         public List<Client> ListeClients { get; set; }
         public EtatDuSysteme Mode { get; set; }
@@ -41,7 +40,7 @@ namespace Guichet
             Console.WriteLine("2- Se connecter comme administrateur");
             Console.WriteLine("3- Quitter");
             string choixMenuPrincipal = Console.ReadLine();
-            SelectionCompte(choixMenuPrincipal);
+            SelectionCompte(choixMenuPrincipal, admin, usager);
 
         }
                    

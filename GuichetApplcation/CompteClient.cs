@@ -101,7 +101,7 @@ namespace Guichet
         // Fonction qui affiche seulement le solde du compte
         public void AfficherSoldeCompte()
         {
-            Console.WriteLine("Solde du compte: " + Balance );
+            Console.WriteLine("Solde du compte: " + Balance);
         }
 
         

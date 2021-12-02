@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 
 namespace Guichet
@@ -166,7 +167,7 @@ namespace Guichet
             paulCheque.AfficherSoldeCheque();
             paulEpargne.AfficherSoldeEpargne();
             List<string> fruits = new() { "mangue", "orange", "Goyave", "citron", "mandarine" };
-            service.AfficherService()
+            service.AfficherService();
 
 
 

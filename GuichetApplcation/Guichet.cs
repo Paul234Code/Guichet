@@ -7,14 +7,14 @@ namespace Guichet
     {
         // Attributs de la classe
 
-        private List<Client> listeClients;
+        private List<Usager> listeUsager;
         private EtatDuSysteme mode; // mode par defaut
         private Administrateur admin;                                                  // 
         private decimal solde;
         //private Administrateur administrateur ;
         //private Usager usager;
         // Les proprietes
-        public List<Client> ListeClients { get; set; }
+        public List<Usager> ListeUsager { get; set; }
         public EtatDuSysteme Mode { get; set; }
         public decimal Solde { get; set; }
         // Le constructeur de la classe Guichet
@@ -22,12 +22,12 @@ namespace Guichet
         {
             this.solde = solde;
             this.mode = mode;
-            listeClients = new List<Client>();
+            listeUsager = new List<Usager>();
         }
         // methode qui ajoute un client dans la liste
-        public void AjouterClient(Client client)
+        public void AjouterClient(Usager usager)
         {
-            listeClients.Add(client);
+            listeUsager.Add(usager);
         }
 
         // Menu Utilisateur

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Guichet
 {
@@ -19,20 +17,18 @@ namespace Guichet
         // Les proprietes
         public string Numero { get; }
         public string NomProprietaire { get; }
-        public EtatDuCompte EtatDuCompte { get; set; } 
-
-        public decimal Balance 
+        public EtatDuCompte EtatDuCompte { get; set; }
+        public decimal Balance
         {
-            get {
-                   decimal balance = 0;
-                   foreach (var item in allTransactions)
-                   {
-                         balance += item.Amount;
-                   }
-                   return balance;
-
-              }
-          
+            get
+            {
+                decimal balance = 0;
+                foreach (var item in allTransactions)
+                {
+                    balance += item.Amount;
+                }
+                return balance;
+            }
         }
         // Le constructeur de la classe CompteClient
         public CompteClient(string nomProprietaire, decimal initialBalance, EtatDuCompte etatDuCompte)
@@ -41,8 +37,7 @@ namespace Guichet
             this.nomProprietaire = nomProprietaire;
             this.etatDuCompte = etatDuCompte;
             numeroID++;
-            this.Deposer(initialBalance, DateTime.Now, "Solde initial");
-
+            Deposer(initialBalance, DateTime.Now, "Solde initial");
         }
         // Methode qui depose un montant positif dans un compte
 
@@ -50,17 +45,17 @@ namespace Guichet
         {
             if (amount <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(amount), "montant du depot doit etre positif");
+                throw new ArgumentOutOfRangeException("montant du depot doit etre positif");
             }
             var depot = new Transaction(amount, date, information);
             allTransactions.Add(depot);
         }
         // Methode qui retire un montant valide dans un compte
-        public void Retirer(decimal amount, DateTime date, string  information) 
+        public void Retirer(decimal amount, DateTime date, string information)
         {
             if (amount <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(amount), "Le montant du retrait doit être positif");
+                throw new ArgumentOutOfRangeException("montant du retrait doit etre positif");
             }
             if (Balance - amount < 0)
             {
@@ -73,10 +68,9 @@ namespace Guichet
         public void AfficherCompte()
         {
             Console.WriteLine("Numero du compte: " + numero);
-            Console.WriteLine("Nom proprietaire: "+ nomProprietaire);
+            Console.WriteLine("Nom proprietaire: " + nomProprietaire);
             Console.WriteLine("Solde :" + Balance);
             Console.WriteLine("Etat du Compte : " + etatDuCompte);
-
         }
         // Methode qui effectue un virement entre deux compte
         public void Virer(CompteClient Receiver, decimal amount)

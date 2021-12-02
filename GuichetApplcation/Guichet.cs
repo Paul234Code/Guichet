@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Guichet
 {
@@ -11,23 +8,24 @@ namespace Guichet
         // Attributs de la classe
 
         private List<Client> listeClients;
-        private EtatDuSysteme mode ; // mode par defaut
+        private EtatDuSysteme mode; // mode par defaut
         private Administrateur admin;                                                  // 
-        private decimal solde ;
-        private Usager usager;
+        private decimal solde;
+        //private Administrateur administrateur ;
+        //private Usager usager;
         // Les proprietes
         public List<Client> ListeClients { get; set; }
         public EtatDuSysteme Mode { get; set; }
         public decimal Solde { get; set; }
         // Le constructeur de la classe Guichet
-        public Guichet(decimal solde,EtatDuSysteme mode)
+        public Guichet(decimal solde, EtatDuSysteme mode)
         {
             this.solde = solde;
             this.mode = mode;
-            listeClients = new List<Client>();           
+            listeClients = new List<Client>();
         }
         // methode qui ajoute un client dans la liste
-        public  void AjouterClient(Client client)
+        public void AjouterClient(Client client)
         {
             listeClients.Add(client);
         }
@@ -39,15 +37,12 @@ namespace Guichet
             Console.WriteLine("1- Se connecter à votre compte d'utilisateur"); //ajouter consolereadline + switch pour choix de menu     
             Console.WriteLine("2- Se connecter comme administrateur");
             Console.WriteLine("3- Quitter");
-            string choixMenuPrincipal = Console.ReadLine();
-            SelectionCompte(choixMenuPrincipal, admin, usager);
-
         }
-                   
+
         // Choix des operations dans le menu du compte personnel
-         public void SelectOperationsUsager(string operation,Usager usager,CompteCheque cheque,decimal montant)
+        public void SelectOperationsUsager(string operation, Usager usager, CompteCheque cheque, decimal montant)
         {
-           switch (operation)
+            switch (operation)
             {
                 case "1":
                     usager.ChangerMotDePasse();
@@ -107,7 +102,6 @@ namespace Guichet
             return  new FournisseurService(choixFournisseur);
 
         }
-
         // methode qui retourne le solde du guichet
         public decimal getSoldeGuichet()
         {
@@ -121,41 +115,36 @@ namespace Guichet
         // Affiche le solde du guichet
         public void AfficherSoldeGuichet()
         {
-            Console.WriteLine("Solde Guichet:  "+ getSoldeGuichet());
-
+            Console.WriteLine("Solde Guichet:  " + getSoldeGuichet());
         }
         // Fonction qui affiche l'etat du Guichet
         public void AfficherEtatGuichet()
         {
             AfficherSoldeGuichet();
-            Console.WriteLine("Etat du Systeme:  "+ EtatDuSysteme.ACTIF);
+            Console.WriteLine("Etat du Systeme:  " + mode);
         }
         // Methode pour Deposer un montant dans le guichet
-        public void DeposerGuichet( decimal montant )
+        public void DeposerGuichet(decimal montant)
         {
-            if(montant <= 0)
+            if (montant <= 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(montant), "montant du retrait doit etre positif");
-
             }
             solde += montant;
-
         }
         // Methode pour debiter un montant dans le  Guichet
         public void DebiterGuichet(decimal montant)
         {
-            if(montant <= 0)
+            if (montant <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(montant),"montant du retrait doit etre positif");
+                throw new ArgumentOutOfRangeException(nameof(montant), "montant du retrait doit etre positif");
             }
-            if(montant > solde)
+            if (montant > solde)
             {
                 throw new ArgumentOutOfRangeException(nameof(montant), "operation de retrait impossible ");
             }
             solde -= montant;
-
         }
-
         // Les choix des operations de l'administrateur
         public void SelectOperationsAdmin(string choixadmin)
         {
@@ -190,7 +179,7 @@ namespace Guichet
                     usager.ConnectionModeUtilisateur();
                     break;
                 case "2":
-                    admin. ConnectionModeAdministrateur();
+                    admin.ConnectionModeAdministrateur();
                     break;
                 case "3":
                     Environment.Exit(0);
@@ -198,7 +187,6 @@ namespace Guichet
                 default:
                     Console.WriteLine("Votre choix est invalide");
                     break;
-
             }
         }
     }

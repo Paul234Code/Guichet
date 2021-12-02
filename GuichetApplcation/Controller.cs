@@ -142,27 +142,12 @@ namespace Guichet
             //usager.AfficherIdentifiantsUsager();
             //Console.WriteLine(" nouveau password  = " + usager.Password);
             //Console.WriteLine("------------------------------------------------------");
-            //paulCheque.AfficherSoldeCheque();
-            //paulEpargne.AfficherSoldeEpargne();
-            //Console.WriteLine("------------------------------------------------------");
+            paulCheque.AfficherSoldeCheque();
+            paulEpargne.AfficherSoldeEpargne();
+            Console.WriteLine("------------------------------------------------------");
             usager.FaireVirement(300);
             //Console.WriteLine("------------------------------------------------------");
-            //
             //Console.WriteLine("------------------------------------------------------");
-            //usager.PayerFacture();
-
-           /* Point p = new() { X = 50, Y = 70 };
-            List<Point> points = new()
-            {
-                new Point { X = 10, Y = 20 },
-                new Point { X = 20, Y = 10 },
-                new Point { X = 20, Y = 30 },
-                new Point { X = 40, Y = 50 },
-                new Point { X = 50, Y = 70 },
-            }; */
-            // creation d'un predicate
-           // bool pointFind = points.Exists(p => (p.X, p.Y) == (50, 70));
-            //Console.WriteLine("pointFind = "+ pointFind);
             usager.PayerFacture();
             paulCheque.AfficherSoldeCheque();
             paulEpargne.AfficherSoldeEpargne();

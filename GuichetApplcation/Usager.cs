@@ -13,10 +13,10 @@ namespace Guichet
         private string nomUtilisateur;
         private string password;
         // Les proprietes de la classe Usager
-        public CompteClient getCompteCheque { get; }
+        public CompteCheque getCompteCheque { get; }
         public Guichet Guichet { get; set; }
         public FournisseurService getFournisseur { get; set; }
-        public CompteClient getCompteEpargne { get; }
+        public CompteCheque getCompteEpargne { get; }
         public string Password { get; set; }
         public string NomUtilisaeur { get; set; }
         // Le constructeur de la classe Usager

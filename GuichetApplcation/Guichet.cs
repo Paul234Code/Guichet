@@ -25,7 +25,7 @@ namespace Guichet
             listeUsager = new List<Usager>();
         }
         // methode qui ajoute un client dans la liste
-        public void AjouterClient(Usager usager)
+        public void AjouterUsager(Usager usager)
         {
             listeUsager.Add(usager);
         }

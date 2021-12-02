@@ -8,21 +8,51 @@ namespace Guichet
     {
         static void Main()
         {
-            
-            /*
-            Console.WriteLine("==============================================================");
-
+            Guichet guichet = new Guichet(10000, EtatDuSysteme.ACTIF)
+            {
+                ListeUsager = new List<Usager>()
+            };
+            Administrateur administrateur = new(guichet, "admin", "123456");
             //classe CompteEpargne
-            CompteClient paulEpargne = new CompteEpargne("Paul Faye",2000,EtatDuCompte.ACTIF,TypeDuCompte.Epargne);
-            CompteClient firdaousEpargne = new CompteEpargne("Firdaous El Mabrooki", 2000, EtatDuCompte.VEROUILLE, TypeDuCompte.Epargne);
-            CompteClient jonamEpargne = new CompteEpargne("Jonam Dessureault", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
-
+            CompteEpargne paulEpargne = new CompteEpargne("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
+            CompteEpargne firdaousEpargne = new CompteEpargne("Firdaous El Mabrooki", 2000, EtatDuCompte.VEROUILLE, TypeDuCompte.Epargne);
+            CompteEpargne jonamEpargne = new CompteEpargne("Jonam Dessureault", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
+            CompteEpargne simonEpargne = new CompteEpargne("Simon Bugeaud",3000,EtatDuCompte.ACTIF,TypeDuCompte.Epargne);
+            CompteEpargne katiaEpargne = new CompteEpargne("Katia Duschenau", 4000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
             // des comptes cheques
-            CompteClient paulCheque = new CompteCheque("Paul Faye", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
-            CompteClient firdaousCheque = new CompteCheque("Firdaous El Mabrooki", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
-            CompteClient jonamCheque = new CompteCheque("Jonam Dessureault", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
+            CompteCheque paulCheque = new CompteCheque("Paul Faye", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
+            CompteCheque firdaousCheque = new CompteCheque("Firdaous El Mabrooki", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
+            CompteCheque jonamCheque = new CompteCheque("Jonam Dessureault", 8000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
+            CompteCheque simonCheque = new CompteCheque("Simon Bugeaud", 3000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
+            CompteCheque katiaCheque = new CompteCheque("Katia Duschenau", 4000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
+            // Creation d'un service
+            FournisseurService service = new("Bell")
+            {
+                ListeFacture = new List<Facture>()
+            };
+            //Creation de 5 usagers
+            Usager paul = new Usager(paulEpargne, paulCheque, guichet, service,"paul1988", "1234");
+            Usager jonam = new Usager(jonamEpargne, jonamCheque, guichet, service, "jonam123", "1235");
+            Usager firdaous = new Usager(firdaousEpargne, firdaousCheque, guichet, service, "firdaous", "1236");
+            Usager simon = new Usager(simonEpargne, simonCheque, guichet, service, "simonbug", "1237");
+            Usager katia = new Usager(katiaEpargne, katiaCheque, guichet, service, "katiadus", "1238");
+            // Ajouter les 5 usagers dans la liste
+            guichet.AjouterUsager(paul);
+            guichet.AjouterUsager(jonam);
+            guichet.AjouterUsager(firdaous);
+            guichet.AjouterUsager(simon);
+            guichet.AjouterUsager(katia);
+            string choice;
+            do
+            {
+                guichet.MenuPrincipal();
+                choice =  Console.ReadLine();
 
-            paulEpargne.AfficherCompte();
+            }while(choice != "3");
+
+
+
+            /*paulEpargne.AfficherCompte();
             Console.WriteLine("-------------------------------------------------------------");
             paulCheque.AfficherCompte();
             Console.WriteLine("==============================================================");
@@ -95,19 +125,16 @@ namespace Guichet
             guichet.MenuPrincipal();
             string choice = Console.ReadLine();
             guichet.SelectionCompte(choice); */
-            Guichet guichet = new(5000, EtatDuSysteme.ACTIF);
+
             guichet.AfficherEtatGuichet();
             Console.WriteLine("----------------------------------------------------");
-            CompteEpargne paulEpargne = new("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
-            //paulEpargne.AfficherCompte();
-            FournisseurService service1 = new("Bell");
+            CompteEpargne paulEpargne1 = new("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
+            //paulEpargne.AfficherCompte(); 
+            
             //service1.AfficherService();
-            CompteCheque paulCheque = new("Paul Faye", 5000, EtatDuCompte.ACTIF, TypeDuCompte.Cheque);
+           
             //paulCheque.AfficherCompte();
-            FournisseurService service = new("Bell")
-            {
-                ListeFacture = new List<Facture>()
-            };
+           /* 
             Facture facture1 = new("Telephone", 200, DateTime.Now);
             Facture facture2 = new("Internet", 300, DateTime.Now);
             Facture facture3 = new("Television", 2000, DateTime.Now);
@@ -121,7 +148,7 @@ namespace Guichet
             }
 
             Usager usager = new(paulEpargne, paulCheque, guichet, service, "1234", "paul1988");
-            Administrateur admin = new(guichet, "admin", "123456");
+            */
             //usager.AfficherIdentifiantsUsager();
             //guichet.MenuPrincipal();
             //string choice = Console.ReadLine();
@@ -129,9 +156,9 @@ namespace Guichet
             //admin.ConnectionModeAdministrateur();
             //usager.ConnectionModeUtilisateur();
             //Console.WriteLine("solde du guichet = "+guichet.Solde);
-            admin.DeposerMontantGuichet2();
-            Console.WriteLine("------------------------------------------------------");
-            guichet.AfficherEtatGuichet();
+            //admin.DeposerMontantGuichet2();
+            //Console.WriteLine("------------------------------------------------------");
+            //guichet.AfficherEtatGuichet();
             //Console.WriteLine("Nouveau solde du guichet = " + guichet.Solde);
             // usager.DeposerMontant();
             //usager.AfficherSoldeCompte();
@@ -142,15 +169,15 @@ namespace Guichet
             //usager.AfficherIdentifiantsUsager();
             //Console.WriteLine(" nouveau password  = " + usager.Password);
             //Console.WriteLine("------------------------------------------------------");
-            paulCheque.AfficherSoldeCheque();
-            paulEpargne.AfficherSoldeEpargne();
-            Console.WriteLine("------------------------------------------------------");
-            usager.FaireVirement(4000);
+            //paulCheque.AfficherSoldeCheque();
+            //paulEpargne.AfficherSoldeEpargne();
+            //Console.WriteLine("------------------------------------------------------");
+            //usager.FaireVirement(4000);
             //Console.WriteLine("------------------------------------------------------");
             //Console.WriteLine("------------------------------------------------------");
-            usager.PayerFacture();
-            paulCheque.AfficherSoldeCheque();
-            paulEpargne.AfficherSoldeEpargne();
+            ////usager.PayerFacture();
+            //paulCheque.AfficherSoldeCheque();
+            //paulEpargne.AfficherSoldeEpargne();
 
         }
     }

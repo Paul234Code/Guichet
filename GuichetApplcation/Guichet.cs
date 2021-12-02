@@ -106,7 +106,7 @@ namespace Guichet
         public void AfficherEtatGuichet()
         {
             AfficherSoldeGuichet();
-            Console.WriteLine("Etat du Systeme:  " + EtatDuSysteme.ACTIF);
+            Console.WriteLine("Etat du Systeme:  " + mode);
         }
         // Methode pour Deposer un montant dans le guichet
         public void DeposerGuichet(decimal montant)

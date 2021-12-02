@@ -159,7 +159,6 @@ namespace Guichet
             while (true)
             {
 
-
             }
         }
         // Afficher le solde du compte Cheque ou Epargne
@@ -223,8 +222,7 @@ namespace Guichet
             Console.WriteLine("Entrer le numero de facture:");
             string numero = Console.ReadLine();
             // on cherche la facture dans la liste des factures
-            int index = fournisseurService.GetIndex(numero);
-            Console.WriteLine("index = "+index);
+            fournisseurService.GetIndex(numero);
             Console.WriteLine("Entrer le montant de la facture:");
             string saisie = Console.ReadLine();
             bool resultatConversion = decimal.TryParse(saisie, out decimal montant);
@@ -247,7 +245,7 @@ namespace Guichet
                         break;
                 }
                 // on supprime la facture dans la liste de facture
-                fournisseurService.ListeFacture.RemoveAt(index);
+                //fournisseurService.ListeFacture;
             }
             else
             {

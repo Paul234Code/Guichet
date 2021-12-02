@@ -203,6 +203,7 @@ namespace Guichet
             {
                 case "Amazon":
                     Payer();
+                    fournisseurService.AfficherService();
                     break;
                 case "Bell":
                     Payer();
@@ -251,6 +252,7 @@ namespace Guichet
             {
                 Console.WriteLine("Entrer un montant de facture valide");
             }
+            
         }
         // Fonction qui ferme la session et retourne au menu principal de l'application
         public void FermerSession()

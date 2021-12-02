@@ -30,21 +30,17 @@ namespace Guichet
                 Console.WriteLine("\t" + facture.ToString());
             }
         }
-        public void GetIndex(string numero)
+        public int GetIndex(string numero)
         {
-            
-            foreach (var facture in listeFacture)
+            int index = 0;
+            for(int i = 0; i < listeFacture.Count; i++)
             {
-                string numerofacture = facture.NumeroFacture;
-                if (numerofacture.Equals(numero))
+                if( listeFacture[i].NumeroFacture == numero)
                 {
-                    listeFacture.Remove(facture);
-                }
-                else
-                {
-                    continue;
+                    index = i;
                 }
             }
+            return index;
         }
     }
 }

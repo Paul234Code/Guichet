@@ -141,16 +141,15 @@ namespace Guichet
             //Console.WriteLine();
             //usager.AfficherIdentifiantsUsager();
             //Console.WriteLine(" nouveau password  = " + usager.Password);
-            Console.WriteLine("------------------------------------------------------");
-            paulCheque.AfficherSoldeCheque();
-            paulEpargne.AfficherSoldeEpargne();
-            Console.WriteLine("------------------------------------------------------");
-            usager.FaireVirement(300);
-            Console.WriteLine("------------------------------------------------------");
+            //Console.WriteLine("------------------------------------------------------");
             //paulCheque.AfficherSoldeCheque();
             //paulEpargne.AfficherSoldeEpargne();
-            Console.WriteLine("------------------------------------------------------");
-            usager.PayerFacture();
+            //Console.WriteLine("------------------------------------------------------");
+            usager.FaireVirement(300);
+            //Console.WriteLine("------------------------------------------------------");
+            //
+            //Console.WriteLine("------------------------------------------------------");
+            //usager.PayerFacture();
 
             Point p = new() { X = 50, Y = 70 };
             List<Point> points = new()
@@ -164,7 +163,12 @@ namespace Guichet
             // creation d'un predicate
             bool pointFind = points.Exists(p => (p.X, p.Y) == (50, 70));
             //Console.WriteLine("pointFind = "+ pointFind);
-            //usager.PayerFacture();
+            usager.PayerFacture();
+            paulCheque.AfficherSoldeCheque();
+            paulEpargne.AfficherSoldeEpargne();
+            List<string> fruits = new() { "mangue", "orange", "Goyave", "citron", "mandarine" };
+            service.AfficherService()
+
 
 
 

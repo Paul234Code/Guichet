@@ -87,12 +87,12 @@ namespace Guichet
                 string compte = Console.ReadLine();
                 switch (compte)
                 {
-                    case "1":
-                        compteCheque.Deposer(montant, DateTime.Now, "Depot");                        
+                    case "1":                      
+                        compteCheque.Deposer(montant, DateTime.Now, "Depot");                                           
                         Console.WriteLine("Nouveau Solde du compte cheque : " + compteCheque.Balance);
                         break;
-                    case "2":                      
-                        compteEpargne.Deposer(montant, DateTime.Now, "Depot");                        
+                    case "2":                     
+                        compteEpargne.Deposer(montant, DateTime.Now, "Depot");                   
                         Console.WriteLine("Nouveau Solde du compte epargne : " + compteEpargne.Balance);
                         break;
                     default:
@@ -131,7 +131,7 @@ namespace Guichet
         // Fonction qui permet de retirer un montant
         public void RetirerMontant(decimal montant)
         {
-            Console.WriteLine("Veuillez choisir le compte à débiter");
+            Console.WriteLine("Veuillez choisir lecompte à débiter");
             Console.WriteLine();
             Console.WriteLine("1- Compte Cheque");
             Console.WriteLine("2- Compte Epargne");
@@ -253,7 +253,7 @@ namespace Guichet
                     break;
             }
         }
-        // Fonction qui permet de comparer l'égalité de deux tableaux de caractères
+        // Fonction qui permet de comparer l'egalite de deux tableaux de caraetres
         public bool Egalite(char[] tab1, char[] tab2)
         {
             return tab1.SequenceEqual(tab2);

@@ -8,11 +8,13 @@ namespace Guichet
     {
         static void Main()
         {
-            Guichet guichet = new Guichet(10000, EtatDuSysteme.ACTIF)
+            Guichet guichet = new Guichet(10000, EtatDuSysteme.ACTIF, administrateur);
             {
                 ListeUsager = new List<Usager>()
             };
             Administrateur administrateur = new(guichet, "admin", "123456");
+            
+           
             //classe CompteEpargne
             CompteEpargne paulEpargne = new CompteEpargne("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
             CompteEpargne firdaousEpargne = new CompteEpargne("Firdaous El Mabrooki", 2000, EtatDuCompte.VEROUILLE, TypeDuCompte.Epargne);
@@ -47,6 +49,7 @@ namespace Guichet
             {
                 guichet.MenuPrincipal();
                 choice =  Console.ReadLine();
+                guichet.SelectionCompte(choice);
 
             }while(choice != "3");
 
@@ -126,9 +129,9 @@ namespace Guichet
             string choice = Console.ReadLine();
             guichet.SelectionCompte(choice); */
 
-            guichet.AfficherEtatGuichet();
-            Console.WriteLine("----------------------------------------------------");
-            CompteEpargne paulEpargne1 = new("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
+            //guichet.AfficherEtatGuichet();
+            //Console.WriteLine("----------------------------------------------------");
+            //CompteEpargne paulEpargne1 = new("Paul Faye", 2000, EtatDuCompte.ACTIF, TypeDuCompte.Epargne);
             //paulEpargne.AfficherCompte(); 
             
             //service1.AfficherService();

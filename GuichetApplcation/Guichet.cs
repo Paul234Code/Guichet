@@ -9,7 +9,7 @@ namespace Guichet
 
         private List<Usager> listeUsager;
         private EtatDuSysteme mode; // mode par defaut
-        private Administrateur admin;                                                  // 
+        private Administrateur administrateur;                                                  // 
         private decimal solde;
         //private Administrateur administrateur ;
         //private Usager usager;
@@ -18,10 +18,11 @@ namespace Guichet
         public EtatDuSysteme Mode { get; set; }
         public decimal Solde { get; set; }
         // Le constructeur de la classe Guichet
-        public Guichet(decimal solde, EtatDuSysteme mode)
+        public Guichet(decimal solde, EtatDuSysteme mode,Administrateur administrateur)
         {
             this.solde = solde;
             this.mode = mode;
+            this.administrateur = administrateur;    
             listeUsager = new List<Usager>();
         }
         // methode qui ajoute un client dans la liste
@@ -136,19 +137,19 @@ namespace Guichet
             switch (choixadmin)
             {
                 case "1":
-                    admin.RemettreGuichetEnFonction();
+                    administrateur.RemettreGuichetEnFonction();
                     break;
                 case "2":
-                    admin.DeposerMontantGuichet();
+                    administrateur.DeposerMontantGuichet();
                     break;
                 case "3":
-                    admin.VoirSoldeGuichet();
+                    administrateur.VoirSoldeGuichet();
                     break;
                 case "4":
-                    admin.VoirListeDesCompte();
+                    administrateur.VoirListeDesCompte();
                     break;
                 case "5":
-                    admin.RetournerMenuPrincipal();
+                    administrateur.RetournerMenuPrincipal();
                     break;
                 default:
                     Console.WriteLine("Votre choix est invalide");
@@ -156,15 +157,15 @@ namespace Guichet
             }
         }
         // Fonction qui permet de choisir une option dans le menu principal
-        public void SelectionCompte(string choix, Administrateur admin, Usager usager)
+        public  void SelectionCompte(string choix)
         {
             switch (choix)
             {
                 case "1":
-                    usager.ConnectionModeUtilisateur();
+                    ConnectionModeUtilisateur();
                     break;
                 case "2":
-                    admin.ConnectionModeAdministrateur();
+                    ConnectionModeAdministrateur();
                     break;
                 case "3":
                     Environment.Exit(0);
@@ -173,6 +174,103 @@ namespace Guichet
                     Console.WriteLine("Votre choix est invalide");
                     break;
             }
+        }
+        // Connection Utilisateur
+        public void ConnectionModeUtilisateur()
+        {
+            int compteur = 0;     // trois tentatives
+            string usagerLogin;
+            string password;
+            while (compteur < 3)
+            {
+                Console.WriteLine("Enter nom utilisateur:");
+                usagerLogin = Console.ReadLine();
+                Console.WriteLine("Entrer mot de passe:");
+                password = Console.ReadLine();
+                // Convertit la saisie en tableau de caractere ;                 
+                if (Egalite(usagerLogin, administrateur.GetAdministrateurId()) && Egalite(password, administrateur.GetAdministrateurPassword()))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Nom utilisateur ou mot de passe incorrecte");
+                    Console.WriteLine();
+                }
+                compteur++;
+            }
+            if (compteur == 3)
+            {
+                VerrouillerCompte();
+            }
+            else
+            {
+                Console.WriteLine("Bienvenue dans votre compte personnel");
+                MenuComptePersonnel();
+            }
+        }
+        // Connection Administrateur
+        public void ConnectionModeAdministrateur()
+        {
+            int compteur = 0;
+            string userAdmin;
+            string password;
+            while (compteur < 3)
+            {
+                Console.WriteLine("Nom Administrator: ");
+                userAdmin = Console.ReadLine();
+                Console.WriteLine("Mot de passe Administrator:");
+                password = Console.ReadLine();
+                if (!ValidationAdministrateur(userAdmin, password))
+                {
+                    Console.WriteLine("Nom utilisateur ou mot de passe incorrecte");
+                    Console.WriteLine();
+                }
+                else
+                {
+                    break;
+                }
+                compteur++;
+            }
+            if (compteur == 3)
+            {
+                Console.WriteLine("Systeme Hors Service,guichet en " + EtatDuSysteme.PANNE);
+            }
+            else
+            {
+                Console.WriteLine("Bienvenue dans votre compte Administrateur");
+                MenuAdmin();
+            }
+        }
+        // Menu du compte personnel
+        public void MenuComptePersonnel()
+        {
+            Console.WriteLine(" 1- Changer le mot de passe ");
+            Console.WriteLine(" 2- Déposer un montant dans un compte");
+            Console.WriteLine(" 3- Retirer un montant d'un compte");
+            Console.WriteLine(" 4- Afficher le solde du compte chèque ou épargne");
+            Console.WriteLine(" 5- Effectuer un virment entre les comptes");
+            Console.WriteLine(" 6- Payer une facture");
+            Console.WriteLine(" 7- Fermer session");
+        }
+        // Methode qui permet de verouiller un compte
+        public void VerrouillerCompte()
+        {
+            Console.WriteLine("Votre Compte est verouiller Veuillez contacter le service a la clientele!");
+            while (true)
+            {
+
+            }
+        }
+        // Fonction qui permet de comparer l'egalite de deux chaines de caracteres
+        public bool Egalite(string str1, string str2)
+        {
+            return str1.Equals(str2);
+        }
+        // Fonction qui valide le mot de passe et le nom utilisateur
+        public bool ValidationAdministrateur(string userAdmin, string password)
+        {
+            return password.Equals(administrateur.GetAdministrateurPassword()) && userAdmin.Equals(administrateur.GetAdministrateurId());
         }
     }
 }

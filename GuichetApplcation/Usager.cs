@@ -68,7 +68,7 @@ namespace Guichet
                     }
                 }
             }
-            MenuComptePersonnel();
+            
         }
         // Fonction  qui permet de deposer un monant dans un compte
         public void DeposerMontant()
@@ -123,7 +123,7 @@ namespace Guichet
                 }
             }
             Console.WriteLine();
-            MenuComptePersonnel();
+            
         }
         // Fonction qui permet de retirer un montant
         public void RetirerMontant(decimal montant)
@@ -150,17 +150,9 @@ namespace Guichet
                     break;
             }
             Console.WriteLine();
-            MenuComptePersonnel();
+           
         }
-        // Methode qui permet de verouiller un compte
-        public void VerrouillerCompte()
-        {
-            Console.WriteLine("Votre Compte est verouiller Veuillez contacter le service a la clientele!");
-            while (true)
-            {
-
-            }
-        }
+        
         // Afficher le solde du compte Cheque ou Epargne
         public void AfficherSoldeCompte()
         {
@@ -173,12 +165,12 @@ namespace Guichet
                 case "1":
                     compteCheque.AfficherSoldeCheque();
                     Console.WriteLine();
-                    MenuComptePersonnel();
+                   
                     break;
                 case "2":
                     compteEpargne.AfficherSoldeEpargne();
                     Console.WriteLine();
-                    MenuComptePersonnel();
+                   
                     break;
                 default:
                     Console.WriteLine("Operation  invalide");
@@ -259,56 +251,11 @@ namespace Guichet
         {
             guichet.MenuPrincipal();
         }
-        // Fonction qui permet de comparer l'egalite de deux chaines de caracteres
-        public bool Egalite(string str1, string str2)
-        {
-            return str1.Equals(str2);
-        }
+        
         // Fonction qui valide la connection d'un usager
-        public void ConnectionModeUtilisateur()
-        {
-            int compteur = 0;
-            string usagerLogin;
-            string password;
-            while (compteur < 3)
-            {
-                Console.WriteLine("Enter nom utilisateur:");
-                usagerLogin = Console.ReadLine();
-                Console.WriteLine("Entrer mot de passe:");
-                password = Console.ReadLine();
-                // Convertit la saisie en tableau de caractere ;                 
-                if (Egalite(usagerLogin, nomUtilisateur) && Egalite(password, this.password))
-                {
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Nom utilisateur ou mot de passe incorrecte");
-                    Console.WriteLine();
-                }
-                compteur++;
-            }
-            if (compteur == 3)
-            {
-                VerrouillerCompte();
-            }
-            else
-            {
-                Console.WriteLine("Bienvenue dans votre compte personnel");
-                MenuComptePersonnel();
-            }
-        }
+        
         // Methode qui affiche le menu d'un compte usager
-        public void MenuComptePersonnel()
-        {
-            Console.WriteLine(" 1- Changer le mot de passe ");
-            Console.WriteLine(" 2- Déposer un montant dans un compte");
-            Console.WriteLine(" 3- Retirer un montant d'un compte");
-            Console.WriteLine(" 4- Afficher le solde du compte chèque ou épargne");
-            Console.WriteLine(" 5- Effectuer un virment entre les comptes");
-            Console.WriteLine(" 6- Payer une facture");
-            Console.WriteLine(" 7- Fermer session");
-        }
+        
         // Fonction qui valide les virement dans un compte
         public void ValidationVirement(decimal montant)
         {
@@ -338,7 +285,7 @@ namespace Guichet
             }
             else
             {
-                ConnectionModeUtilisateur();
+                //ConnectionModeUtilisateur();
                 Console.WriteLine("Veuillez choisir le compte de provenance");
                 Console.WriteLine("Cheque");
                 Console.WriteLine("Epargne");

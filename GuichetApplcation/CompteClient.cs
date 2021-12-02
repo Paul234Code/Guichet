@@ -17,7 +17,6 @@ namespace Guichet
         public string Numero { get; }
         public string NomProprietaire { get; }
         public EtatDuCompte EtatDuCompte { get; set; }
-
         public decimal Balance
         {
             get
@@ -28,9 +27,7 @@ namespace Guichet
                     balance += item.Amount;
                 }
                 return balance;
-
             }
-
         }
         // Le constructeur de la classe CompteClient
         public CompteClient(string nomProprietaire, decimal initialBalance, EtatDuCompte etatDuCompte)
@@ -40,7 +37,6 @@ namespace Guichet
             this.etatDuCompte = etatDuCompte;
             numeroID++;
             Deposer(initialBalance, DateTime.Now, "Solde initial");
-
         }
         // Methode qui depose un montant positif dans un compte
 
@@ -74,7 +70,6 @@ namespace Guichet
             Console.WriteLine("Nom proprietaire: " + nomProprietaire);
             Console.WriteLine("Solde :" + Balance);
             Console.WriteLine("Etat du Compte : " + etatDuCompte);
-
         }
         // Methode qui effectue un virement entre deux compte
         public void Virer(CompteClient Receiver, decimal amount)

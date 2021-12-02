@@ -14,18 +14,18 @@ namespace Guichet
         private EtatDuSysteme mode ; // mode par defaut
         private Administrateur admin;                                                  // 
         private decimal solde ;
-        private Administrateur administrateur;
-        private Usager usager;
-
+        //private Administrateur administrateur ;
+        //private Usager usager;
         // Les proprietes
         public List<Client> ListeClients { get; set; }
         public EtatDuSysteme Mode { get; set; }
         public decimal Solde { get; set; }
         // Le constructeur de la classe Guichet
-        public Guichet()
+        public Guichet(decimal solde,EtatDuSysteme mode)
         {
-            listeClients = new List<Client>();
-            
+            this.solde = solde;
+            this.mode = mode;
+            listeClients = new List<Client>();           
         }
         // methode qui ajoute un client dans la liste
         public  void AjouterClient(Client client)
@@ -44,9 +44,7 @@ namespace Guichet
             SelectionCompte(choixMenuPrincipal);
 
         }
-        
-
-             
+                   
         // Choix des operations dans le menu du compte personnel
          public void SelectOperationsUsager(string operation,Usager usager,CompteCheque cheque,decimal montant)
         {
@@ -65,7 +63,7 @@ namespace Guichet
                     usager.AfficherSoldeCompte();
                     break;
                 case "5":
-                    usager.FaireVirement(cheque,montant);
+                    usager.FaireVirement(montant);
                     break;
                 case "6":
                     usager.PayerFacture();
@@ -116,11 +114,22 @@ namespace Guichet
         {
             return solde;
         }
+        // Fonction qui modifie le solde du guichet
+        public void setSoldeGuichet(decimal solde)
+        {
+            this.solde = solde;
+        }
         // Affiche le solde du guichet
         public void AfficherSoldeGuichet()
         {
             Console.WriteLine("Solde Guichet:  "+ getSoldeGuichet());
 
+        }
+        // Fonction qui affiche l'etat du Guichet
+        public void AfficherEtatGuichet()
+        {
+            AfficherSoldeGuichet();
+            Console.WriteLine("Etat du Systeme:  "+ EtatDuSysteme.ACTIF);
         }
         // Methode pour Deposer un montant dans le guichet
         public void DeposerGuichet( decimal montant )
@@ -157,7 +166,7 @@ namespace Guichet
                     admin.RemettreGuichetEnFonction();
                     break;
                 case "2":
-                    admin.DeposerArgent();
+                    admin.DeposerMontantGuichet();
                     break;
                 case "3":
                     admin.VoirSoldeGuichet();
@@ -174,7 +183,7 @@ namespace Guichet
             }
         }
         // Fonction qui permet de choisir une option dans le menu principal
-        public void SelectionCompte(string choix)
+        public void SelectionCompte(string choix, Administrateur admin, Usager usager)
         {
             switch (choix)
             {
@@ -182,7 +191,7 @@ namespace Guichet
                     usager.ConnectionModeUtilisateur();
                     break;
                 case "2":
-                    administrateur.ConnectionModeAdministrateur();
+                    admin. ConnectionModeAdministrateur();
                     break;
                 case "3":
                     Environment.Exit(0);

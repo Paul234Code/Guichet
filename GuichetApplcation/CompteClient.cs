@@ -82,8 +82,7 @@ namespace Guichet
         public void Virer(CompteClient Receiver, decimal amount)
         {
             // on debit le compte courant (this)
-            Retirer(-amount, DateTime.Now, "retrait");
-
+            Retirer(amount, DateTime.Now, "Retrait");
             Receiver.Deposer(amount, DateTime.Now, "Depot");
         }
         // Fonction qui affiche l'historique du compte

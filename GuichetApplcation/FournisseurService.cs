@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Guichet
 {
     public class FournisseurService
     {
         private string nomFournisseur;
-        private List<Facture> listeFacture;
+        private List<Facture> listeFacture =  new List<Facture>();
         // Les proprietes
         public string NomFournisseur { get; set; }
-        public List<Facture> ListeFacture { get; set; } 
+        public List<Facture> ListeFacture { get; set; }
         // Le  Constructeur de la classe Fournisseur
         public FournisseurService(string nomFournisseur)
         {
@@ -25,25 +25,26 @@ namespace Guichet
         public void AfficherService()
         {
             Console.WriteLine(nomFournisseur);
-            foreach(Facture facture in listeFacture)
+            foreach (Facture facture in listeFacture)
             {
-                Console.WriteLine("\t"+facture.ToString());
+                Console.WriteLine("\t" + facture.ToString());
             }
-
-            
         }
-        public void PayementDuService(decimal frais = 2)
+        public void GetIndex(string numero)
         {
-            Console.WriteLine("Enter le numero de la facture");
-            string numero = Console.ReadLine();
-            Console.WriteLine(numero);
-            int index =  listeFacture.FindIndex(facture =>facture.NumeroFacture == numero);
-            Console.WriteLine(index);
-            Console.WriteLine("Enter le montant de la facture");
-            string montant = Console.ReadLine();
-
+            
+            foreach (var facture in listeFacture)
+            {
+                string numerofacture = facture.NumeroFacture;
+                if (numerofacture.Equals(numero))
+                {
+                    listeFacture.Remove(facture);
+                }
+                else
+                {
+                    continue;
+                }
+            }
         }
-
-
     }
 }

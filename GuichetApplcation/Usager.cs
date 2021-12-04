@@ -7,24 +7,33 @@ namespace Guichet
     {
         // Les attributs de la classe Usager
         private CompteCheque compteCheque;
-        private CompteEpargne compteEpargne;
-        private Guichet guichet;
+        private CompteEpargne compteEpargne;     
         private FournisseurService fournisseurService;
         private string nomUtilisateur;
         private string password;
         // Les proprietes de la classe Usager
-        public CompteCheque getCompteCheque { get; }
+        public CompteCheque getCompteCheque {
+            get => compteCheque;
+        }
         public Guichet Guichet { get; set; }
         public FournisseurService getFournisseur { get; set; }
-        public CompteCheque getCompteEpargne { get; }
-        public string Password { get; set; }
-        public string NomUtilisaeur { get; set; }
+        public CompteEpargne getCompteEpargne {
+            get => compteEpargne;
+        }
+        public string Password {
+            get => password;
+            set => password =  value;
+        }
+        public string NomUtilisateur {
+            get => nomUtilisateur;
+            set => nomUtilisateur = value;
+        }
+            
         // Le constructeur de la classe Usager
-        public Usager(CompteEpargne compteEpargne, CompteCheque compteCheque, Guichet guichet, FournisseurService fournisseurService, string password, string nomUtilisateur)
+        public Usager(CompteEpargne compteEpargne, CompteCheque compteCheque,  FournisseurService fournisseurService,  string nomUtilisateur, string password)
         {
             this.compteCheque = compteCheque;
             this.compteEpargne = compteEpargne;
-            this.guichet = guichet;
             this.fournisseurService = fournisseurService;
             this.password = password;
             this.nomUtilisateur = nomUtilisateur;
@@ -136,12 +145,12 @@ namespace Guichet
             switch (choice)
             {
                 case "1":
-                    guichet.DebiterGuichet(montant);
+                    //guichet.DebiterGuichet(montant);
                     compteCheque.Retirer(montant);
                     compteCheque.AfficherSoldeCheque();
                     break;
                 case "2":
-                    guichet.DebiterGuichet(montant);
+                    //guichet.DebiterGuichet(montant);
                     compteEpargne.Retirer(montant);
                     compteEpargne.AfficherSoldeEpargne();
                     break;
@@ -247,10 +256,7 @@ namespace Guichet
 
         }
         // Fonction qui ferme la session et retourne au menu principal de l'application
-        public void FermerSession()
-        {
-            guichet.MenuPrincipal();
-        }
+        
         
         // Fonction qui valide la connection d'un usager
         
@@ -315,5 +321,7 @@ namespace Guichet
             Console.WriteLine("Nom utilisateur = " + nomUtilisateur);
             Console.WriteLine("Mot de passe =  " + password);
         }
+       
+
     }
 }

@@ -3,39 +3,54 @@ using System.Collections.Generic;
 
 namespace Guichet
 {
-    public class Guichet
+    public class Guichet 
     {
         // Attributs de la classe
-
         private List<Usager> listeUsager;
         private EtatDuSysteme mode; // mode par defaut
         private Administrateur administrateur;                                                  // 
         private decimal solde;
-        //private Administrateur administrateur ;
-        //private Usager usager;
         // Les proprietes
-        public List<Usager> ListeUsager { get; set; }
-        public EtatDuSysteme Mode { get; set; }
-        public decimal Solde { get; set; }
+        public List<Usager> ListeUsager {
+            get => listeUsager;
+            set => listeUsager = value;
+        }
+        public Administrateur Administrateur {
+            get => administrateur;
+            set => administrateur = value; 
+        }
+        public EtatDuSysteme Mode {
+            get => mode;
+            set => mode = value;
+        }
+        public decimal Solde {
+            get => solde;
+            set => solde = value;
+        }
         // Le constructeur de la classe Guichet
         public Guichet(decimal solde, EtatDuSysteme mode,Administrateur administrateur)
         {
             this.solde = solde;
             this.mode = mode;
-            this.administrateur = administrateur;    
+            this.administrateur = administrateur; 
             listeUsager = new List<Usager>();
+            
         }
         // methode qui ajoute un client dans la liste
         public void AjouterUsager(Usager usager)
         {
+            if (usager == null)
+            {
+                Console.WriteLine("usager vide");
+            }
             listeUsager.Add(usager);
         }
-
+       
         // Menu Utilisateur
         public void MenuPrincipal()
         {
             Console.WriteLine("Veuillez choisir l'une des actions suivantes:");
-            Console.WriteLine("1-Se connecter à votre compte d'utilisateur"); //ajouter consolereadline + switch pour choix de menu     
+            Console.WriteLine("1-Se connecter à votre compte d'utilisateur");     
             Console.WriteLine("2- Se connecter comme administrateur");
             Console.WriteLine("3- Quitter");
         }
@@ -64,7 +79,7 @@ namespace Guichet
                     usager.PayerFacture();
                     break;
                 case "7":
-                    usager.FermerSession();
+                    //usager.FermerSession();
                     break;
                 default:
                     Console.WriteLine("Votre choix est invalide");
@@ -132,8 +147,9 @@ namespace Guichet
             solde -= montant;
         }
         // Les choix des operations de l'administrateur
-        public void SelectOperationsAdmin(string choixadmin)
+        public void SelectOperationsAdmin()
         {
+            string choixadmin = Console.ReadLine();
             switch (choixadmin)
             {
                 case "1":
@@ -162,7 +178,7 @@ namespace Guichet
             switch (choix)
             {
                 case "1":
-                    ConnectionModeUtilisateur();
+                    ConnectionModeUtilisateur();  
                     break;
                 case "2":
                     ConnectionModeAdministrateur();
@@ -181,22 +197,22 @@ namespace Guichet
             int compteur = 0;     // trois tentatives
             string usagerLogin;
             string password;
-            while (compteur < 3)
+            //Usager usager = null;
+            
+            while (compteur < 3 )
             {
                 Console.WriteLine("Enter nom utilisateur:");
                 usagerLogin = Console.ReadLine();
                 Console.WriteLine("Entrer mot de passe:");
                 password = Console.ReadLine();
-                // Convertit la saisie en tableau de caractere ;                 
-                if (Egalite(usagerLogin, administrateur.GetAdministrateurId()) && Egalite(password, administrateur.GetAdministrateurPassword()))
+                if (Rechercher(usagerLogin, password))
                 {
                     break;
                 }
                 else
                 {
-                    Console.WriteLine("Nom utilisateur ou mot de passe incorrecte");
-                    Console.WriteLine();
-                }
+                    Console.WriteLine("Nom utilisateur ou mot de passe incorrect");
+                }                            
                 compteur++;
             }
             if (compteur == 3)
@@ -215,11 +231,12 @@ namespace Guichet
             int compteur = 0;
             string userAdmin;
             string password;
+            //Administrateur admin = null;
             while (compteur < 3)
             {
-                Console.WriteLine("Nom Administrator: ");
+                Console.WriteLine("Nom Administrator : ");
                 userAdmin = Console.ReadLine();
-                Console.WriteLine("Mot de passe Administrator:");
+                Console.WriteLine("Mot de passe Administrator :");
                 password = Console.ReadLine();
                 if (!ValidationAdministrateur(userAdmin, password))
                 {
@@ -228,6 +245,7 @@ namespace Guichet
                 }
                 else
                 {
+
                     break;
                 }
                 compteur++;
@@ -238,7 +256,6 @@ namespace Guichet
             }
             else
             {
-                Console.WriteLine("Bienvenue dans votre compte Administrateur");
                 MenuAdmin();
             }
         }
@@ -252,7 +269,7 @@ namespace Guichet
             Console.WriteLine(" 5- Effectuer un virment entre les comptes");
             Console.WriteLine(" 6- Payer une facture");
             Console.WriteLine(" 7- Fermer session");
-        }
+        }      
         // Methode qui permet de verouiller un compte
         public void VerrouillerCompte()
         {
@@ -270,7 +287,28 @@ namespace Guichet
         // Fonction qui valide le mot de passe et le nom utilisateur
         public bool ValidationAdministrateur(string userAdmin, string password)
         {
-            return password.Equals(administrateur.GetAdministrateurPassword()) && userAdmin.Equals(administrateur.GetAdministrateurId());
+            return password.Equals(administrateur.AdministrateurPassword) && userAdmin.Equals(administrateur.AdministrateurId);
+        }
+        // Fonction qui permet de rechercher un element dans une liste
+        public bool Rechercher(string username,string password)
+        {
+            
+            bool resultat = false;
+           IEnumerator<Usager> monEnumarateur = listeUsager.GetEnumerator();
+            while (monEnumarateur.MoveNext())
+            {
+                if(monEnumarateur.Current.NomUtilisateur == username && monEnumarateur.Current.Password == password)
+                {
+                    
+                    resultat = true;
+                    break;
+                }
+                else
+                {
+                    resultat = false;
+                }
+            }
+            return resultat;
         }
     }
 }

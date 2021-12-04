@@ -3,13 +3,21 @@ namespace Guichet
 {
     public class Administrateur
     {
-        private string administrateurId = "admin";
-        private string administrateurPassword = "123456";
+        private string administrateurId ;
+        private string administrateurPassword ;
         private Guichet guichet;
+        public string  AdministrateurId {
+            get => administrateurId; 
+            set => administrateurId = value;
+        }
+        public string AdministrateurPassword {
+            get => administrateurPassword;
+            set => administrateurPassword = value;
+        }
         // Le constructeur de la classe Guichet
-        public Administrateur(Guichet guichet, string administrateurId, string administrateurPassword)
+        public Administrateur(string administrateurId, string administrateurPassword)
         {
-            this.guichet = guichet;
+           
             this.administrateurId = administrateurId;
             this.administrateurPassword = administrateurPassword;
         }
@@ -116,22 +124,11 @@ namespace Guichet
         public void RetournerMenuPrincipal()
         {
 
-        }
-        // Methode qui retourne le nom utilisateur du compte admin
-        public string GetAdministrateurId()
-        {
-            return administrateurId;
-        }
-        // retourne le mot de passe 
-        public string GetAdministrateurPassword()
-        {
-            return administrateurPassword;
-        }
-        
+        }    
         // Fonction qui valide la connection d'un administrateur
        
         // Les choix des operations de l'administrateur
-        public void SelectChoixAdmin(string choixadmin)
+        public void OperationsAdmin(string choixadmin) 
         {
             switch (choixadmin)
             {

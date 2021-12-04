@@ -321,6 +321,11 @@ namespace Guichet
             Console.WriteLine("Nom utilisateur = " + nomUtilisateur);
             Console.WriteLine("Mot de passe =  " + password);
         }
+        // Fermer la session
+        public void FermerSession()
+        {
+
+        }
        
 
     }

@@ -50,8 +50,8 @@ namespace Guichet
                
                 choice =  Console.ReadLine();
                 guichet.SelectionCompte(choice);
-                string operation = Console.ReadLine();
-                guichet.SelectOperationsUsager(operation);
+                //string operation = Console.ReadLine();
+                guichet.SelectOperationsAdmin();
 
             }while(choice != "3"); 
             

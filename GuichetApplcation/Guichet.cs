@@ -56,8 +56,9 @@ namespace Guichet
         }
 
         // Choix des operations dans le menu du compte personnel
-        public void SelectOperationsUsager(string operation, Usager usager, CompteCheque cheque, decimal montant)
+        public void SelectOperationsUsager(Usager usager, decimal montant)
         {
+            string operation = Console.ReadLine();
             switch (operation)
             {
                 case "1":
@@ -79,7 +80,7 @@ namespace Guichet
                     usager.PayerFacture();
                     break;
                 case "7":
-                    //usager.FermerSession();
+                    usager.FermerSession();
                     break;
                 default:
                     Console.WriteLine("Votre choix est invalide");
@@ -165,7 +166,7 @@ namespace Guichet
                     administrateur.VoirListeDesCompte();
                     break;
                 case "5":
-                    administrateur.RetournerMenuPrincipal();
+                    MenuPrincipal();
                     break;
                 default:
                     Console.WriteLine("Votre choix est invalide");

@@ -137,6 +137,7 @@ namespace Guichet
         // Fonction qui permet de retirer un montant
         public void RetirerMontant(decimal montant)
         {
+            
             Console.WriteLine("Veuillez choisir le compte à débiter");
             Console.WriteLine();
             Console.WriteLine("1- Compte Cheque");
@@ -158,9 +159,24 @@ namespace Guichet
                     Console.WriteLine("Operation  invalide");
                     break;
             }
-            Console.WriteLine();
-           
+            Console.WriteLine();          
         }
+        // fonction qui permet de retirer un montant 
+        public void RetirerMontant2()
+        {
+            Console.WriteLine("Entrer le montant de la transaction:");
+            string saisie = Console.ReadLine();
+            bool resulat = decimal.TryParse(saisie, out decimal montant);
+            if (resulat)
+            {
+                RetirerMontant(montant);
+            }
+            else
+            {
+                Console.WriteLine("Veuillez entrer un montant valide");
+            }
+        }
+        
         
         // Afficher le solde du compte Cheque ou Epargne
         public void AfficherSoldeCompte()
@@ -173,8 +189,7 @@ namespace Guichet
             {
                 case "1":
                     compteCheque.AfficherSoldeCheque();
-                    Console.WriteLine();
-                   
+                    Console.WriteLine();                  
                     break;
                 case "2":
                     compteEpargne.AfficherSoldeEpargne();
@@ -187,9 +202,19 @@ namespace Guichet
             }
         }
         // Faire un virement entre deux compte
-        public void FaireVirement(decimal montant)
+        public void FaireVirement()
         {
-            ValidationVirement(montant);
+            Console.WriteLine("Entrer le montant du virement:");
+            string saisie = Console.ReadLine();
+            bool resulatConversion =  decimal.TryParse(saisie, out  decimal montant);
+            if (resulatConversion)
+            {
+                ValidationVirement(montant);
+            }
+            else
+            {
+                Console.WriteLine("Veuillez entrer un montant valide");
+            }          
         }
         // Methode qui permet a l'usager de payer une facture
         public void PayerFacture()

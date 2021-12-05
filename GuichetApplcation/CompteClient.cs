@@ -14,10 +14,20 @@ namespace Guichet
         protected decimal balance;
         protected EtatDuCompte etatDuCompte;
         // Les proprietes
-        public string Numero { get; }
-        public string NomProprietaire { get; }
-        public EtatDuCompte EtatDuCompte { get; set; }
-        public decimal Balance { get; set; }
+        public string Numero {
+            get => numero; 
+        }
+        public string NomProprietaire { 
+            get => nomProprietaire;
+        }
+        public EtatDuCompte EtatDuCompte {
+            get =>etatDuCompte; 
+            set => etatDuCompte = value; 
+        }
+        public decimal Balance {
+            get => balance;
+            set => balance = value; 
+        }
 
 
 

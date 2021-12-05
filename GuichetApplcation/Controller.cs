@@ -45,15 +45,23 @@ namespace Guichet
             guichet.AjouterUsager(katia);
             guichet.MenuPrincipal();
             string choice;
-            do
+            if(guichet.Mode == EtatDuSysteme.ACTIF)
             {
-               
-                choice =  Console.ReadLine();
-                guichet.SelectionCompte(choice);
-                //string operation = Console.ReadLine();
-                guichet.SelectOperationsAdmin();
+                Usager usager = guichet.ConnectionModeUtilisateur();
+                guichet.SelectOperationsUsager(usager);
 
-            }while(choice != "3"); 
+            }
+            else
+            {
+                guichet.ConnectionModeAdministrateur();
+            }
+                         
+                choice =  Console.ReadLine();
+               
+                //string operation = Console.ReadLine();
+                //guichet.SelectOperationsAdmin();
+
+            
             
             
         }

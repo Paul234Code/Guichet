@@ -13,16 +13,19 @@ namespace Guichet
         protected string nomProprietaire;
         protected decimal balance;
         // Les proprietes
-        public string Numero {
-            get => numero; 
+        public string Numero
+        {
+            get => numero;
         }
-        public string NomProprietaire { 
+        public string NomProprietaire
+        {
             get => nomProprietaire;
         }
-        
-        public decimal Balance {
+
+        public decimal Balance
+        {
             get => balance;
-            set => balance = value; 
+            set => balance = value;
         }
 
 
@@ -66,10 +69,10 @@ namespace Guichet
         // Methode qui Affiche les informations d'un compte ( Cheque ou Epargne)
         public void AfficherCompte()
         {
-            Console.WriteLine("Numero du compte: " + numero);
-            Console.WriteLine("Nom proprietaire: " + nomProprietaire);
-            Console.WriteLine("Solde :" + balance);
-            
+            Console.WriteLine("Numero du compte : " + numero);
+            Console.WriteLine("Nom proprietaire : " + nomProprietaire);
+            Console.WriteLine("Solde : " + balance);
+
         }
         // Methode qui effectue un virement entre deux compte
         public void Virer(CompteClient Receiver, decimal amount)

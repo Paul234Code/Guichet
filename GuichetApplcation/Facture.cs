@@ -10,21 +10,25 @@ namespace Guichet
         private decimal montantFacture;
         private DateTime dateFacture;
         // Les proprietes
-        public string NumeroFacture {
+        public string NumeroFacture
+        {
             get => numeroFacture;
             set => numeroFacture = value;
-        } 
-        public decimal MontantFacture {
+        }
+        public decimal MontantFacture
+        {
             get => montantFacture;
             set => montantFacture = value;
         }
-        public string NomFacture {
+        public string NomFacture
+        {
             get => nomFacture;
             set => nomFacture = value;
         }
-        public DateTime DateFacture {
-            get => dateFacture; 
-            set => dateFacture = value; 
+        public DateTime DateFacture
+        {
+            get => dateFacture;
+            set => dateFacture = value;
         }
 
         // Le constructeur de la classe Facture
@@ -46,6 +50,6 @@ namespace Guichet
             Console.WriteLine("numero\t nom Facture\tmontantFacture");
             Console.WriteLine($"{numeroFacture}\t{nomFacture}\t{montantFacture}\t{dateFacture}");
         }
-        
+
     }
 }

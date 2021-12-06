@@ -119,6 +119,7 @@ namespace Guichet
                     Console.WriteLine("Votre choix est invalide");
                     break;
             }
+            MenuComptePersonnel();
         }
         // Les choix du menu  de l'administrateur       
         public void MenuAdmin()
@@ -271,12 +272,11 @@ namespace Guichet
             }
         }
         // Fonction de  Connection en mode  Administrateur
-        public Administrateur ConnectionModeAdministrateur()
+        public void ConnectionModeAdministrateur()
         {
             int compteur = 0;
             string userAdmin;
             string password;
-            Administrateur admin = null ;
             while (compteur < 3)
             {
                 Console.WriteLine("Nom Administrator : ");
@@ -289,21 +289,19 @@ namespace Guichet
                     Console.WriteLine();
                 }
                 else
-                {
-                    admin = new(userAdmin, password);
+                {                   
                     break;                   
                 }
                 compteur++;
             }
             if (compteur == 3)
             {
-                Console.WriteLine("Systeme Hors Service,guichet en " + EtatDuSysteme.PANNE);
+                MettreGuichetEnPanne();
             }
             else
             {
                 MenuAdmin();             
             }           
-            return admin;
         }
         // Menu du compte personnel
         public void MenuComptePersonnel()
@@ -322,8 +320,7 @@ namespace Guichet
         public void VerrouillerCompte()
         {
             usagerCourant.Verrouiller();
-            Console.WriteLine("Votre Compte est verouiller Veuillez contacter le service a la clientele!");
-            
+            Console.WriteLine("Votre Compte est verouiller Veuillez contacter le service a la clientele!");           
         }       
         // Fonction qui valide le mot de passe et le nom utilisateur de l'admin
         public bool ValidationAdministrateur(string userAdmin, string password)
@@ -351,6 +348,7 @@ namespace Guichet
             }
             return resultat;
         }
+        // Remettre le guichet en marche
         public void MettreGuichetEnMarche()
         {
             mode = EtatDuSysteme.ACTIF;
@@ -433,29 +431,7 @@ namespace Guichet
         {
             MenuPrincipal();
         }
-        // Les choix des operations de l'administrateur
-        public void OperationsAdmin()
-        {
-            string choice = Console.ReadLine();
-            switch (choice)
-            {
-                case "1":
-                    RemettreGuichetEnFonction();
-                    break;
-                case "2":
-                    DeposerMontantGuichet();
-                    break;
-                case "3":
-                    VoirSoldeGuichet();
-                    break;
-                case "4":
-                    VoirListeDesCompte();
-                    break;
-                case "5":
-                    RetournerMenuPrincipal();
-                    break;
-            }
-        }
+     
         // Fonction qui permet de changer le mot de passe de l'usager
         public void ChangerMotdePasse()
         {
@@ -469,7 +445,7 @@ namespace Guichet
             {
                 Console.WriteLine("Le format du nouveau mot de passe est incorrect");
             }
-            else if (nouveauMotPasse.Equals(usagerCourant.Password))
+            else if (nouveauMotPasse.Equals(actuelMotPasse))
             {
                 Console.WriteLine("Le nouveau de mot de passe doit etre different de l'actuel mot de passe");
             }
@@ -683,6 +659,7 @@ namespace Guichet
         // Fonction qui permet de fermer la session
         public void FermerSession()
         {
+            MenuPrincipal();
 
         }
         // Methode qui permet a l'usager de payer une facture

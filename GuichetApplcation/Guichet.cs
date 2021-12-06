@@ -9,7 +9,7 @@ namespace Guichet
         private List<Usager> listeUsager;
         private EtatDuSysteme mode; 
         private Administrateur administrateur;
-        private Usager usagerCourant;    
+        private static Usager usagerCourant;    
         private decimal solde;
         // Les proprietes
         public List<Usager> ListeUsager {
@@ -338,6 +338,7 @@ namespace Guichet
                 if(monEnumarateur.Current.NomUtilisateur == username && monEnumarateur.Current.Password == password)
                 { 
                     resultat = true;
+                    usagerCourant = monEnumarateur.Current;
                    
                     break;
                 }
@@ -645,7 +646,7 @@ namespace Guichet
         // Fonction qui permet de choisir un compte 
         public string ChoisirCompte()
         {
-            Console.WriteLine("Dans quel compte voulez-vous effectuer l'action ?");
+            Console.WriteLine("Dans quel compte voulez-vous effectuer l'operation ?");
             Console.WriteLine("1- Compte Cheque");
             Console.WriteLine("2- Compte Epargne");
             string choixCompte = Console.ReadLine();
@@ -662,39 +663,16 @@ namespace Guichet
             MenuPrincipal();
 
         }
-        // Methode qui permet a l'usager de payer une facture
-        public void PayerFacture()
+        // Methode qui permet a l'usager de payer une facture       
+        public void PayerFacture(decimal frais = 2)
         {
-            // affiche les fournisseurs
-            Console.WriteLine("Amazon");
-            Console.WriteLine("Bell");
-            Console.WriteLine("Vidéotron");
-            Console.WriteLine("Veuillez choisir un des fournisseurs suivant :");
-            string fournisseur = Console.ReadLine();
-            switch (fournisseur)
-            {
-                case "Amazon":
-                    Payer();
-                    break;
-                case "Bell":
-                    Payer();
-                    break;
-                case "Videotron":
-                    Payer();
-                    break;
-                default:
-                    Console.WriteLine("Operation invalide");
-                    break;
-            }
-        }
-        // fonction qui permet de retourner un numero de facture
-        public void Payer(decimal frais = 2)
-        {
-            //fournisseurService.AfficherService();
+            string nomFournisseur = ChoixFournisseur();
+            FournisseurService fournisseur = usagerCourant.FournisseurService.GetFournisseurService(nomFournisseur);
+            usagerCourant.FournisseurService = fournisseur;         
             Console.WriteLine("Entrer le numero de facture:");
             string numero = Console.ReadLine();
             // on cherche la facture dans la liste des factures
-            //fournisseurService.GetIndex(numero);
+            int index = usagerCourant.FournisseurService.GetIndex(numero);
             Console.WriteLine("Entrer le montant de la facture:");
             string saisie = Console.ReadLine();
             bool resultatConversion = decimal.TryParse(saisie, out decimal montant);
@@ -719,6 +697,31 @@ namespace Guichet
             {
                 Console.WriteLine("Entrer un montant de facture valide");
             }
+        }
+        // Fonction qui renvoie le fournisseur
+        public string ChoixFournisseur()
+        {
+            string fournisseur = "";
+            Console.WriteLine("Veuillez choisir un des fournisseurs suivant :");
+            Console.WriteLine("Amazon");
+            Console.WriteLine("Bell");
+            Console.WriteLine("Vidéotron");
+            string choice = Console.ReadLine();
+            switch (choice)
+            {
+                case "1":
+                    fournisseur = "Amazon";
+                    break;
+                case"2":
+                    fournisseur = "Bell";
+                    break ;
+                case "3":
+                    fournisseur = "Vidéotron";
+                    break;
+
+            }
+            return  fournisseur;
+
         }
 
 

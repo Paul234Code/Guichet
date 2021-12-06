@@ -48,5 +48,12 @@ namespace Guichet
             }
             return index;
         }
+        // Fonction qui retourne un fournisseur de service
+        public FournisseurService GetFournisseurService(string nom)
+        {
+           
+            return new FournisseurService(nom) { listeFacture = new List<Facture>() };
+
+        }
     }
 }

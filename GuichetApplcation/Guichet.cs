@@ -173,9 +173,14 @@ namespace Guichet
         {
             if (montant <= 0)
             {
-                Console.WriteLine("montant du retrait doit etre positif");
+                Console.WriteLine("montant du depot doit etre positif");
             }
-            solde += montant;
+            else
+            {
+                solde += montant;
+                Console.WriteLine("Transaction effectué avec success");
+            }
+           
         }
         // Methode pour debiter un montant dans le  Guichet
         public void DebiterGuichet(decimal montant)
@@ -244,9 +249,11 @@ namespace Guichet
                 Console.WriteLine("Numero: " + usager.CompteCheque.Numero);
                 Console.WriteLine("Nom proprietaire: " + usager.CompteCheque.NomProprietaire);
                 Console.WriteLine("Solde:");
-                Console.WriteLine("\t-Cheque : " + usager.CompteCheque.Balance);
-                Console.WriteLine("\t-Epargne : " + usager.CompteEpargne.Balance);
+                Console.WriteLine("-Cheque : " + usager.CompteCheque.Balance);
+                Console.WriteLine("-Epargne : " + usager.CompteEpargne.Balance);
                 Console.WriteLine("Etat du Compte: " + usager.Etat);
+                Console.WriteLine();
+                Console.WriteLine("----------------------------------------------------");
             }
         }
         // Connection Utilisateur
@@ -411,8 +418,8 @@ namespace Guichet
             bool resulatConversion = decimal.TryParse(saisie, out decimal montant);
             if (resulatConversion && montant <= 10000)
             {
-                decimal soldeCourant = getSoldeGuichet();
-                setSoldeGuichet(soldeCourant + montant);
+                //decimal soldeCourant = getSoldeGuichet();
+                DeposerGuichet( montant);
             }
             else
             {
@@ -423,10 +430,8 @@ namespace Guichet
                     saisie = Console.ReadLine();
                     resulatConversion = decimal.TryParse(saisie, out montant);
                 }
-                decimal soldeCourant = getSoldeGuichet();
-                setSoldeGuichet(soldeCourant + montant);
-            }
-            Console.WriteLine("Transaction effectué avec success");
+                DeposerGuichet(montant);
+            }           
             VoirSoldeGuichet();
         }
         // Fonction qui Affiche le solde courant du Guichet
@@ -670,7 +675,7 @@ namespace Guichet
         }
         public void AppuyerEntrer()
         {
-            Console.WriteLine("Appuyer sur entrer pour continuer");
+            Console.WriteLine("Appuyer sur la touche ENTER pour retourner au menu ");
             Console.ReadLine();
         }
         // Fonction qui permet de fermer la session

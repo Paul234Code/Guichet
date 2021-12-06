@@ -195,12 +195,15 @@ namespace Guichet
                     break;
                 case "2":
                     DeposerMontantGuichet();
+                    AppuyerEntrer();
                     break;
                 case "3":
                     VoirSoldeGuichet();
+                    AppuyerEntrer();
                     break;
                 case "4":
-                    VoirListeDesCompte();
+                    AfficherInformations();
+                    AppuyerEntrer();
                     break;
                 case "5":
                     MenuPrincipal();
@@ -227,6 +230,18 @@ namespace Guichet
                 default:
                     Console.WriteLine("Votre choix est invalide");
                     break;
+            }
+        }
+        public void AfficherInformations()
+        {
+            foreach (Usager usager in ListeUsager)
+            {
+                Console.WriteLine("Numero: " + usager.CompteCheque.Numero);
+                Console.WriteLine("Nom proprietaire: " + usager.CompteCheque.NomProprietaire);
+                Console.WriteLine("Solde:");
+                Console.WriteLine("\t-Cheque : " + usager.CompteCheque.Balance);
+                Console.WriteLine("\t-Epargne : " + usager.CompteEpargne.Balance);
+                Console.WriteLine("Etat du Compte: " + usager.Etat);
             }
         }
         // Connection Utilisateur

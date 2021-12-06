@@ -66,9 +66,9 @@ namespace Guichet
         // Methode qui Affiche les informations d'un compte ( Cheque ou Epargne)
         public void AfficherCompte()
         {
-            Console.WriteLine("Numero du compte: " + numero);
-            Console.WriteLine("Nom proprietaire: " + nomProprietaire);
-            Console.WriteLine("Solde :" + balance);
+            Console.WriteLine("Numero du compte : " + numero);
+            Console.WriteLine("Nom proprietaire : " + nomProprietaire);
+            Console.WriteLine("Solde : " + balance);
             
         }
         // Methode qui effectue un virement entre deux compte

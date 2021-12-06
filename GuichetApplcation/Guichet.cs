@@ -9,7 +9,7 @@ namespace Guichet
         private List<Usager> listeUsager;
         private EtatDuSysteme mode;
         private Administrateur administrateur;
-        private static Usager usagerCourant;
+        private  Usager usagerCourant;
         private decimal solde;
         // Les proprietes
         public List<Usager> ListeUsager
@@ -112,7 +112,7 @@ namespace Guichet
                     AfficherSoldeCompte();
                     break;
                 case "5":
-                    FaireVirement();
+                    FaireVirement();                
                     break;
                 case "6":
                     PayerFacture();
@@ -302,7 +302,12 @@ namespace Guichet
                 {
                     VerrouillerCompte();
                 }
-                
+                else
+                {
+                   // Console.WriteLine("Bienvenue dans votre compte personnel");
+                    //Console.WriteLine();
+                    //MenuComptePersonnel();
+                }
             }
         }
         // Fonction de  Connection en mode  Administrateur
@@ -341,6 +346,9 @@ namespace Guichet
         // Menu du compte personnel
         public void MenuComptePersonnel()
         {
+            Console.WriteLine();
+            Console.WriteLine("Bienvenue dans votre compte personnel");
+            Console.WriteLine();
             Console.WriteLine(" 1- Changer le mot de passe ");
             Console.WriteLine(" 2- Déposer un montant dans un compte");
             Console.WriteLine(" 3- Retirer un montant d'un compte");
@@ -426,7 +434,7 @@ namespace Guichet
             bool resulatConversion = decimal.TryParse(saisie, out decimal montant);
             if (resulatConversion && montant <= 10000)
             {
-                //decimal soldeCourant = getSoldeGuichet();
+                
                 DeposerGuichet( montant);
             }
             else
@@ -464,6 +472,20 @@ namespace Guichet
         {
             MenuPrincipal();
         }
+        public bool ValidationFormatMdp(string str)
+        {
+            bool resultatConversion = false;
+            for(int i = 0; i < str.Length; i++)
+            {
+                if (char.IsDigit(str[i]))
+                {
+                    resultatConversion = true;
+                }
+            }
+            return resultatConversion;
+
+        }
+       
 
         // Fonction qui permet de changer le mot de passe de l'usager
 
@@ -485,9 +507,19 @@ namespace Guichet
             }
             else if (confirmation.Equals(nouveauMotPasse))
             {
-                usagerCourant.Password = nouveauMotPasse;
-                Console.WriteLine("Changement de mot de passe effectif");
-                Console.WriteLine();
+                if (ValidationFormatMdp(nouveauMotPasse))
+                {
+                    usagerCourant.Password = nouveauMotPasse;
+                    Console.WriteLine("Changement de mot de passe effectif");
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine("Le format du nouveau mot de passe est incorrect");
+                    Console.WriteLine();
+
+                }
+                
             }
             else
             {
@@ -498,6 +530,7 @@ namespace Guichet
                     if (confirmation.Equals(nouveauMotPasse))
                     {
                         Console.WriteLine("Changement de mot de passe effecuté avec success");
+                        Console.WriteLine();
                     }
                     else
                     {
@@ -621,7 +654,14 @@ namespace Guichet
             bool resulatConversion = decimal.TryParse(saisie, out decimal montant);
             if (resulatConversion)
             {
-                ValidationVirement(montant);
+                if(montant > 0)
+                {
+                    ValidationVirement(montant);
+                }
+                else
+                {
+                    Console.WriteLine("Le montant de la transaction doit etre positif");
+                }               
             }
             else
             {
@@ -671,7 +711,9 @@ namespace Guichet
                         Console.WriteLine("Veuillez effectuer un choix valide");
                         break;
                 }
+                Console.WriteLine("Virement effecté avec success");
             }
+            AppuyerEntrer();
         }
         // Fonction qui permet de choisir un compte 
         public string ChoisirCompte()
@@ -710,24 +752,36 @@ namespace Guichet
             //compte1 as CompteCheque
             if (resultatConversion)
             {
-                string compte = ChoisirCompte();
-                switch (compte)
+                if(montant > 0)
                 {
-                    case "1":
-                        usagerCourant.CompteCheque.Retirer(montant + frais);
-                        break;
-                    case "2":
-                        usagerCourant.CompteEpargne.Retirer(montant + frais);
-                        break;
-                    default:
-                        Console.WriteLine("Votre choix de compte est invalide");
-                        break;
+                    string compte = ChoisirCompte();
+                    switch (compte)
+                    {
+                        case "1":
+                            usagerCourant.CompteCheque.Retirer(montant + frais);
+                            break;
+                        case "2":
+                            usagerCourant.CompteEpargne.Retirer(montant + frais);
+                            break;
+                        default:
+                            Console.WriteLine("Votre choix de compte est invalide");
+                            break;
+                    }
+                   
+
                 }
+                else
+                {
+                    Console.WriteLine("Le montant de la facture doit etre positif");
+
+                }
+
             }
             else
             {
                 Console.WriteLine("Entrer un montant de facture valide");
             }
+            AppuyerEntrer();
         }
         // Fonction qui renvoie le fournisseur
         public string ChoixFournisseur()

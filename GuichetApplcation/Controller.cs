@@ -16,13 +16,13 @@ namespace Guichet
            
             //classe CompteEpargne
             CompteEpargne paulEpargne = new ("Paul Faye", 2000,  TypeDuCompte.Epargne);
-            CompteEpargne firdaousEpargne = new ("Firdaous El Mabrooki", 2000,  TypeDuCompte.Epargne);
+            CompteEpargne firdaousEpargne = new ("Firdaous El Mabrouki", 2000,  TypeDuCompte.Epargne);
             CompteEpargne jonamEpargne = new ("Jonam Dessureault", 2000, TypeDuCompte.Epargne);
             CompteEpargne simonEpargne = new ("Simon Bugeaud",3000,TypeDuCompte.Epargne);
             CompteEpargne katiaEpargne = new ("Katia Duschenau", 4000, TypeDuCompte.Epargne);
             // des comptes cheques
             CompteCheque paulCheque = new ("Paul Faye", 8000, TypeDuCompte.Cheque);
-            CompteCheque firdaousCheque = new ("Firdaous El Mabrooki", 8000, TypeDuCompte.Cheque);
+            CompteCheque firdaousCheque = new ("Firdaous El Mabrouki", 8000, TypeDuCompte.Cheque);
             CompteCheque jonamCheque = new ("Jonam Dessureault", 8000, TypeDuCompte.Cheque);
             CompteCheque simonCheque = new ("Simon Bugeaud", 3000, TypeDuCompte.Cheque);
             CompteCheque katiaCheque = new ("Katia Duschenau", 4000, TypeDuCompte.Cheque);

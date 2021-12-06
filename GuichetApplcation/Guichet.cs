@@ -675,7 +675,6 @@ namespace Guichet
             string choixCompte = Console.ReadLine();
             return choixCompte;
         }
-
         public void AppuyerEntrer()
         {
             Console.WriteLine("Appuyer sur entrer pour continuer");

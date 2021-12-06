@@ -70,6 +70,7 @@ namespace Guichet
             Console.WriteLine("Numero du compte: " + numero);
             Console.WriteLine("Nom proprietaire: " + nomProprietaire);
             Console.WriteLine("Solde :" + balance);
+            Console.WriteLine();
             
         }
         // Methode qui effectue un virement entre deux compte

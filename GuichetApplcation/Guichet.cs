@@ -210,9 +210,11 @@ namespace Guichet
                     break;
                 case "3":
                     VoirSoldeGuichet();
+                    AppuyerEntrer();
                     break;
                 case "4":
                     VoirListeDesCompte();
+                    AppuyerEntrer();
                     break;
                 case "5":
                     MenuPrincipal();
@@ -309,6 +311,7 @@ namespace Guichet
             if (compteur == 3)
             {
                 MettreGuichetEnPanne();
+                AppuyerEntrer();
             }
             else
             {

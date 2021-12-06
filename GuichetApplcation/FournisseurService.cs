@@ -8,11 +8,13 @@ namespace Guichet
         private string nomFournisseur;
         private List<Facture> listeFacture = new List<Facture>();
         // Les proprietes
-        public string NomFournisseur {
+        public string NomFournisseur
+        {
             get => nomFournisseur;
             set => nomFournisseur = value;
         }
-        public List<Facture> ListeFacture {
+        public List<Facture> ListeFacture
+        {
             get => listeFacture;
             set => listeFacture = value;
         }
@@ -31,7 +33,7 @@ namespace Guichet
         public void AfficherService()
         {
             Console.WriteLine(nomFournisseur);
-            if(listeFacture == null)
+            if (listeFacture == null)
             {
                 Console.WriteLine("Aucune facture  a payer");
             }
@@ -43,7 +45,7 @@ namespace Guichet
                 }
 
             }
-           
+
         }
         public int GetIndex(string numero)
         {
@@ -60,7 +62,7 @@ namespace Guichet
         // Fonction qui retourne un fournisseur de service
         public FournisseurService GetFournisseurService(string nom)
         {
-           
+
             return new FournisseurService(nom) { listeFacture = new List<Facture>() };
 
         }

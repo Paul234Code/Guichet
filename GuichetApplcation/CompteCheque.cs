@@ -7,7 +7,7 @@ namespace Guichet
         private TypeDuCompte typeCompte;
         public TypeDuCompte TypeCompte { get; set; }
 
-        public CompteCheque(string nomProprietaire, decimal balance,  TypeDuCompte typeCompte) :
+        public CompteCheque(string nomProprietaire, decimal balance, TypeDuCompte typeCompte) :
             base(nomProprietaire, balance)
         {
             this.typeCompte = typeCompte;

@@ -30,7 +30,7 @@ namespace Guichet
             this.nomUtilisateur = nomUtilisateur;
         }
         // Fonction qui permet de changer le mot de passe de l'usager
-        public void ChangerMotdePasse()
+        public void ChangerMotDePasse()
         {
             Console.WriteLine("Entrer le mot de passe actuel:");
             string actuelMotPasse = Console.ReadLine();

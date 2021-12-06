@@ -356,7 +356,6 @@ namespace Guichet
             mode = EtatDuSysteme.ACTIF;
             Console.WriteLine("Guichet remit en fonction avec succès");
             Console.WriteLine();
-
         }
         // Mettre le Guichet en mode Panne
         public void MettreGuichetEnPanne()
@@ -547,13 +546,10 @@ namespace Guichet
                 }
             }
             Console.WriteLine();
-
         }
         // Fonction qui permet de retirer un montant
         public void RetirerMontant(decimal montant)
-        {
-
-            
+        {           
             string compte = ChoisirCompte();
             switch (compte)
             {
@@ -588,8 +584,6 @@ namespace Guichet
                 Console.WriteLine("Veuillez entrer un montant valide");
             }
         }
-
-
         // Afficher le solde du compte Cheque ou Epargne
         public void AfficherSoldeCompte()
         {
@@ -606,7 +600,6 @@ namespace Guichet
                 case "2":
                     usagerCourant.CompteEpargne.AfficherSoldeEpargne();
                     Console.WriteLine();
-
                     break;
                 default:
                     Console.WriteLine("Operation  invalide");

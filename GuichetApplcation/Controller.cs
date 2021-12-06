@@ -44,26 +44,13 @@ namespace Guichet
             guichet.AjouterUsager(simon);
             guichet.AjouterUsager(katia);
             guichet.MenuPrincipal();
-            string choice;
-            do {
-                if (guichet.Mode == EtatDuSysteme.ACTIF)
-                {
-                    Usager usager = guichet.ConnectionModeUtilisateur();
-                    guichet.SelectOperationsUsager(usager);
-
-                }
-                else
-                {
-                    guichet.ConnectionModeAdministrateur();
-                }
-                choice = Console.ReadLine();
-            } while (!choice.Equals("3"));
-
-
+            guichet.StartApplication();
+               
+              
+            
                
                
-                //string operation = Console.ReadLine();
-                //guichet.SelectOperationsAdmin();
+                
 
             
             

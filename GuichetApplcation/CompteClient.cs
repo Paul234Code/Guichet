@@ -12,7 +12,6 @@ namespace Guichet
         protected string numero;
         protected string nomProprietaire;
         protected decimal balance;
-        protected EtatDuCompte etatDuCompte;
         // Les proprietes
         public string Numero {
             get => numero; 
@@ -20,10 +19,7 @@ namespace Guichet
         public string NomProprietaire { 
             get => nomProprietaire;
         }
-        public EtatDuCompte EtatDuCompte {
-            get =>etatDuCompte; 
-            set => etatDuCompte = value; 
-        }
+        
         public decimal Balance {
             get => balance;
             set => balance = value; 
@@ -32,11 +28,10 @@ namespace Guichet
 
 
         // Le constructeur de la classe CompteClient
-        public CompteClient(string nomProprietaire, decimal initialBalance, EtatDuCompte etatDuCompte)
+        public CompteClient(string nomProprietaire, decimal initialBalance)
         {
             numero = numeroID.ToString();
             this.nomProprietaire = nomProprietaire;
-            this.etatDuCompte = etatDuCompte;
             numeroID++;
             balance = initialBalance;
         }
@@ -74,7 +69,7 @@ namespace Guichet
             Console.WriteLine("Numero du compte: " + numero);
             Console.WriteLine("Nom proprietaire: " + nomProprietaire);
             Console.WriteLine("Solde :" + balance);
-            Console.WriteLine("Etat du Compte : " + etatDuCompte);
+            
         }
         // Methode qui effectue un virement entre deux compte
         public void Virer(CompteClient Receiver, decimal amount)

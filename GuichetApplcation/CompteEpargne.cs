@@ -8,8 +8,8 @@ namespace Guichet
         public TypeDuCompte TypeCompte { get; set; }
 
         // Le constructeur de la classe Epargne
-        public CompteEpargne(string nomProprietaire, decimal balance, EtatDuCompte etatDuCompte, TypeDuCompte typeCompte) :
-            base(nomProprietaire, balance, etatDuCompte)
+        public CompteEpargne(string nomProprietaire, decimal balance,  TypeDuCompte typeCompte) :
+            base(nomProprietaire, balance)
         {
             this.typeCompte = typeCompte;
 

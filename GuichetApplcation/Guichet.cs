@@ -302,12 +302,7 @@ namespace Guichet
                 {
                     VerrouillerCompte();
                 }
-                else
-                {
-                    Console.WriteLine("Bienvenue dans votre compte personnel");
-                    Console.WriteLine();
-                    MenuComptePersonnel();
-                }
+                
             }
         }
         // Fonction de  Connection en mode  Administrateur
@@ -471,6 +466,7 @@ namespace Guichet
         }
 
         // Fonction qui permet de changer le mot de passe de l'usager
+
         public void ChangerMotdePasse()
         {
             Console.WriteLine("Entrer le mot de passe actuel:");

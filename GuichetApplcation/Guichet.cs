@@ -355,6 +355,7 @@ namespace Guichet
         {
             mode = EtatDuSysteme.ACTIF;
             Console.WriteLine("Guichet remit en fonction avec succès");
+            Console.WriteLine();
 
         }
         // Mettre le Guichet en mode Panne
@@ -362,6 +363,7 @@ namespace Guichet
         {
             mode = EtatDuSysteme.PANNE;
             Console.WriteLine("Systeme Hors Service, guichet en " + EtatDuSysteme.PANNE);
+            Console.WriteLine();
         }
         //=================================================================================================
         // Fonction qui permet de remettre le guichet en fonction
@@ -375,7 +377,8 @@ namespace Guichet
                    MettreGuichetEnMarche();
                     MenuPrincipal();
                     break;
-                case "N":                  
+                case "N": 
+                    MettreGuichetEnPanne();
                     MenuPrincipal();
                     break;
                 default:

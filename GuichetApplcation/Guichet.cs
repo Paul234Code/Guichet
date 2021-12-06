@@ -83,7 +83,7 @@ namespace Guichet
         public void MenuPrincipal()
         {           
             Console.WriteLine("Veuillez choisir l'une des actions suivantes:");
-            Console.WriteLine("1-Se connecter à votre compte d'utilisateur");        
+            Console.WriteLine("1- Se connecter à votre compte d'utilisateur");        
             Console.WriteLine("2- Se connecter comme administrateur");
             Console.WriteLine("3- Quitter");
             string ChoixPrincipal = Console.ReadLine();
@@ -338,8 +338,7 @@ namespace Guichet
                 if(monEnumarateur.Current.NomUtilisateur == username && monEnumarateur.Current.Password == password)
                 { 
                     resultat = true;
-                    usagerCourant = monEnumarateur.Current;
-                   
+                    usagerCourant = monEnumarateur.Current;                  
                     break;
                 }
                 else
@@ -531,12 +530,12 @@ namespace Guichet
             switch (compte)
             {
                 case "1":
-                    //guichet.DebiterGuichet(montant);
+                    DebiterGuichet(montant);
                     usagerCourant.CompteCheque.Retirer(montant);
                     usagerCourant.CompteCheque.AfficherSoldeCheque();
                     break;
                 case "2":
-                    //guichet.DebiterGuichet(montant);
+                    DebiterGuichet(montant);
                     usagerCourant.CompteEpargne.Retirer(montant);
                     usagerCourant.CompteEpargne.AfficherSoldeEpargne();
                     break;

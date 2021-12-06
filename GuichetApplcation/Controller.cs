@@ -12,7 +12,7 @@ namespace Guichet
             Guichet guichet = new(10000, EtatDuSysteme.ACTIF, administrateur) {
                 ListeUsager = new List<Usager>() 
             };
-            
+             
            
             //classe CompteEpargne
             CompteEpargne paulEpargne = new ("Paul Faye", 2000,  TypeDuCompte.Epargne);

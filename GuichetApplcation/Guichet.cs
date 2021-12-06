@@ -3,42 +3,47 @@ using System.Collections.Generic;
 
 namespace Guichet
 {
-    public class Guichet 
+    public class Guichet
     {
         // Attributs de la classe Guichet
         private List<Usager> listeUsager;
-        private EtatDuSysteme mode; 
+        private EtatDuSysteme mode;
         private Administrateur administrateur;
-        private static Usager usagerCourant;    
+        private static Usager usagerCourant;
         private decimal solde;
         // Les proprietes
-        public List<Usager> ListeUsager {
+        public List<Usager> ListeUsager
+        {
             get => listeUsager;
             set => listeUsager = value;
         }
-        public Administrateur Administrateur {
+        public Administrateur Administrateur
+        {
             get => administrateur;
-            set => administrateur = value; 
+            set => administrateur = value;
         }
-        public Usager UsagerCourant {
+        public Usager UsagerCourant
+        {
             get => usagerCourant;
             set => usagerCourant = value;
-        } 
-        public EtatDuSysteme Mode {
+        }
+        public EtatDuSysteme Mode
+        {
             get => mode;
             set => mode = value;
         }
-        public decimal Solde {
+        public decimal Solde
+        {
             get => solde;
             set => solde = value;
         }
         // Le constructeur de la classe Guichet
-        public Guichet(decimal solde, EtatDuSysteme mode,Administrateur administrateur)
+        public Guichet(decimal solde, EtatDuSysteme mode, Administrateur administrateur)
         {
             this.solde = solde;
             this.mode = mode;
-            this.administrateur = administrateur; 
-            listeUsager = new List<Usager>();          
+            this.administrateur = administrateur;
+            listeUsager = new List<Usager>();
         }
         // methode qui ajoute un client dans la liste
         public void AjouterUsager(Usager usager)
@@ -67,7 +72,7 @@ namespace Guichet
                 if (usagerCourant != null)
                 {
                     MenuComptePersonnel();
-                }                 
+                }
                 else if (administrateur != null)
                 {
                     MenuAdmin();
@@ -75,15 +80,15 @@ namespace Guichet
                 else
                 {
                     MenuPrincipal();
-                }                  
+                }
             }
             while (true);
         }
         // Menu Utilisateur
         public void MenuPrincipal()
-        {           
+        {
             Console.WriteLine("Veuillez choisir l'une des actions suivantes:");
-            Console.WriteLine("1- Se connecter à votre compte d'utilisateur");        
+            Console.WriteLine("1- Se connecter à votre compte d'utilisateur");
             Console.WriteLine("2- Se connecter comme administrateur");
             Console.WriteLine("3- Quitter");
             string ChoixPrincipal = Console.ReadLine();
@@ -91,7 +96,7 @@ namespace Guichet
         }
         // Choix des operations dans le menu du compte personnel
         public void SelectOperationsUsager(string operation)
-        {        
+        {
             switch (operation)
             {
                 case "1":
@@ -211,15 +216,15 @@ namespace Guichet
                 default:
                     Console.WriteLine("Votre choix est invalide");
                     break;
-            }         
+            }
         }
         // Fonction qui permet de choisir une option dans le menu principal
-        public  void SelectionCompte(string choix)
-        {           
+        public void SelectionCompte(string choix)
+        {
             switch (choix)
             {
                 case "1":
-                    ConnectionModeUtilisateur();                                      
+                    ConnectionModeUtilisateur();
                     break;
                 case "2":
                     ConnectionModeAdministrateur();
@@ -250,7 +255,7 @@ namespace Guichet
             int compteur = 0;     // trois tentatives
             string usagerLogin;
             string password;
-            if ( mode == EtatDuSysteme.PANNE)
+            if (mode == EtatDuSysteme.PANNE)
             {
                 Console.WriteLine("Guichet en panne");
                 AppuyerEntrer();
@@ -304,8 +309,8 @@ namespace Guichet
                     Console.WriteLine();
                 }
                 else
-                {                   
-                    break;                   
+                {
+                    break;
                 }
                 compteur++;
             }
@@ -315,8 +320,8 @@ namespace Guichet
             }
             else
             {
-                MenuAdmin();             
-            }           
+                MenuAdmin();
+            }
         }
         // Menu du compte personnel
         public void MenuComptePersonnel()
@@ -330,35 +335,35 @@ namespace Guichet
             Console.WriteLine(" 7- Fermer session");
             string Choice = Console.ReadLine();
             SelectOperationsUsager(Choice);
-        }      
+        }
         // Methode qui permet de verouiller un compte
         public void VerrouillerCompte()
         {
             usagerCourant.Verrouiller();
-            Console.WriteLine("Votre Compte est verouiller Veuillez contacter le service a la clientele!");           
-        }       
+            Console.WriteLine("Votre Compte est verouiller Veuillez contacter le service a la clientele!");
+        }
         // Fonction qui valide le mot de passe et le nom utilisateur de l'admin
         public bool ValidationAdministrateur(string userAdmin, string password)
         {
             return password.Equals(administrateur.AdministrateurPassword) && userAdmin.Equals(administrateur.AdministrateurId);
         }
         // Fonction qui permet de rechercher un element dans une liste
-        public bool Rechercher(string username,string password)
+        public bool Rechercher(string username, string password)
         {
             bool resultat = false;
-           
-           IEnumerator<Usager> monEnumarateur = listeUsager.GetEnumerator();
+
+            IEnumerator<Usager> monEnumarateur = listeUsager.GetEnumerator();
             while (monEnumarateur.MoveNext())
             {
-                if(monEnumarateur.Current.NomUtilisateur == username && monEnumarateur.Current.Password == password)
-                { 
+                if (monEnumarateur.Current.NomUtilisateur == username && monEnumarateur.Current.Password == password)
+                {
                     resultat = true;
-                    usagerCourant = monEnumarateur.Current;                  
+                    usagerCourant = monEnumarateur.Current;
                     break;
                 }
                 else
                 {
-                    resultat  =  false;
+                    resultat = false;
                 }
             }
             return resultat;
@@ -386,10 +391,10 @@ namespace Guichet
             switch (choice)
             {
                 case "O":
-                   MettreGuichetEnMarche();
+                    MettreGuichetEnMarche();
                     MenuPrincipal();
                     break;
-                case "N": 
+                case "N":
                     MettreGuichetEnPanne();
                     MenuPrincipal();
                     break;
@@ -419,7 +424,7 @@ namespace Guichet
                     resulatConversion = decimal.TryParse(saisie, out montant);
                 }
                 decimal soldeCourant = getSoldeGuichet();
-                setSoldeGuichet(soldeCourant + montant);            
+                setSoldeGuichet(soldeCourant + montant);
             }
             Console.WriteLine("Transaction effectué avec success");
             VoirSoldeGuichet();
@@ -427,7 +432,7 @@ namespace Guichet
         // Fonction qui Affiche le solde courant du Guichet
         public void VoirSoldeGuichet()
         {
-            Console.WriteLine("Solde courant du guichet  : "+getSoldeGuichet());
+            Console.WriteLine("Solde courant du guichet  : " + getSoldeGuichet());
         }
         // Fonction qui Affiche la liste des comptes 
         public void VoirListeDesCompte()
@@ -446,7 +451,7 @@ namespace Guichet
         {
             MenuPrincipal();
         }
-     
+
         // Fonction qui permet de changer le mot de passe de l'usager
         public void ChangerMotdePasse()
         {
@@ -494,7 +499,7 @@ namespace Guichet
             string valeur = Console.ReadLine();
             bool resultat = decimal.TryParse(valeur, out decimal montant);
             if (resultat)
-            {               
+            {
                 string compte = ChoisirCompte();
                 switch (compte)
                 {
@@ -540,7 +545,7 @@ namespace Guichet
         }
         // Fonction qui permet de retirer un montant
         public void RetirerMontant(decimal montant)
-        {           
+        {
             string compte = ChoisirCompte();
             switch (compte)
             {
@@ -578,10 +583,7 @@ namespace Guichet
         // Afficher le solde du compte Cheque ou Epargne
         public void AfficherSoldeCompte()
         {
-            Console.WriteLine("solde du compte Chèque ou du compte Epargne?");
-            Console.WriteLine("1- Cheque");
-            Console.WriteLine("2- Epargne");
-            string choice = Console.ReadLine();
+            string choice = ChoisirCompte();
             switch (choice)
             {
                 case "1":
@@ -616,8 +618,8 @@ namespace Guichet
         public void ValidationVirement(decimal montant)
         {
             if (montant <= 1000)
-            {               
-                string compte = ChoisirCompte();              
+            {
+                string compte = ChoisirCompte();
                 switch (compte)
                 {
                     case "1":
@@ -693,7 +695,7 @@ namespace Guichet
             bool resultatConversion = decimal.TryParse(saisie, out decimal montant);
             //compte1 as CompteCheque
             if (resultatConversion)
-            {             
+            {
                 string compte = ChoisirCompte();
                 switch (compte)
                 {
@@ -727,15 +729,15 @@ namespace Guichet
                 case "1":
                     fournisseur = "Amazon";
                     break;
-                case"2":
+                case "2":
                     fournisseur = "Bell";
-                    break ;
+                    break;
                 case "3":
                     fournisseur = "Vidéotron";
                     break;
 
             }
-            return  fournisseur;
+            return fournisseur;
 
         }
 

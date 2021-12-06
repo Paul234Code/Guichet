@@ -456,6 +456,20 @@ namespace Guichet
         {
             MenuPrincipal();
         }
+        public bool ValidationFormatMdp(string str)
+        {
+            bool resultatConversion = false;
+            for(int i = 0; i < str.Length; i++)
+            {
+                if (char.IsDigit(str[i]))
+                {
+                    resultatConversion = true;
+                }
+            }
+            return resultatConversion;
+
+        }
+       
 
         // Fonction qui permet de changer le mot de passe de l'usager
         public void ChangerMotdePasse()
@@ -476,9 +490,19 @@ namespace Guichet
             }
             else if (confirmation.Equals(nouveauMotPasse))
             {
-                usagerCourant.Password = nouveauMotPasse;
-                Console.WriteLine("Changement de mot de passe effectif");
-                Console.WriteLine();
+                if (ValidationFormatMdp(nouveauMotPasse))
+                {
+                    usagerCourant.Password = nouveauMotPasse;
+                    Console.WriteLine("Changement de mot de passe effectif");
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine("Le format du nouveau mot de passe est incorrect");
+                    Console.WriteLine();
+
+                }
+                
             }
             else
             {

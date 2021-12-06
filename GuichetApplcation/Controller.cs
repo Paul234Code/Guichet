@@ -30,6 +30,11 @@ namespace Guichet
             FournisseurService service = new("Bell")
             {
                 ListeFacture = new List<Facture>()
+                {
+                    new Facture("Telephone",200,DateTime.Now),
+                    new Facture("Internet",300,DateTime.Now),
+                    new Facture("Television",400, DateTime.Now),
+                }
             };
             //Creation de 5 usagers
             Usager paul = new (paulEpargne, paulCheque, service,"paul1988", "1234",EtatDuCompte.ACTIF);

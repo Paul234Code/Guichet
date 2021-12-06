@@ -310,7 +310,7 @@ namespace Guichet
             Console.WriteLine(" 2- Déposer un montant dans un compte");
             Console.WriteLine(" 3- Retirer un montant d'un compte");
             Console.WriteLine(" 4- Afficher le solde du compte chèque ou épargne");
-            Console.WriteLine(" 5- Effectuer un virment entre les comptes");
+            Console.WriteLine(" 5- Effectuer un virement entre les comptes");
             Console.WriteLine(" 6- Payer une facture");
             Console.WriteLine(" 7- Fermer session");
             string Choice = Console.ReadLine();
@@ -668,7 +668,8 @@ namespace Guichet
         {
             string nomFournisseur = ChoixFournisseur();
             FournisseurService fournisseur = usagerCourant.FournisseurService.GetFournisseurService(nomFournisseur);
-            usagerCourant.FournisseurService = fournisseur;         
+            usagerCourant.FournisseurService = fournisseur;
+            usagerCourant.FournisseurService.AfficherService();
             Console.WriteLine("Entrer le numero de facture:");
             string numero = Console.ReadLine();
             // on cherche la facture dans la liste des factures
@@ -703,9 +704,9 @@ namespace Guichet
         {
             string fournisseur = "";
             Console.WriteLine("Veuillez choisir un des fournisseurs suivant :");
-            Console.WriteLine("Amazon");
-            Console.WriteLine("Bell");
-            Console.WriteLine("Vidéotron");
+            Console.WriteLine("1- Amazon");
+            Console.WriteLine("2- Bell");
+            Console.WriteLine("3- Vidéotron");
             string choice = Console.ReadLine();
             switch (choice)
             {

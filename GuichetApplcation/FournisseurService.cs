@@ -31,10 +31,19 @@ namespace Guichet
         public void AfficherService()
         {
             Console.WriteLine(nomFournisseur);
-            foreach (Facture facture in listeFacture)
+            if(listeFacture == null)
             {
-                Console.WriteLine("\t" + facture.ToString());
+                Console.WriteLine("Aucune facture  a payer");
             }
+            else
+            {
+                foreach (Facture facture in listeFacture)
+                {
+                    Console.WriteLine("\t" + facture.ToString());
+                }
+
+            }
+           
         }
         public int GetIndex(string numero)
         {

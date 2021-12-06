@@ -6,10 +6,16 @@ namespace Guichet
     public class FournisseurService
     {
         private string nomFournisseur;
-        private List<Facture> listeFacture =  new List<Facture>();
+        private List<Facture> listeFacture = new List<Facture>();
         // Les proprietes
-        public string NomFournisseur { get; set; }
-        public List<Facture> ListeFacture { get; set; }
+        public string NomFournisseur {
+            get => nomFournisseur;
+            set => nomFournisseur = value;
+        }
+        public List<Facture> ListeFacture {
+            get => listeFacture;
+            set => listeFacture = value;
+        }
         // Le  Constructeur de la classe Fournisseur
         public FournisseurService(string nomFournisseur)
         {
@@ -25,22 +31,38 @@ namespace Guichet
         public void AfficherService()
         {
             Console.WriteLine(nomFournisseur);
-            foreach (Facture facture in listeFacture)
+            if(listeFacture == null)
             {
-                Console.WriteLine("\t" + facture.ToString());
+                Console.WriteLine("Aucune facture  a payer");
             }
+            else
+            {
+                foreach (Facture facture in listeFacture)
+                {
+                    Console.WriteLine("\t" + facture.ToString());
+                }
+
+            }
+           
         }
         public int GetIndex(string numero)
         {
             int index = 0;
-            for(int i = 0; i < listeFacture.Count; i++)
+            for (int i = 0; i < listeFacture.Count; i++)
             {
-                if( listeFacture[i].NumeroFacture == numero)
+                if (listeFacture[i].NumeroFacture == numero)
                 {
                     index = i;
                 }
             }
             return index;
+        }
+        // Fonction qui retourne un fournisseur de service
+        public FournisseurService GetFournisseurService(string nom)
+        {
+           
+            return new FournisseurService(nom) { listeFacture = new List<Facture>() };
+
         }
     }
 }

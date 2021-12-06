@@ -46,7 +46,7 @@ namespace Guichet
             this.etat = etat;
         }
         // Fonction qui permet de verouiller le compte
-        public void VerrouillerCompte()
+        public void Verrouiller()
         {
             etat = EtatDuCompte.VEROUILLE;
         }

@@ -7,7 +7,7 @@ namespace Guichet
     {
         // Attributs de la classe Guichet
         private List<Usager> listeUsager;
-        private EtatDuSysteme mode; // mode par defaut
+        private EtatDuSysteme mode; 
         private Administrateur administrateur;
         private Usager usagerCourant;    
         private decimal solde;
@@ -58,6 +58,7 @@ namespace Guichet
                 Console.WriteLine("Solde du guichet : 0. GUICHET EN PANNE.");
             }
         }
+        // Fonction qui va lancer l'application
         public void StartApplication()
         {
             do
@@ -66,40 +67,31 @@ namespace Guichet
                 if (usagerCourant != null)
                 {
                     MenuComptePersonnel();
-
-                }
-                  
+                }                 
                 else if (administrateur != null)
                 {
                     MenuAdmin();
-
                 }
-
                 else
                 {
                     MenuPrincipal();
-
-                }
-                   
+                }                  
             }
             while (true);
         }
         // Menu Utilisateur
         public void MenuPrincipal()
-        {
-            
+        {           
             Console.WriteLine("Veuillez choisir l'une des actions suivantes:");
             Console.WriteLine("1-Se connecter à votre compte d'utilisateur");        
             Console.WriteLine("2- Se connecter comme administrateur");
             Console.WriteLine("3- Quitter");
             string ChoixPrincipal = Console.ReadLine();
             SelectionCompte(ChoixPrincipal);
-
         }
         // Choix des operations dans le menu du compte personnel
         public void SelectOperationsUsager(string operation)
-        {
-            
+        {        
             switch (operation)
             {
                 case "1":
@@ -128,7 +120,6 @@ namespace Guichet
                     break;
             }
         }
-
         // Les choix du menu  de l'administrateur       
         public void MenuAdmin()
         {
@@ -216,13 +207,11 @@ namespace Guichet
                 default:
                     Console.WriteLine("Votre choix est invalide");
                     break;
-            }
-           
+            }         
         }
         // Fonction qui permet de choisir une option dans le menu principal
         public  void SelectionCompte(string choix)
-        {
-           
+        {           
             switch (choix)
             {
                 case "1":
@@ -302,8 +291,7 @@ namespace Guichet
                 else
                 {
                     admin = new(userAdmin, password);
-                    break;
-                    
+                    break;                   
                 }
                 compteur++;
             }
@@ -313,10 +301,8 @@ namespace Guichet
             }
             else
             {
-                MenuAdmin();
-              
-            }
-            
+                MenuAdmin();             
+            }           
             return admin;
         }
         // Menu du compte personnel
@@ -335,6 +321,7 @@ namespace Guichet
         // Methode qui permet de verouiller un compte
         public void VerrouillerCompte()
         {
+            usagerCourant.Verrouiller();
             Console.WriteLine("Votre Compte est verouiller Veuillez contacter le service a la clientele!");
             
         }       
@@ -364,6 +351,18 @@ namespace Guichet
             }
             return resultat;
         }
+        public void MettreGuichetEnMarche()
+        {
+            mode = EtatDuSysteme.ACTIF;
+            Console.WriteLine("Guichet remit en fonction avec succès");
+
+        }
+        // Mettre le Guichet en mode Panne
+        public void MettreGuichetEnPanne()
+        {
+            mode = EtatDuSysteme.PANNE;
+            Console.WriteLine("Systeme Hors Service, guichet en " + EtatDuSysteme.PANNE);
+        }
         //=================================================================================================
         // Fonction qui permet de remettre le guichet en fonction
         public void RemettreGuichetEnFonction()
@@ -373,12 +372,10 @@ namespace Guichet
             switch (choice)
             {
                 case "O":
-                    mode = EtatDuSysteme.ACTIF;
+                   MettreGuichetEnMarche();
                     MenuPrincipal();
                     break;
-                case "N":
-                    mode = EtatDuSysteme.PANNE;
-                    Console.WriteLine("Systeme Hors Service, guichet en " + EtatDuSysteme.PANNE);
+                case "N":                  
                     MenuPrincipal();
                     break;
                 default:

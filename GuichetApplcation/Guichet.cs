@@ -140,6 +140,8 @@ namespace Guichet
             Console.WriteLine(" 3- Voir le solde du guichet");
             Console.WriteLine(" 4- Voir la liste des comptes ");
             Console.WriteLine(" 5- Retourner au menu principal");
+            string ChoixAdmin = Console.ReadLine();
+            SelectOperationsAdmin(ChoixAdmin);
         }
         // Fonction qui affiche le menu fournisseur
         public void MenuFournisseur()
@@ -192,10 +194,9 @@ namespace Guichet
             solde -= montant;
         }
         // Les choix des operations de l'administrateur
-        public void SelectOperationsAdmin()
+        public void SelectOperationsAdmin(string choice)
         {
-            string choixadmin = Console.ReadLine();
-            switch (choixadmin)
+            switch (choice)
             {
                 case "1":
                     RemettreGuichetEnFonction();
@@ -469,7 +470,7 @@ namespace Guichet
             {
                 Console.WriteLine("Le format du nouveau mot de passe est incorrect");
             }
-            else if (nouveauMotPasse.Equals(actuelMotPasse))
+            else if (nouveauMotPasse.Equals(usagerCourant.Password))
             {
                 Console.WriteLine("Le nouveau de mot de passe doit etre different de l'actuel mot de passe");
             }

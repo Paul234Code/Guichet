@@ -51,7 +51,7 @@ namespace Guichet
             {
                 Console.WriteLine("montant du retrait doit etre positif");
             }
-            else if(amount > balance)
+            else if (amount > balance)
             {
                 Console.WriteLine("Fonds insufisant");
             }
@@ -72,14 +72,14 @@ namespace Guichet
         {
             // on debit le compte courant (this)
             Retirer(amount);
-            if(amount > balance)
+            if (amount > balance)
             {
                 Console.WriteLine("Transaction impossible");
             }
             else
             {
                 Receiver.Deposer(amount);
-            }          
+            }
         }
         // Fonction qui affiche l'historique du compte
         public string GetAccountHistory()

@@ -55,7 +55,7 @@ namespace Guichet
         public void Verrouiller()
         {
             etat = EtatDuCompte.VEROUILLE;
-            
+
         }
         // Fonction qui permet de deverouiller un compte
         public void Deverrouiller()

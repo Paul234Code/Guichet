@@ -13,7 +13,7 @@ namespace Guichet
                 ListeUsager = new List<Usager>()
             };
             //classe CompteEpargne
-            CompteEpargne paulEpargne = new ("Paul Faye", 2000, TypeDuCompte.Epargne);
+            CompteEpargne paulEpargne = new("Paul Faye", 2000, TypeDuCompte.Epargne);
             CompteEpargne firdaousEpargne = new("Firdaous El Mabrooki", 2000, TypeDuCompte.Epargne);
             CompteEpargne jonamEpargne = new("Jonam Dessureault", 2000, TypeDuCompte.Epargne);
             CompteEpargne simonEpargne = new("Simon Bugeaud", 3000, TypeDuCompte.Epargne);
@@ -46,7 +46,7 @@ namespace Guichet
             guichet.AjouterUsager(firdaous);
             guichet.AjouterUsager(simon);
             guichet.AjouterUsager(katia);
-            guichet.MenuPrincipal();            
+            guichet.MenuPrincipal();
             guichet.StartApplication();
 
 

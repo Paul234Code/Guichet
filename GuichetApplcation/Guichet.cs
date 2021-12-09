@@ -9,7 +9,7 @@ namespace Guichet
         private List<Usager> listeUsager;
         private EtatDuSysteme mode;
         private Administrateur administrateur;
-        private  Usager usagerCourant;
+        private Usager usagerCourant;
         private decimal solde;
         // Les proprietes
         public List<Usager> ListeUsager
@@ -69,26 +69,26 @@ namespace Guichet
             do
             {
                 Console.Clear();
-                MenuPrincipal();                               
+                MenuPrincipal();
                 while (usagerCourant != null)
                 {
                     MenuComptePersonnel();
-                    if(usagerCourant == null)
+                    if (usagerCourant == null)
                     {
                         MenuPrincipal();
                     }
                 }
-                while(administrateur != null)
+                while (administrateur != null)
                 {
                     MenuAdmin();
-                    if(administrateur == null)
+                    if (administrateur == null)
                     {
                         MenuPrincipal();
 
                     }
-                                 
+
                 }
-                
+
             }
             while (true);
         }
@@ -120,7 +120,7 @@ namespace Guichet
                     AfficherSoldeCompte();
                     break;
                 case "5":
-                    FaireVirement();                
+                    FaireVirement();
                     break;
                 case "6":
                     PayerFacture();
@@ -188,7 +188,7 @@ namespace Guichet
                 solde += montant;
                 Console.WriteLine("Transaction effectué avec success");
             }
-           
+
         }
         // Methode pour debiter un montant dans le  Guichet
         public void DebiterGuichet(decimal montant)
@@ -205,7 +205,7 @@ namespace Guichet
             {
                 solde -= montant;
             }
-           if(solde == 0)
+            if (solde == 0)
             {
                 MettreGuichetEnPanne();
             }
@@ -312,7 +312,7 @@ namespace Guichet
                 }
                 else
                 {
-                   // Console.WriteLine("Bienvenue dans votre compte personnel");
+                    // Console.WriteLine("Bienvenue dans votre compte personnel");
                     //Console.WriteLine();
                     MenuComptePersonnel();
                 }
@@ -380,14 +380,14 @@ namespace Guichet
             else
             {
                 Console.WriteLine("Usager non connecté");
-            }          
+            }
         }
         public Administrateur RechercherAdmin(string userAdmin, string password)
         {
             Administrateur admin;
-            if(ValidationAdministrateur(userAdmin, password))
+            if (ValidationAdministrateur(userAdmin, password))
             {
-                admin =  new Administrateur(userAdmin,password);
+                admin = new Administrateur(userAdmin, password);
             }
             else
             {
@@ -467,8 +467,8 @@ namespace Guichet
             bool resulatConversion = decimal.TryParse(saisie, out decimal montant);
             if (resulatConversion && montant <= 10000)
             {
-                
-                DeposerGuichet( montant);
+
+                DeposerGuichet(montant);
             }
             else
             {
@@ -480,7 +480,7 @@ namespace Guichet
                     resulatConversion = decimal.TryParse(saisie, out montant);
                 }
                 DeposerGuichet(montant);
-            }           
+            }
             VoirSoldeGuichet();
         }
         // Fonction qui Affiche le solde courant du Guichet
@@ -509,7 +509,7 @@ namespace Guichet
         public bool ValidationFormatMdp(string str)
         {
             bool resultatConversion = false;
-            for(int i = 0; i < str.Length; i++)
+            for (int i = 0; i < str.Length; i++)
             {
                 if (char.IsDigit(str[i]))
                 {
@@ -518,7 +518,7 @@ namespace Guichet
             }
             return resultatConversion;
 
-        }     
+        }
 
         // Fonction qui permet de changer le mot de passe de l'usager
         public void ChangerMotdePasse()
@@ -551,7 +551,7 @@ namespace Guichet
                     Console.WriteLine();
 
                 }
-                
+
             }
             else
             {
@@ -579,7 +579,7 @@ namespace Guichet
             bool resultat = decimal.TryParse(valeur, out decimal montant);
             if (resultat)
             {
-                if (!ValidationUsagerCourant()) 
+                if (!ValidationUsagerCourant())
                 {
                     string compte = ChoisirCompte();
                     switch (compte)
@@ -601,7 +601,7 @@ namespace Guichet
                 {
                     Console.WriteLine("Usager courant non connecté");
                 }
-                
+
             }
             else
             {
@@ -633,9 +633,9 @@ namespace Guichet
         // Fonction qui permet de retirer un montant
         public void RetirerMontant(decimal montant)
         {
-            if (!ValidationUsagerCourant()) 
+            if (!ValidationUsagerCourant())
             {
-                if(montant > solde)
+                if (montant > solde)
                 {
                     Console.WriteLine("Operation de retrait impossible");
 
@@ -661,13 +661,13 @@ namespace Guichet
                     }
 
                 }
-                
+
             }
             else
             {
                 Console.WriteLine("Usager Courant non connecté");
             }
-            
+
             Console.WriteLine();
         }
         // fonction qui permet de retirer un montant 
@@ -712,14 +712,14 @@ namespace Guichet
             bool resulatConversion = decimal.TryParse(saisie, out decimal montant);
             if (resulatConversion)
             {
-                if(montant > 0)
+                if (montant > 0)
                 {
                     ValidationVirement(montant);
                 }
                 else
                 {
                     Console.WriteLine("Le montant de la transaction doit etre positif");
-                }               
+                }
             }
             else
             {
@@ -730,7 +730,7 @@ namespace Guichet
         {
             Console.WriteLine("Entrer mot de passe");
             string password = Console.ReadLine();
-            return  password.Equals(usagerCourant.Password);
+            return password.Equals(usagerCourant.Password);
 
         }
         // Fonction qui valide les virement dans un compte
@@ -758,8 +758,8 @@ namespace Guichet
             }
             else
             {
-                
-                if (ValidationConnection()) 
+
+                if (ValidationConnection())
                 {
                     if (!ValidationUsagerCourant())
                     {
@@ -793,7 +793,7 @@ namespace Guichet
                     Console.WriteLine("Connection invalide");
                 }
 
-                        
+
             }
             AppuyerEntrer();
         }
@@ -835,7 +835,7 @@ namespace Guichet
             //compte1 as CompteCheque
             if (resultatConversion)
             {
-                if(montant > 0)
+                if (montant > 0)
                 {
                     string compte = ChoisirCompte();
                     switch (compte)
@@ -850,7 +850,7 @@ namespace Guichet
                             Console.WriteLine("Votre choix de compte est invalide");
                             break;
                     }
-                   
+
 
                 }
                 else

@@ -69,25 +69,26 @@ namespace Guichet
             do
             {
                 Console.Clear();
-                if(usagerCourant == null)
-                {
-                    Console.WriteLine("Usager courant non connecte");
-                    AppuyerEntrer();
-                    MenuPrincipal();
-                    
-                }
-                else if (usagerCourant != null)
+                MenuPrincipal();                               
+                while (usagerCourant != null)
                 {
                     MenuComptePersonnel();
+                    if(usagerCourant == null)
+                    {
+                        MenuPrincipal();
+                    }
                 }
-                else if (administrateur != null)
+                while(administrateur != null)
                 {
                     MenuAdmin();
+                    if(administrateur == null)
+                    {
+                        MenuPrincipal();
+
+                    }
+                                 
                 }
-                else
-                {
-                    MenuPrincipal();
-                }
+                
             }
             while (true);
         }
@@ -128,7 +129,7 @@ namespace Guichet
                     FermerSession();
                     break;
                 default:
-                    Console.WriteLine("Votre choix est invalide");
+                    Console.WriteLine("Votre choix Utilisateur est invalide");
                     break;
             }
             MenuComptePersonnel();
@@ -237,9 +238,10 @@ namespace Guichet
                     MenuPrincipal();
                     break;
                 default:
-                    Console.WriteLine("Votre choix est invalide");
+                    Console.WriteLine("Votre choix Administrateur est invalide");
                     break;
             }
+            MenuAdmin();
         }
         // Fonction qui permet de choisir une option dans le menu principal
         public void SelectionCompte(string choix)
@@ -312,7 +314,7 @@ namespace Guichet
                 {
                    // Console.WriteLine("Bienvenue dans votre compte personnel");
                     //Console.WriteLine();
-                    //MenuComptePersonnel();
+                    MenuComptePersonnel();
                 }
             }
         }
@@ -335,6 +337,7 @@ namespace Guichet
                 }
                 else
                 {
+
                     break;
                 }
                 compteur++;
@@ -342,9 +345,11 @@ namespace Guichet
             if (compteur == 3)
             {
                 MettreGuichetEnPanne();
+                AppuyerEntrer();
             }
             else
             {
+                //administrateur
                 MenuAdmin();
             }
         }
@@ -375,9 +380,20 @@ namespace Guichet
             else
             {
                 Console.WriteLine("Usager non connecté");
+            }          
+        }
+        public Administrateur RechercherAdmin(string userAdmin, string password)
+        {
+            Administrateur admin;
+            if(ValidationAdministrateur(userAdmin, password))
+            {
+                admin =  new Administrateur(userAdmin,password);
             }
-           
-            
+            else
+            {
+                admin = null;
+            }
+            return admin;
         }
         // Fonction qui valide le mot de passe et le nom utilisateur de l'admin
         public bool ValidationAdministrateur(string userAdmin, string password)
@@ -388,7 +404,6 @@ namespace Guichet
         public bool Rechercher(string username, string password)
         {
             bool resultat = false;
-
             IEnumerator<Usager> monEnumarateur = listeUsager.GetEnumerator();
             while (monEnumarateur.MoveNext())
             {
@@ -488,6 +503,7 @@ namespace Guichet
         }
         public void RetournerMenuPrincipal()
         {
+            administrateur = null;
             MenuPrincipal();
         }
         public bool ValidationFormatMdp(string str)
@@ -710,6 +726,13 @@ namespace Guichet
                 Console.WriteLine("Veuillez entrer un montant valide");
             }
         }
+        public bool ValidationConnection()
+        {
+            Console.WriteLine("Entrer mot de passe");
+            string password = Console.ReadLine();
+            return  password.Equals(usagerCourant.Password);
+
+        }
         // Fonction qui valide les virement dans un compte
         public void ValidationVirement(decimal montant)
         {
@@ -735,34 +758,42 @@ namespace Guichet
             }
             else
             {
-                ConnectionModeUtilisateur();
-                if (!ValidationUsagerCourant())
+                
+                if (ValidationConnection()) 
                 {
-                    string compte = ChoisirCompte();
-                    switch (compte)
+                    if (!ValidationUsagerCourant())
                     {
-                        case "1":
-                            usagerCourant.CompteCheque.Virer(usagerCourant.CompteEpargne, montant);
-                            usagerCourant.CompteCheque.AfficherSoldeCheque();
-                            usagerCourant.CompteEpargne.AfficherSoldeEpargne();
-                            break;
-                        case "2":
-                            usagerCourant.CompteEpargne.Virer(usagerCourant.CompteCheque, montant);
-                            usagerCourant.CompteCheque.AfficherSoldeCheque();
-                            usagerCourant.CompteEpargne.AfficherSoldeEpargne();
-                            break;
-                        default:
-                            Console.WriteLine("Veuillez effectuer un choix valide");
-                            break;
-                    }
-                    Console.WriteLine("Virement effecté avec success");
+                        string compte = ChoisirCompte();
+                        switch (compte)
+                        {
+                            case "1":
+                                usagerCourant.CompteCheque.Virer(usagerCourant.CompteEpargne, montant);
+                                usagerCourant.CompteCheque.AfficherSoldeCheque();
+                                usagerCourant.CompteEpargne.AfficherSoldeEpargne();
+                                break;
+                            case "2":
+                                usagerCourant.CompteEpargne.Virer(usagerCourant.CompteCheque, montant);
+                                usagerCourant.CompteCheque.AfficherSoldeCheque();
+                                usagerCourant.CompteEpargne.AfficherSoldeEpargne();
+                                break;
+                            default:
+                                Console.WriteLine("Veuillez effectuer un choix valide");
+                                break;
+                        }
+                        Console.WriteLine("Virement effecté avec success");
 
+                    }
+                    else
+                    {
+                        Console.WriteLine("Usager courant non connecté");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("Usager courant non connecté");
+                    Console.WriteLine("Connection invalide");
                 }
-                
+
+                        
             }
             AppuyerEntrer();
         }
@@ -783,6 +814,7 @@ namespace Guichet
         // Fonction qui permet de fermer la session
         public void FermerSession()
         {
+            usagerCourant = null;
             MenuPrincipal();
 
         }

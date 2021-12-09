@@ -196,11 +196,22 @@ namespace Guichet
             {
                 Console.WriteLine("montant du retrait doit etre positif");
             }
-            if (montant > solde)
+            else if (montant > solde)
             {
                 Console.WriteLine("operation de retrait impossible");
             }
-            solde -= montant;
+            else
+            {
+                solde -= montant;
+            }
+           if(solde == 0)
+            {
+                MettreGuichetEnPanne();
+            }
+            else
+            {
+                MettreGuichetEnMarche();
+            }
         }
         // Les choix des operations de l'administrateur
         public void SelectOperationsAdmin(string choice)
@@ -608,23 +619,33 @@ namespace Guichet
         {
             if (!ValidationUsagerCourant()) 
             {
-                string compte = ChoisirCompte();
-                switch (compte)
+                if(montant > solde)
                 {
-                    case "1":
-                        DebiterGuichet(montant);
-                        usagerCourant.CompteCheque.Retirer(montant);
-                        usagerCourant.CompteCheque.AfficherSoldeCheque();
-                        break;
-                    case "2":
-                        DebiterGuichet(montant);
-                        usagerCourant.CompteEpargne.Retirer(montant);
-                        usagerCourant.CompteEpargne.AfficherSoldeEpargne();
-                        break;
-                    default:
-                        Console.WriteLine("Operation  invalide");
-                        break;
+                    Console.WriteLine("Operation de retrait impossible");
+
                 }
+                else
+                {
+                    string compte = ChoisirCompte();
+                    switch (compte)
+                    {
+                        case "1":
+                            DebiterGuichet(montant);
+                            usagerCourant.CompteCheque.Retirer(montant);
+                            usagerCourant.CompteCheque.AfficherSoldeCheque();
+                            break;
+                        case "2":
+                            DebiterGuichet(montant);
+                            usagerCourant.CompteEpargne.Retirer(montant);
+                            usagerCourant.CompteEpargne.AfficherSoldeEpargne();
+                            break;
+                        default:
+                            Console.WriteLine("Operation  invalide");
+                            break;
+                    }
+
+                }
+                
             }
             else
             {

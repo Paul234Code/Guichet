@@ -129,7 +129,7 @@ namespace Guichet
                     FermerSession();
                     break;
                 default:
-                    Console.WriteLine("Votre choix Utilisateur est invalide");
+                    Console.WriteLine("Choix Utilisateur invalide");
                     break;
             }
             MenuComptePersonnel();
@@ -238,7 +238,7 @@ namespace Guichet
                     MenuPrincipal();
                     break;
                 default:
-                    Console.WriteLine("Votre choix Administrateur est invalide");
+                    Console.WriteLine("Choix Administrateur  invalide");
                     break;
             }
             MenuAdmin();
@@ -332,7 +332,7 @@ namespace Guichet
                 password = Console.ReadLine();
                 if (!ValidationAdministrateur(userAdmin, password))
                 {
-                    Console.WriteLine("Nom utilisateur ou mot de passe incorrecte");
+                    Console.WriteLine("Nom utilisateur ou mot de passe incorrect");
                     Console.WriteLine();
                 }
                 else

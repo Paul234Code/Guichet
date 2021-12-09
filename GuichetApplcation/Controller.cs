@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
 namespace Guichet
 {
     public class Controller
@@ -13,7 +12,6 @@ namespace Guichet
             {
                 ListeUsager = new List<Usager>()
             };
-
             //classe CompteEpargne
             CompteEpargne paulEpargne = new ("Paul Faye", 2000, TypeDuCompte.Epargne);
             CompteEpargne firdaousEpargne = new("Firdaous El Mabrooki", 2000, TypeDuCompte.Epargne);
@@ -48,15 +46,8 @@ namespace Guichet
             guichet.AjouterUsager(firdaous);
             guichet.AjouterUsager(simon);
             guichet.AjouterUsager(katia);
-            guichet.MenuPrincipal();
+            guichet.MenuPrincipal();            
             guichet.StartApplication();
-
-
-
-
-
-
-
 
 
 

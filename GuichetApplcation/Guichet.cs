@@ -9,7 +9,7 @@ namespace Guichet
         private List<Usager> listeUsager;
         private EtatDuSysteme mode;
         private Administrateur administrateur;
-        private static Usager usagerCourant;
+        private  Usager usagerCourant;
         private decimal solde;
         // Les proprietes
         public List<Usager> ListeUsager
@@ -69,7 +69,14 @@ namespace Guichet
             do
             {
                 Console.Clear();
-                if (usagerCourant != null)
+                if(usagerCourant == null)
+                {
+                    Console.WriteLine("Usager courant non connecte");
+                    AppuyerEntrer();
+                    MenuPrincipal();
+                    
+                }
+                else if (usagerCourant != null)
                 {
                     MenuComptePersonnel();
                 }
@@ -113,7 +120,7 @@ namespace Guichet
                     AfficherSoldeCompte();
                     break;
                 case "5":
-                    FaireVirement();
+                    FaireVirement();                
                     break;
                 case "6":
                     PayerFacture();
@@ -190,11 +197,22 @@ namespace Guichet
             {
                 Console.WriteLine("montant du retrait doit etre positif");
             }
-            if (montant > solde)
+            else if (montant > solde)
             {
                 Console.WriteLine("operation de retrait impossible");
             }
-            solde -= montant;
+            else
+            {
+                solde -= montant;
+            }
+           if(solde == 0)
+            {
+                MettreGuichetEnPanne();
+            }
+            else
+            {
+                MettreGuichetEnMarche();
+            }
         }
         // Les choix des operations de l'administrateur
         public void SelectOperationsAdmin(string choice)
@@ -293,9 +311,9 @@ namespace Guichet
                 }
                 else
                 {
-                    Console.WriteLine("Bienvenue dans votre compte personnel");
-                    Console.WriteLine();
-                    MenuComptePersonnel();
+                   // Console.WriteLine("Bienvenue dans votre compte personnel");
+                    //Console.WriteLine();
+                    //MenuComptePersonnel();
                 }
             }
         }
@@ -336,6 +354,9 @@ namespace Guichet
         // Menu du compte personnel
         public void MenuComptePersonnel()
         {
+            Console.WriteLine();
+            Console.WriteLine("Bienvenue dans votre compte personnel");
+            Console.WriteLine();
             Console.WriteLine(" 1- Changer le mot de passe ");
             Console.WriteLine(" 2- Déposer un montant dans un compte");
             Console.WriteLine(" 3- Retirer un montant d'un compte");
@@ -349,8 +370,17 @@ namespace Guichet
         // Methode qui permet de verouiller un compte
         public void VerrouillerCompte()
         {
-            usagerCourant.Verrouiller();
-            Console.WriteLine("Votre Compte est verouiller Veuillez contacter le service a la clientele!");
+            if (!ValidationUsagerCourant())
+            {
+                usagerCourant.Verrouiller();
+                Console.WriteLine("Votre Compte est verouiller Veuillez contacter le service a la clientele!");
+            }
+            else
+            {
+                Console.WriteLine("Usager non connecté");
+            }
+           
+            
         }
         // Fonction qui valide le mot de passe et le nom utilisateur de l'admin
         public bool ValidationAdministrateur(string userAdmin, string password)
@@ -377,6 +407,10 @@ namespace Guichet
                 }
             }
             return resultat;
+        }
+        public bool ValidationUsagerCourant()
+        {
+            return usagerCourant == null;
         }
         // Remettre le guichet en marche
         public void MettreGuichetEnMarche()
@@ -422,7 +456,7 @@ namespace Guichet
 
             if (resulatConversion && montant <= 10000)
             {
-                //decimal soldeCourant = getSoldeGuichet();
+                
                 DeposerGuichet( montant);
             }
             else
@@ -472,8 +506,7 @@ namespace Guichet
             }
             return resultatConversion;
 
-        }
-       
+        }     
 
         // Fonction qui permet de changer le mot de passe de l'usager
         public void ChangerMotdePasse()
@@ -517,6 +550,7 @@ namespace Guichet
                     if (confirmation.Equals(nouveauMotPasse))
                     {
                         Console.WriteLine("Changement de mot de passe effecuté avec success");
+                        Console.WriteLine();
                     }
                     else
                     {
@@ -533,21 +567,29 @@ namespace Guichet
             bool resultat = decimal.TryParse(valeur, out decimal montant);
             if (resultat)
             {
-                string compte = ChoisirCompte();
-                switch (compte)
+                if (!ValidationUsagerCourant()) 
                 {
-                    case "1":
-                        usagerCourant.CompteCheque.Deposer(montant);
-                        Console.WriteLine("Nouveau Solde du compte cheque : " + usagerCourant.CompteCheque.Balance);
-                        break;
-                    case "2":
-                        usagerCourant.CompteEpargne.Deposer(montant);
-                        Console.WriteLine("Nouveau Solde du compte epargne : " + usagerCourant.CompteEpargne.Balance);
-                        break;
-                    default:
-                        Console.WriteLine("Operation  invalide");
-                        break;
+                    string compte = ChoisirCompte();
+                    switch (compte)
+                    {
+                        case "1":
+                            usagerCourant.CompteCheque.Deposer(montant);
+                            Console.WriteLine("Nouveau Solde du compte cheque : " + usagerCourant.CompteCheque.Balance);
+                            break;
+                        case "2":
+                            usagerCourant.CompteEpargne.Deposer(montant);
+                            Console.WriteLine("Nouveau Solde du compte epargne : " + usagerCourant.CompteEpargne.Balance);
+                            break;
+                        default:
+                            Console.WriteLine("Operation  invalide");
+                            break;
+                    }
                 }
+                else
+                {
+                    Console.WriteLine("Usager courant non connecté");
+                }
+                
             }
             else
             {
@@ -579,23 +621,41 @@ namespace Guichet
         // Fonction qui permet de retirer un montant
         public void RetirerMontant(decimal montant)
         {
-            string compte = ChoisirCompte();
-            switch (compte)
+            if (!ValidationUsagerCourant()) 
             {
-                case "1":
-                    DebiterGuichet(montant);
-                    usagerCourant.CompteCheque.Retirer(montant);
-                    usagerCourant.CompteCheque.AfficherSoldeCheque();
-                    break;
-                case "2":
-                    DebiterGuichet(montant);
-                    usagerCourant.CompteEpargne.Retirer(montant);
-                    usagerCourant.CompteEpargne.AfficherSoldeEpargne();
-                    break;
-                default:
-                    Console.WriteLine("Operation  invalide");
-                    break;
+                if(montant > solde)
+                {
+                    Console.WriteLine("Operation de retrait impossible");
+
+                }
+                else
+                {
+                    string compte = ChoisirCompte();
+                    switch (compte)
+                    {
+                        case "1":
+                            DebiterGuichet(montant);
+                            usagerCourant.CompteCheque.Retirer(montant);
+                            usagerCourant.CompteCheque.AfficherSoldeCheque();
+                            break;
+                        case "2":
+                            DebiterGuichet(montant);
+                            usagerCourant.CompteEpargne.Retirer(montant);
+                            usagerCourant.CompteEpargne.AfficherSoldeEpargne();
+                            break;
+                        default:
+                            Console.WriteLine("Operation  invalide");
+                            break;
+                    }
+
+                }
+                
             }
+            else
+            {
+                Console.WriteLine("Usager Courant non connecté");
+            }
+            
             Console.WriteLine();
         }
         // fonction qui permet de retirer un montant 
@@ -640,7 +700,14 @@ namespace Guichet
             bool resulatConversion = decimal.TryParse(saisie, out decimal montant);
             if (resulatConversion)
             {
-                ValidationVirement(montant);
+                if(montant > 0)
+                {
+                    ValidationVirement(montant);
+                }
+                else
+                {
+                    Console.WriteLine("Le montant de la transaction doit etre positif");
+                }               
             }
             else
             {
@@ -673,24 +740,35 @@ namespace Guichet
             else
             {
                 ConnectionModeUtilisateur();
-                string compte = ChoisirCompte();
-                switch (compte)
+                if (!ValidationUsagerCourant())
                 {
-                    case "1":
-                        usagerCourant.CompteCheque.Virer(usagerCourant.CompteEpargne, montant);
-                        usagerCourant.CompteCheque.AfficherSoldeCheque();
-                        usagerCourant.CompteEpargne.AfficherSoldeEpargne();
-                        break;
-                    case "2":
-                        usagerCourant.CompteEpargne.Virer(usagerCourant.CompteCheque, montant);
-                        usagerCourant.CompteCheque.AfficherSoldeCheque();
-                        usagerCourant.CompteEpargne.AfficherSoldeEpargne();
-                        break;
-                    default:
-                        Console.WriteLine("Veuillez effectuer un choix valide");
-                        break;
+                    string compte = ChoisirCompte();
+                    switch (compte)
+                    {
+                        case "1":
+                            usagerCourant.CompteCheque.Virer(usagerCourant.CompteEpargne, montant);
+                            usagerCourant.CompteCheque.AfficherSoldeCheque();
+                            usagerCourant.CompteEpargne.AfficherSoldeEpargne();
+                            break;
+                        case "2":
+                            usagerCourant.CompteEpargne.Virer(usagerCourant.CompteCheque, montant);
+                            usagerCourant.CompteCheque.AfficherSoldeCheque();
+                            usagerCourant.CompteEpargne.AfficherSoldeEpargne();
+                            break;
+                        default:
+                            Console.WriteLine("Veuillez effectuer un choix valide");
+                            break;
+                    }
+                    Console.WriteLine("Virement effecté avec success");
+
                 }
+                else
+                {
+                    Console.WriteLine("Usager courant non connecté");
+                }
+                
             }
+            AppuyerEntrer();
         }
         // Fonction qui permet de choisir un compte 
         public string ChoisirCompte()
@@ -729,24 +807,36 @@ namespace Guichet
             //compte1 as CompteCheque
             if (resultatConversion)
             {
-                string compte = ChoisirCompte();
-                switch (compte)
+                if(montant > 0)
                 {
-                    case "1":
-                        usagerCourant.CompteCheque.Retirer(montant + frais);
-                        break;
-                    case "2":
-                        usagerCourant.CompteEpargne.Retirer(montant + frais);
-                        break;
-                    default:
-                        Console.WriteLine("Votre choix de compte est invalide");
-                        break;
+                    string compte = ChoisirCompte();
+                    switch (compte)
+                    {
+                        case "1":
+                            usagerCourant.CompteCheque.Retirer(montant + frais);
+                            break;
+                        case "2":
+                            usagerCourant.CompteEpargne.Retirer(montant + frais);
+                            break;
+                        default:
+                            Console.WriteLine("Votre choix de compte est invalide");
+                            break;
+                    }
+                   
+
                 }
+                else
+                {
+                    Console.WriteLine("Le montant de la facture doit etre positif");
+
+                }
+
             }
             else
             {
                 Console.WriteLine("Entrer un montant de facture valide");
             }
+            AppuyerEntrer();
         }
         // Fonction qui renvoie le fournisseur
         public string ChoixFournisseur()

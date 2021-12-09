@@ -46,8 +46,10 @@ namespace Guichet
             guichet.AjouterUsager(firdaous);
             guichet.AjouterUsager(simon);
             guichet.AjouterUsager(katia);
-            guichet.MenuPrincipal();
+            guichet.MenuPrincipal();            
             guichet.StartApplication();
+
+
 
         }
     }

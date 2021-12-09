@@ -22,15 +22,11 @@ namespace Guichet
         {
             get => nomProprietaire;
         }
-
         public decimal Balance
         {
             get => balance;
             set => balance = value;
         }
-
-
-
         // Le constructeur de la classe CompteClient
         public CompteClient(string nomProprietaire, decimal initialBalance)
         {
@@ -63,9 +59,7 @@ namespace Guichet
             else
             {
                 balance -= amount;
-
             }
-
         }
         // Methode qui Affiche les informations d'un compte ( Cheque ou Epargne)
         public void AfficherCompte()
@@ -73,7 +67,6 @@ namespace Guichet
             Console.WriteLine("Numero du compte : " + numero);
             Console.WriteLine("Nom proprietaire : " + nomProprietaire);
             Console.WriteLine("Solde : " + balance);
-
         }
         // Methode qui effectue un virement entre deux compte
         public void Virer(CompteClient Receiver, decimal amount)
@@ -87,9 +80,7 @@ namespace Guichet
             else
             {
                 Receiver.Deposer(amount);
-
-            }
-           
+            }          
         }
         // Fonction qui affiche l'historique du compte
         public string GetAccountHistory()

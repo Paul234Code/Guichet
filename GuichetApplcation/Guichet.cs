@@ -152,9 +152,21 @@ namespace Guichet
         // Fonction qui affiche le menu fournisseur
         public void MenuFournisseur()
         {
+            
             Console.WriteLine(" 1- Amazon");
             Console.WriteLine(" 2- Bell");
             Console.WriteLine(" 3- Vidéotron");
+            string choixFournisseur = Console.ReadLine();
+
+
+        }
+
+        public FournisseurService getFournisseurService()
+        {
+            Console.WriteLine("Entrer le nom  fournisseur");
+            string choixFournisseur = Console.ReadLine();
+            return  new FournisseurService(choixFournisseur);
+
         }
         // methode qui retourne le solde du guichet
         public decimal getSoldeGuichet()
@@ -524,6 +536,7 @@ namespace Guichet
         }
 
         // Fonction qui permet de changer le mot de passe de l'usager
+
         public void ChangerMotdePasse()
         {
             Console.WriteLine("Entrer le mot de passe actuel:");

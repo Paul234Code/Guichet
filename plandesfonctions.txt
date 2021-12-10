@@ -1,0 +1,90 @@
+Plan des fonctions: PROJET GUICHET
+
+classe Guichet:
+
+1- AjouterClient(Client client)
+2- MenuPrincipal()
+3- ConnectionModeUtilisateur()
+4- SelectOperationsUsager(string operation,Usager usager,CompteCheque cheque,decimal montant)
+5- MenuAdmin()
+6- MenuFournisseur()
+7- getFournisseurService(FournisseurService choix)
+8- getSoldeGuichet()
+9- AfficherSoldeGuichet()
+10- DeposerGuichet(decimal montant)
+11- DebiterGuichet(decimal montant)
+12- SelectOperationsAdmin(string choixadmin)
+13- SelectionCompte(string choix)
+
+
+classe Usager:
+1- GetUsagerPassword()
+2- SetUsagerPassword(char[] password)
+3- getUsagerId()
+4- ChangerMotDePasse()
+5- DeposerMontant()
+6- RetirerMontant(decimal montant)
+7- VerrouillerCompte()
+8- AfficherSoldeCompte()
+9- FaireVirement(CompteCheque cheque, decimal montant)
+10- PayerFacture()
+11- FermerSession()
+12- ChoixCompte()
+13- Egalite(char[] tab1, char[] tab2)
+14- ConnectionModeUtilisateur()
+15- MenuComptePersonnel()
+
+classe CompteClient:
+1- Deposer(decimal amount, DateTime date, string information)
+2- Retirer(decimal amount, DateTime date, string information)
+3- AfficherCompte()
+4- Virer(CompteClient Receiver, decimal amount()
+5- GetAccountHistory()
+6- AfficherSoldeCompte()
+
+classe controller:
+0
+
+classe CompteCheque:
+0
+
+classe CompteEpargne:
+0
+
+classe TypeDuCompte:
+0
+
+classe Client:
+0
+
+classe Transaction:
+0
+
+classe EtatDuCompte:
+0
+
+classe EtatDuSysteme:
+0
+
+classe FournisseurService:
+1- AjouterFacture(Facture facture)
+2- AfficherService()
+3- AjouterNoFacture()
+4- PayementDuService()
+
+classe Administrateur:
+1- RemettreGuichetEnFonction()
+2- DeposerArgent()
+3- VoirSoldeGuichet()
+4- VoirListeDesComptes()
+5- RetournerMenuPrincipal()
+6- GetAdministrateurId()
+7- GeAdministrateurPassword()
+8- ValidationAdministrateur(string userAdmin, string password)
+9- ConnectionModeAdministrateur()
+10- SelectChoixAdmin(string choix admin)
+11- seconnecteradmin()
+
+classe Facture:
+1- ToString()
+2- AfficherInformationFacture()

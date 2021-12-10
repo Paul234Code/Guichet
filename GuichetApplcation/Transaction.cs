@@ -13,7 +13,7 @@ namespace Guichet
         {
             this.Amount = Amount;
             this.Date = Date;
-            this.Notes = Notes;
+            this.Notes = Notes; 
         }
     }
 }

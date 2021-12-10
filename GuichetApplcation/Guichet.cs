@@ -100,6 +100,7 @@ namespace Guichet
             Console.WriteLine("2- Se connecter comme administrateur");
             Console.WriteLine("3- Quitter");
             string ChoixPrincipal = Console.ReadLine();
+
             SelectionCompte(ChoixPrincipal);
         }
         // Choix des operations dans le menu du compte personnel
@@ -138,7 +139,7 @@ namespace Guichet
         public void MenuAdmin()
         {
             Console.WriteLine();
-            Console.WriteLine("Bienvenue dans votre compte administrateur");
+            Console.WriteLine("  Bienvenue dans votre compte administrateur  ");
             Console.WriteLine();
             Console.WriteLine(" 1- Remettre le guichet en fonction");
             Console.WriteLine(" 2- Déposer de l'argent dans le guichet");
@@ -340,7 +341,8 @@ namespace Guichet
 
                     break;
                 }
-                compteur++;
+
+                 compteur++;
             }
             if (compteur == 3)
             {
@@ -465,6 +467,7 @@ namespace Guichet
             Console.WriteLine("Entrer le montant du depot ");
             string saisie = Console.ReadLine();
             bool resulatConversion = decimal.TryParse(saisie, out decimal montant);
+
             if (resulatConversion && montant <= 10000)
             {
 
@@ -806,7 +809,7 @@ namespace Guichet
             string choixCompte = Console.ReadLine();
             return choixCompte;
         }
-        public void AppuyerEntrer()
+        public void AppuyerEntrer()  //simple fonction pour avoir un délai quand le systéme affiche un msg
         {
             Console.WriteLine("Appuyer sur la touche ENTER pour retourner au menu ");
             Console.ReadLine();

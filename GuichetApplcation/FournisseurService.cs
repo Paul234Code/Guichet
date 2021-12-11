@@ -5,7 +5,9 @@ namespace Guichet
 {
     public class FournisseurService
     {
+        private static int numero = 1;
         private string nomFournisseur;
+        private string numeroFournisseur;
         private List<Facture> listeFacture = new List<Facture>();
         // Les proprietes
         public string NomFournisseur
@@ -13,6 +15,9 @@ namespace Guichet
             get => nomFournisseur;
             set => nomFournisseur = value;
         }
+        public string NumeroFournisseur {
+            get => numeroFournisseur;
+            set => numeroFournisseur = value; } 
         public List<Facture> ListeFacture
         {
             get => listeFacture;
@@ -21,8 +26,10 @@ namespace Guichet
         // Le  Constructeur de la classe Fournisseur
         public FournisseurService(string nomFournisseur)
         {
+            numeroFournisseur=  numero.ToString();
             this.nomFournisseur = nomFournisseur;
             listeFacture = new List<Facture>();
+            numero++;
         }
         // Ajouter une facture dans la liste des factures
         public void AjouterFacture(Facture facture)
@@ -32,8 +39,9 @@ namespace Guichet
         // Affichage de la liste des factures et le nom du fournisseur
         public void AfficherService()
         {
-            Console.WriteLine(nomFournisseur);
-            if (listeFacture == null)
+            Console.WriteLine(nomFournisseur.ToUpper());
+            Console.WriteLine("----------------------------------");
+            if (listeFacture.Count == 0)
             {
                 Console.WriteLine("Aucune facture  a payer");
             }
@@ -41,8 +49,9 @@ namespace Guichet
             {
                 foreach (Facture facture in listeFacture)
                 {
-                    Console.WriteLine("\t" + facture.ToString());
+                    Console.WriteLine("  " + facture.ToString());
                 }
+                Console.WriteLine();
             }
         }
         public int GetIndex(string numero)

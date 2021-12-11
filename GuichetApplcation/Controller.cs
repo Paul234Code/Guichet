@@ -25,7 +25,7 @@ namespace Guichet
             CompteCheque simonCheque = new("Simon Bugeaud", 3000, TypeDuCompte.Cheque);
             CompteCheque katiaCheque = new("Katia Duschenau", 4000, TypeDuCompte.Cheque);
             // Creation d'un service
-            FournisseurService service = new("Bell")
+            FournisseurService amazon = new("Amazon")
             {
                 ListeFacture = new List<Facture>()
                 {
@@ -34,6 +34,25 @@ namespace Guichet
                     new Facture("Television",400, DateTime.Now),
                 }
             };
+            FournisseurService bell = new("Bell")
+            {
+                ListeFacture = new List<Facture>()
+                {
+                    new Facture("Telephone",200,DateTime.Now),
+                    new Facture("Internet",300,DateTime.Now),
+                    new Facture("Television",400, DateTime.Now)
+                }
+            };
+            FournisseurService videotron = new("Videotron")
+            {
+                ListeFacture = new List<Facture>()               
+            };
+            // La liste des fournisseurs de service
+            var service = new List<FournisseurService>();
+            service.Add(amazon);
+            service.Add(bell);
+            service.Add(videotron);
+
             //Creation de 5 usagers
             Usager paul = new(paulEpargne, paulCheque, service, "paul1988", "1234", EtatDuCompte.ACTIF);
             Usager jonam = new(jonamEpargne, jonamCheque, service, "jonam123", "1235", EtatDuCompte.ACTIF);

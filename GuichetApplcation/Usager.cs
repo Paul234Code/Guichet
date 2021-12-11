@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 
 namespace Guichet
 {
@@ -8,7 +8,7 @@ namespace Guichet
         // Les attributs de la classe Usager
         private CompteCheque compteCheque;
         private CompteEpargne compteEpargne;
-        private FournisseurService fournisseurService;
+        private List<FournisseurService> fournisseurService;
         private EtatDuCompte etat;
         private string nomUtilisateur;
         private string password;
@@ -22,7 +22,7 @@ namespace Guichet
             get => etat;
             set => etat = value;
         }
-        public FournisseurService FournisseurService
+        public List<FournisseurService> FournisseurService
         {
             get => fournisseurService;
             set => fournisseurService = value;
@@ -42,7 +42,7 @@ namespace Guichet
             set => nomUtilisateur = value;
         }
         // Le constructeur de la classe Usager
-        public Usager(CompteEpargne compteEpargne, CompteCheque compteCheque, FournisseurService fournisseurService, string nomUtilisateur, string password, EtatDuCompte etat)
+        public Usager(CompteEpargne compteEpargne, CompteCheque compteCheque, List<FournisseurService> fournisseurService, string nomUtilisateur, string password, EtatDuCompte etat)
         {
             this.compteCheque = compteCheque;
             this.compteEpargne = compteEpargne;

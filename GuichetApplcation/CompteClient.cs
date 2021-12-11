@@ -42,7 +42,12 @@ namespace Guichet
             {
                 Console.WriteLine("montant du depot doit etre positif");
             }
-            balance += amount;
+            else
+            {
+                balance += amount;
+
+            }
+            
         }
         // Methode qui retire un montant valide dans un compte
         public void Retirer(decimal amount)
@@ -56,7 +61,7 @@ namespace Guichet
                 Console.WriteLine("Fonds insufisant");
             }
             else
-            {
+            { 
                 balance -= amount;
             }
         }
@@ -69,15 +74,14 @@ namespace Guichet
         }
         // Methode qui effectue un virement entre deux compte
         public void Virer(CompteClient Receiver, decimal amount)
-        {
-            // on debit le compte courant (this)
-            Retirer(amount);
+        {          
             if (amount > balance)
             {
-                Console.WriteLine("Transaction impossible");
+                Console.WriteLine("Transaction impossible dans virer");
             }
-            else
+           else
             {
+                Retirer(amount);
                 Receiver.Deposer(amount);
             }
         }

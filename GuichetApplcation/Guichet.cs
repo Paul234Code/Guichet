@@ -168,7 +168,8 @@ namespace Guichet
         // Affiche le solde du guichet
         public void AfficherSoldeGuichet()
         {
-            Console.WriteLine("Solde Guichet:  " + getSoldeGuichet());
+            
+            Console.WriteLine($"Solde Guichet :  {Solde}");
         }
         // Fonction qui affiche l'etat du Guichet
         public void AfficherEtatGuichet()
@@ -273,7 +274,7 @@ namespace Guichet
                 Console.WriteLine("-Epargne : " + usager.CompteEpargne.Balance);
                 Console.WriteLine("Etat du Compte: " + usager.Etat);
                 Console.WriteLine();
-                Console.WriteLine("----------------------------------------------------");
+                Console.WriteLine("========================================================");
             }
         }
         // Connection Utilisateur
@@ -311,9 +312,7 @@ namespace Guichet
                     VerrouillerCompte();
                 }
                 else
-                {
-                    // Console.WriteLine("Bienvenue dans votre compte personnel");
-                    //Console.WriteLine();
+                {                   
                     MenuComptePersonnel();
                 }
             }
@@ -337,7 +336,6 @@ namespace Guichet
                 }
                 else
                 {
-
                     break;
                 }
                 compteur++;
@@ -467,7 +465,6 @@ namespace Guichet
             bool resulatConversion = decimal.TryParse(saisie, out decimal montant);
             if (resulatConversion && montant <= 10000)
             {
-
                 DeposerGuichet(montant);
             }
             else
@@ -549,9 +546,7 @@ namespace Guichet
                 {
                     Console.WriteLine("Le format du nouveau mot de passe est incorrect");
                     Console.WriteLine();
-
                 }
-
             }
             else
             {
@@ -579,29 +574,37 @@ namespace Guichet
             bool resultat = decimal.TryParse(valeur, out decimal montant);
             if (resultat)
             {
-                if (!ValidationUsagerCourant())
+                if(montant> 0)
                 {
-                    string compte = ChoisirCompte();
-                    switch (compte)
+                    if (!ValidationUsagerCourant())
                     {
-                        case "1":
-                            usagerCourant.CompteCheque.Deposer(montant);
-                            Console.WriteLine("Nouveau Solde du compte cheque : " + usagerCourant.CompteCheque.Balance);
-                            break;
-                        case "2":
-                            usagerCourant.CompteEpargne.Deposer(montant);
-                            Console.WriteLine("Nouveau Solde du compte epargne : " + usagerCourant.CompteEpargne.Balance);
-                            break;
-                        default:
-                            Console.WriteLine("Operation  invalide");
-                            break;
+                        string compte = ChoisirCompte();
+                        switch (compte)
+                        {
+                            case "1":
+                                usagerCourant.CompteCheque.Deposer(montant);
+                                Console.WriteLine("Nouveau Solde du compte cheque : " + usagerCourant.CompteCheque.Balance);
+                                break;
+                            case "2":
+                                usagerCourant.CompteEpargne.Deposer(montant);
+                                Console.WriteLine("Nouveau Solde du compte epargne : " + usagerCourant.CompteEpargne.Balance);
+                                break;
+                            default:
+                                Console.WriteLine("Operation  invalide");
+                                break;
+                        }
                     }
+                    else
+                    {
+                        Console.WriteLine("Usager courant non connecté");
+                    }
+
                 }
                 else
                 {
-                    Console.WriteLine("Usager courant non connecté");
+                    Console.WriteLine("Le montant du depot doit etre positif");
                 }
-
+                
             }
             else
             {
@@ -634,14 +637,7 @@ namespace Guichet
         public void RetirerMontant(decimal montant)
         {
             if (!ValidationUsagerCourant())
-            {
-                if (montant > solde)
-                {
-                    Console.WriteLine("Operation de retrait impossible");
-
-                }
-                else
-                {
+            {              
                     string compte = ChoisirCompte();
                     switch (compte)
                     {
@@ -658,16 +654,12 @@ namespace Guichet
                         default:
                             Console.WriteLine("Operation  invalide");
                             break;
-                    }
-
-                }
-
+                    }             
             }
             else
             {
                 Console.WriteLine("Usager Courant non connecté");
             }
-
             Console.WriteLine();
         }
         // fonction qui permet de retirer un montant 
@@ -678,7 +670,14 @@ namespace Guichet
             bool resulat = decimal.TryParse(saisie, out decimal montant);
             if (resulat)
             {
-                RetirerMontant(montant);
+                if(montant > 0)
+                {
+                    RetirerMontant(montant);
+                }
+                else
+                {
+                    Console.WriteLine("Le montant du retrait doit positif");
+                }               
             }
             else
             {
@@ -758,7 +757,6 @@ namespace Guichet
             }
             else
             {
-
                 if (ValidationConnection())
                 {
                     if (!ValidationUsagerCourant())
@@ -781,7 +779,6 @@ namespace Guichet
                                 break;
                         }
                         Console.WriteLine("Virement effecté avec success");
-
                     }
                     else
                     {
@@ -792,8 +789,6 @@ namespace Guichet
                 {
                     Console.WriteLine("Connection invalide");
                 }
-
-
             }
             AppuyerEntrer();
         }
@@ -867,9 +862,9 @@ namespace Guichet
             AppuyerEntrer();
         }
         // Fonction qui renvoie le fournisseur
-        public string ChoixFournisseur()
+        public FournisseurService ChoixFournisseur()
         {
-            string fournisseur = "";
+            FournisseurService fournisseur = null ;
             Console.WriteLine("Veuillez choisir un des fournisseurs suivant :");
             Console.WriteLine("1- Amazon");
             Console.WriteLine("2- Bell");
@@ -878,13 +873,13 @@ namespace Guichet
             switch (choice)
             {
                 case "1":
-                    fournisseur = "Amazon";
+                    fournisseur = new FournisseurService("Amazon");
                     break;
                 case "2":
-                    fournisseur = "Bell";
+                    fournisseur = new("Bell");
                     break;
                 case "3":
-                    fournisseur = "Vidéotron";
+                    fournisseur =  new("Vidéotron");
                     break;
 
             }

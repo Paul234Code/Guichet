@@ -24,7 +24,7 @@ namespace Guichet
             this.nomFournisseur = nomFournisseur;
             listeFacture = new List<Facture>();
         }
-        // Ajouter une facture 
+        // Ajouter une facture dans la liste des factures
         public void AjouterFacture(Facture facture)
         {
             listeFacture.Add(facture);
@@ -43,9 +43,7 @@ namespace Guichet
                 {
                     Console.WriteLine("\t" + facture.ToString());
                 }
-
             }
-
         }
         public int GetIndex(string numero)
         {
@@ -62,9 +60,7 @@ namespace Guichet
         // Fonction qui retourne un fournisseur de service
         public FournisseurService GetFournisseurService(string nom)
         {
-
             return new FournisseurService(nom) { listeFacture = new List<Facture>() };
-
         }
     }
 }

@@ -16,7 +16,9 @@ namespace Guichet
         // Fonction qui affiche le solde du compte Cheque
         public void AfficherSoldeCheque()
         {
-            Console.WriteLine("Solde du compte Cheque : " + Balance);
+            string format = string.Format("{0:0,0.00}", balance);
+            string chaine = format.Replace(',', '.');
+            Console.WriteLine($"Solde du compte Cheque : {chaine}" );
 
         }
     }

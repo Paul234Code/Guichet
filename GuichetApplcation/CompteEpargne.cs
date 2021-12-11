@@ -18,7 +18,9 @@ namespace Guichet
         // Fonction qui affiche le solde du compte Epargne
         public void AfficherSoldeEpargne()
         {
-            Console.WriteLine("Solde du compte Epargne: " + balance);
+            string format = string.Format("{0:0,0.00}", balance);
+            string chaine = format.Replace(',', '.');
+            Console.WriteLine("Solde du compte Epargne: " + chaine);
 
         }
     }

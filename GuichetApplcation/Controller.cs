@@ -10,7 +10,8 @@ namespace Guichet
             Administrateur administrateur = new("admin", "123456");
             Guichet guichet = new(10000, EtatDuSysteme.ACTIF, administrateur)
             {
-                ListeUsager = new List<Usager>()
+                ListeUsager = new List<Usager>(),
+                ListeAdministrateur = new List<Administrateur>()
             };
             //classe CompteEpargne
             CompteEpargne paulEpargne = new("Paul Faye", 2000, TypeDuCompte.Epargne);
@@ -65,6 +66,8 @@ namespace Guichet
             guichet.AjouterUsager(firdaous);
             guichet.AjouterUsager(simon);
             guichet.AjouterUsager(katia);
+            // Ajouter de l'Administrateur
+            guichet.AjouterAdministrateur(administrateur);
             guichet.MenuPrincipal();
             guichet.StartApplication();
 

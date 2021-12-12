@@ -8,8 +8,9 @@ namespace Guichet
         // Attributs de la classe Guichet
         private List<Usager> listeUsager;
         private EtatDuSysteme mode;
-        private Administrateur administrateur;
-        private Usager usagerCourant;
+        private List<Administrateur> listeAdministrateur;
+        private static Usager usagerCourant;
+        private  static Administrateur administrateurCourant;
         private decimal solde;
         // Les proprietes
         public List<Usager> ListeUsager
@@ -17,10 +18,10 @@ namespace Guichet
             get => listeUsager;
             set => listeUsager = value;
         }
-        public Administrateur Administrateur
+        public List<Administrateur> ListeAdministrateur
         {
-            get => administrateur;
-            set => administrateur = value;
+            get => listeAdministrateur;
+            set => listeAdministrateur = value;
         }
         public Usager UsagerCourant
         {
@@ -42,7 +43,7 @@ namespace Guichet
         {
             this.solde = solde;
             this.mode = mode;
-            this.administrateur = administrateur;
+            listeAdministrateur =  new List<Administrateur>();
             listeUsager = new List<Usager>();
         }
         // methode qui ajoute un client dans la liste
@@ -54,6 +55,11 @@ namespace Guichet
             }
             listeUsager.Add(usager);
         }
+        // Fonction qui permet d'ajouter un Administrateur
+        public void AjouterAdministrateur(Administrateur administrateur)
+        {
+            listeAdministrateur.Add(administrateur);
+        }
         // Fonction qui permet de verifier le solde du guichet
         public void VerifierSoldeGuichet()
         {
@@ -63,32 +69,50 @@ namespace Guichet
                 Console.WriteLine("Solde du guichet : 0. GUICHET EN PANNE.");
             }
         }
+        // Fonction qui determine la connection
+        public void Connection()
+        {
+            if(Solde == 0 ||  Mode == EtatDuSysteme.PANNE)
+            {
+                Console.WriteLine("Systeme Hors service, guichet en PANNE");
+            }
+            else
+            {
+                ConnectionModeUtilisateur();
+            }
+            AppuyerEntrer();
+            MenuPrincipal();
+
+        }
         // Fonction qui va lancer l'application
         public void StartApplication()
         {
+            
             do
             {
                 Console.Clear();
                 MenuPrincipal();
-                while (usagerCourant != null)
+                while(usagerCourant != null)
                 {
                     MenuComptePersonnel();
                     if (usagerCourant == null)
                     {
                         MenuPrincipal();
-                    }
-                }
-                while (administrateur != null)
+                        break;
+                    }                   
+                    else
+                    {
+                        MenuComptePersonnel();
+                    } 
+                } 
+                while (administrateurCourant != null)
                 {
                     MenuAdmin();
-                    if (administrateur == null)
+                    if (administrateurCourant == null)
                     {
                         MenuPrincipal();
-
                     }
-
                 }
-
             }
             while (true);
         }
@@ -183,7 +207,6 @@ namespace Guichet
                 solde += montant;
                 Console.WriteLine("Transaction effectué avec success");
             }
-
         }
         // Methode pour debiter un montant dans le  Guichet
         public void DebiterGuichet(decimal montant)
@@ -203,10 +226,12 @@ namespace Guichet
             if (solde == 0)
             {
                 MettreGuichetEnPanne();
+                AppuyerEntrer();
+                MenuPrincipal();
             }
             else
             {
-                MettreGuichetEnMarche();
+                //MettreGuichetEnMarche();
             }
         }
         // Les choix des operations de l'administrateur
@@ -230,7 +255,7 @@ namespace Guichet
                     AppuyerEntrer();
                     break;
                 case "5":
-                    MenuPrincipal();
+                    RetournerMenuPrincipal();
                     break;
                 default:
                     Console.WriteLine("Choix Administrateur  invalide");
@@ -244,7 +269,7 @@ namespace Guichet
             switch (choix)
             {
                 case "1":
-                    ConnectionModeUtilisateur();
+                    Connection(); //ModeUtilisateur();
                     break;
                 case "2":
                     ConnectionModeAdministrateur();
@@ -377,26 +402,28 @@ namespace Guichet
             {
                 Console.WriteLine("Usager non connecté");
             }
-        }
-        public Administrateur RechercherAdmin(string userAdmin, string password)
-        {
-            Administrateur admin;
-            if (ValidationAdministrateur(userAdmin, password))
-            {
-                admin = new Administrateur(userAdmin, password);
-            }
-            else
-            {
-                admin = null;
-            }
-            return admin;
-        }
+        }       
         // Fonction qui valide le mot de passe et le nom utilisateur de l'admin
         public bool ValidationAdministrateur(string userAdmin, string password)
         {
-            return password.Equals(administrateur.AdministrateurPassword) && userAdmin.Equals(administrateur.AdministrateurId);
+            bool trouve = false;
+            IEnumerator<Administrateur> monEnumarateur = listeAdministrateur.GetEnumerator();
+            while (monEnumarateur.MoveNext())
+            {
+                if (monEnumarateur.Current.AdministrateurId == userAdmin && monEnumarateur.Current.AdministrateurPassword == password)
+                {
+                    trouve = true;
+                    administrateurCourant = monEnumarateur.Current;
+                    break;
+                }
+                else
+                {
+                    trouve = false;
+                }
+            }
+            return trouve;
         }
-        // Fonction qui permet de rechercher un element dans une liste
+        // Fonction qui permet de rechercher un  usager dans la liste des usagers
         public bool Rechercher(string username, string password)
         {
             bool resultat = false;
@@ -499,7 +526,7 @@ namespace Guichet
         }
         public void RetournerMenuPrincipal()
         {
-            administrateur = null;
+            administrateurCourant = null;
             MenuPrincipal();
         }
         public bool ValidationFormatMdp(string str)
@@ -809,8 +836,9 @@ namespace Guichet
         // Fonction qui permet de fermer la session
         public void FermerSession()
         {
-            usagerCourant = null;
+            
             MenuPrincipal();
+            usagerCourant = null;
 
         }
         // Methode qui permet a l'usager de payer une facture       
@@ -855,8 +883,7 @@ namespace Guichet
                             default:
                                 Console.WriteLine("Votre choix de compte est invalide");
                                 break;
-                        }
-                       
+                        }                      
                     }
                     else
                     {
@@ -866,8 +893,7 @@ namespace Guichet
                 else
                 {
                     Console.WriteLine("Entrer un montant de facture valide");
-                }
-                
+                }               
             }
             AppuyerEntrer();
         }

@@ -657,16 +657,16 @@ namespace Guichet
                     string compte = ChoisirCompte();
                     switch (compte)
                     {
-                        case "1":
-                            DebiterGuichet(montant);
+                        case "1":                            
                             usagerCourant.CompteCheque.Retirer(montant);
                             usagerCourant.CompteCheque.AfficherSoldeCheque();
-                            break;
-                        case "2":
                             DebiterGuichet(montant);
+                        break;
+                        case "2":                           
                             usagerCourant.CompteEpargne.Retirer(montant);
                             usagerCourant.CompteEpargne.AfficherSoldeEpargne();
-                            break;
+                            DebiterGuichet(montant);
+                        break;
                         default:
                             Console.WriteLine("Operation  invalide");
                             break;
@@ -686,13 +686,13 @@ namespace Guichet
             bool resulat = decimal.TryParse(saisie, out decimal montant);
             if (resulat)
             {
-                if(montant > 0)
-                {
+                if(montant > 0 && montant <= solde)
+                {                  
                     RetirerMontant(montant);
                 }
                 else
                 {
-                    Console.WriteLine("Le montant du retrait doit positif");
+                    Console.WriteLine("Le montant du retrait doit positif et inferieur au solde du guichet");
                 }               
             }
             else

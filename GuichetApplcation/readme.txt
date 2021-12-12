@@ -1,36 +1,27 @@
+
 Formats des entités:
 
+===================================================================================
 1er utilisateur:
-
 Nom d'utilisateur: Firdaous
-NIP: 1234
-
-
-
+NIP: 1236
+==================================================================================
 2e utilisateur:
-Nom d'utilisateur: JonamDes
-NIP: 4321
-
-
-
+Nom d'utilisateur: Jonam123
+NIP: 1235
+==================================================================================
 3e utilisateur: 
-Nom d'utilisateur: PaulFaye
-NIP: 0123
-
-
-
-
+Nom d'utilisateur: paul1988
+NIP: 1234
+==================================================================================
 4e utilisateur:
-Nom d'utilisateur: PatrickR
-NIP: 3210
-
-
-
+Nom d'utilisateur: simonbug
+NIP: 1237
+===================================================================================
 5e utilisateur:
-Nom d'utilisateur: RobertLe
-NIP: 2345
-
+Nom d'utilisateur: katiadus
+NIP: 1238
+===================================================================================
 ADMIN:
-
 Nom d'utilisateur: admin
 NIP: 123456

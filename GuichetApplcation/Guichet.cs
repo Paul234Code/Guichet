@@ -96,7 +96,7 @@ namespace Guichet
         public void MenuPrincipal()
         {
             Console.WriteLine("Veuillez choisir l'une des actions suivantes:");
-            Console.WriteLine("1- Se connecter à votre compte d'utilisateur");
+            Console.WriteLine("1- Se connecter à votre compte ");
             Console.WriteLine("2- Se connecter comme administrateur");
             Console.WriteLine("3- Quitter");
             string ChoixPrincipal = Console.ReadLine();
@@ -139,34 +139,15 @@ namespace Guichet
         public void MenuAdmin()
         {
             Console.WriteLine();
-            Console.WriteLine("  Bienvenue dans votre compte administrateur  ");
+            Console.WriteLine("Bienvenue dans votre compte administrateur  ");
             Console.WriteLine();
-            Console.WriteLine(" 1- Remettre le guichet en fonction");
-            Console.WriteLine(" 2- Déposer de l'argent dans le guichet");
-            Console.WriteLine(" 3- Voir le solde du guichet");
-            Console.WriteLine(" 4- Voir la liste des comptes ");
-            Console.WriteLine(" 5- Retourner au menu principal");
+            Console.WriteLine("1- Remettre le guichet en fonction");
+            Console.WriteLine("2- Déposer de l'argent dans le guichet");
+            Console.WriteLine("3- Voir le solde du guichet");
+            Console.WriteLine("4- Voir la liste des comptes ");
+            Console.WriteLine("5- Retourner au menu principal");
             string ChoixAdmin = Console.ReadLine();
             SelectOperationsAdmin(ChoixAdmin);
-        }
-        // Fonction qui affiche le menu fournisseur
-        public void MenuFournisseur()
-        {
-            
-            Console.WriteLine(" 1- Amazon");
-            Console.WriteLine(" 2- Bell");
-            Console.WriteLine(" 3- Vidéotron");
-            string choixFournisseur = Console.ReadLine();
-
-
-        }
-
-        public FournisseurService getFournisseurService()
-        {
-            Console.WriteLine("Entrer le nom  fournisseur");
-            string choixFournisseur = Console.ReadLine();
-            return  new FournisseurService(choixFournisseur);
-
         }
         // methode qui retourne le solde du guichet
         public decimal getSoldeGuichet()
@@ -322,7 +303,10 @@ namespace Guichet
                 }
                 if (compteur == 3)
                 {
-                    VerrouillerCompte();
+                    Console.WriteLine();
+                    Console.WriteLine("Votre compte est verrouiller, contactez un administrateur");
+                    Console.WriteLine();
+                    AppuyerEntrer();
                 }
                 else
                 {                   

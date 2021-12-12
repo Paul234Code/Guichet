@@ -329,9 +329,8 @@ namespace Guichet
                 if (compteur == 3)
                 {
                     Console.WriteLine();
-                    Console.WriteLine("Votre compte est verrouiller, contactez un administrateur");
-                    Console.WriteLine();
-                    AppuyerEntrer();
+                    Console.WriteLine("Votre compte est verrouiller, contactez un administrateur paul");
+                    Console.WriteLine();                  
                 }
                 else
                 {                   
@@ -488,7 +487,6 @@ namespace Guichet
             Console.WriteLine("Entrer le montant du depot ");
             string saisie = Console.ReadLine();
             bool resulatConversion = decimal.TryParse(saisie, out decimal montant);
-
             if (resulatConversion && montant <= 10000)
             {
                 DeposerGuichet(montant);
@@ -540,7 +538,6 @@ namespace Guichet
                 }
             }
             return resultatConversion;
-
         }
 
         // Fonction qui permet de changer le mot de passe de l'usager
@@ -625,13 +622,11 @@ namespace Guichet
                     {
                         Console.WriteLine("Usager courant non connecté");
                     }
-
                 }
                 else
                 {
                     Console.WriteLine("Le montant du depot doit etre positif");
-                }
-                
+                }               
             }
             else
             {
@@ -757,7 +752,6 @@ namespace Guichet
             Console.WriteLine("Entrer mot de passe");
             string password = Console.ReadLine();
             return password.Equals(usagerCourant.Password);
-
         }
         // Fonction qui valide les virement dans un compte
         public void ValidationVirement(decimal montant)
@@ -835,11 +829,9 @@ namespace Guichet
         }
         // Fonction qui permet de fermer la session
         public void FermerSession()
-        {
-            
+        {          
             MenuPrincipal();
             usagerCourant = null;
-
         }
         // Methode qui permet a l'usager de payer une facture       
         public void PayerFacture(decimal frais = 2)

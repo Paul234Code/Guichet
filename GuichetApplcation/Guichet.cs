@@ -82,12 +82,10 @@ namespace Guichet
             }
             AppuyerEntrer();
             MenuPrincipal();
-
         }
         // Fonction qui va lancer l'application
         public void StartApplication()
-        {
-            
+        {           
             do
             {
                 Console.Clear();
@@ -124,7 +122,6 @@ namespace Guichet
             Console.WriteLine("2- Se connecter comme administrateur");
             Console.WriteLine("3- Quitter");
             string ChoixPrincipal = Console.ReadLine();
-
             SelectionCompte(ChoixPrincipal);
         }
         // Choix des operations dans le menu du compte personnel
@@ -693,8 +690,16 @@ namespace Guichet
             if (resulat)
             {
                 if(montant > 0 && montant <= solde)
-                {                  
-                    RetirerMontant(montant);
+                { 
+                    if(montant <= usagerCourant.CompteCheque.Balance && montant <= usagerCourant.CompteEpargne.Balance)
+                    {
+                        RetirerMontant(montant);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Fonds insuffisants");
+                    }
+                    
                 }
                 else
                 {

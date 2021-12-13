@@ -844,6 +844,7 @@ namespace Guichet
         public void PayerFacture(decimal frais = 2)
         {
             Console.WriteLine("Veuillez choisir un des fournisseurs suivant :");
+            // Affiche la liste des fournissers
             foreach(FournisseurService service in usagerCourant.FournisseurService)
             {
                 Console.WriteLine(service.NumeroFournisseur+"- "+service.NomFournisseur);
@@ -853,11 +854,12 @@ namespace Guichet
             if(fournisseurCourant.ListeFacture.Count == 0)
             {
                 Console.WriteLine("Aucune facture a payer liste factures vide");
+                Console.WriteLine();
             }
             else
             {
                 fournisseurCourant.AfficherService();
-                Console.WriteLine("Entrer le numero de facture a payer:");
+                Console.WriteLine("Entrer le numero de facture:");
                 string numero = Console.ReadLine();
                 // on cherche la facture dans la liste des factures
                 int index = fournisseurCourant.GetIndex(numero);
@@ -868,21 +870,9 @@ namespace Guichet
                 {
                     if (montant > 0)
                     {
-                        string compte = ChoisirCompte();
-                        switch (compte)
-                        {
-                            case "1":
-                                usagerCourant.CompteCheque.Retirer(montant + frais);
-                                Console.WriteLine("Payement effectuer avec sucess");
-                                break;
-                            case "2":
-                                usagerCourant.CompteEpargne.Retirer(montant + frais);
-                                Console.WriteLine("Payement effectuer avec sucess");
-                                break;
-                            default:
-                                Console.WriteLine("Votre choix de compte est invalide");
-                                break;
-                        }                      
+                        ValidationPayement(montant);
+                        // on supprime la facture payée dans la liste des factures
+                        fournisseurCourant.ListeFacture.RemoveAt(index);                                        
                     }
                     else
                     {
@@ -905,22 +895,81 @@ namespace Guichet
                 if (montant + frais > usagerCourant.CompteCheque.Balance)
                 {
                     Console.WriteLine("Fonds insuffisants");
-                    Console.WriteLine("Voulez-vous changer le montant de la transaction(O) ou retourner au menu(R) (O/R)");
-                    string choice1 = Console.ReadLine();
-
+                    ChangerTransaction();
                 }
-
+                else
+                {
+                    usagerCourant.CompteCheque.Retirer(montant + frais);
+                    Console.WriteLine("Payement effectuer avec sucess");
+                }
             }
             else if (choice.Equals("2"))
             {
-
+                if(montant + frais > usagerCourant.CompteEpargne.Balance)
+                {
+                    Console.WriteLine("Fonds insuffisants");
+                    ChangerTransaction();
+                }
+                else
+                {
+                    usagerCourant.CompteEpargne.Retirer(montant + frais);
+                    Console.WriteLine("Payement effectuer avec sucess");
+                }
             }
             else
             {
                 Console.WriteLine("Choix de compte invalide");
+            }           
+        }
+        // Fonction qui permet de retourner au menu du compte
+        public void RetournerMenu()
+        {
+            MenuComptePersonnel();
+        }
+        // Fonction qui change la transaction
+        public void ChangerTransaction()
+        {
+            Console.WriteLine("Voulez-vous changer le montant de la transaction ou retourner au menu ?");
+            Console.WriteLine("1- Changer transaction");
+            Console.WriteLine("2- Retourner au menu");
+            string choice = Console.ReadLine();
+            switch (choice)
+            {
+                case "1":
+                    ModifierTransaction();
+                    break;
+                case "2":
+                    RetournerMenu();
+                    break;
 
             }
             
+        }
+        public void ModifierTransaction()
+        {
+            Console.WriteLine("Enter le montant de la facture");
+            string saisie = Console.ReadLine();
+            bool result = decimal.TryParse(saisie, out decimal montant);
+            
+            if (result)
+            {
+                if(montant > 0)
+                {
+                   
+
+
+                }
+                else
+                {
+                    Console.WriteLine("Le montant de la facture doit etre positif");
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("Enter un montant valide");
+            }
+
         }
     }
 }

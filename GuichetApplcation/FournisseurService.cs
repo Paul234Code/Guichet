@@ -67,9 +67,19 @@ namespace Guichet
             return index;
         }
         // Fonction qui retourne un fournisseur de service
-        public FournisseurService GetFournisseurService(string nom)
+        public int GetFactureByAmount(decimal montant)
         {
-            return new FournisseurService(nom) { listeFacture = new List<Facture>() };
+            int index = 0;
+            for (int i = 0; i < listeFacture.Count; i++)
+            {
+                if (listeFacture[i].MontantFacture == montant)
+                {
+                    index = i;
+                }
+            }
+            return index;
+
+
         }
     }
 }

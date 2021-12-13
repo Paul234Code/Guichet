@@ -216,7 +216,7 @@ namespace Guichet
             {
                 Console.WriteLine("operation de retrait impossible");
             }
-            else
+            else if(montant <= usagerCourant.CompteCheque.Balance || montant <= usagerCourant.CompteCheque.Balance)
             {
                 solde -= montant;
             }
@@ -657,23 +657,33 @@ namespace Guichet
         {
             if (!ValidationUsagerCourant())
             {              
-                    string compte = ChoisirCompte();
-                    switch (compte)
+                string compte = ChoisirCompte();
+                if(compte == "1")
+                {
+                    if(montant <= usagerCourant.CompteCheque.Balance)
                     {
-                        case "1":                            
-                            usagerCourant.CompteCheque.Retirer(montant);
-                            usagerCourant.CompteCheque.AfficherSoldeCheque();
-                            DebiterGuichet(montant);
-                        break;
-                        case "2":                           
-                            usagerCourant.CompteEpargne.Retirer(montant);
-                            usagerCourant.CompteEpargne.AfficherSoldeEpargne();
-                            DebiterGuichet(montant);
-                        break;
-                        default:
-                            Console.WriteLine("Operation  invalide");
-                            break;
-                    }             
+                        usagerCourant.CompteCheque.Retirer(montant);
+                        usagerCourant.CompteCheque.AfficherSoldeCheque();
+                        DebiterGuichet(montant);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Fonds insuffisants");
+                    }
+                }
+                else if(compte == "2")
+                {
+                    if(montant <= usagerCourant.CompteEpargne.Balance)
+                    {
+                        usagerCourant.CompteEpargne.Retirer(montant);
+                        usagerCourant.CompteEpargne.AfficherSoldeEpargne();
+                        DebiterGuichet(montant);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Fonds insuffisants");
+                    }
+                }  
             }
             else
             {
@@ -691,15 +701,7 @@ namespace Guichet
             {
                 if(montant > 0 && montant <= solde)
                 { 
-                    if(montant <= usagerCourant.CompteCheque.Balance || montant <= usagerCourant.CompteEpargne.Balance)
-                    {
-                        RetirerMontant(montant);
-                    }
-                    else
-                    {
-
-                    }
-                   
+                    RetirerMontant(montant);                  
                 }
                 else
                 {

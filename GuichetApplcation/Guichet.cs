@@ -691,15 +691,15 @@ namespace Guichet
             {
                 if(montant > 0 && montant <= solde)
                 { 
-                    if(montant <= usagerCourant.CompteCheque.Balance && montant <= usagerCourant.CompteEpargne.Balance)
+                    if(montant <= usagerCourant.CompteCheque.Balance || montant <= usagerCourant.CompteEpargne.Balance)
                     {
                         RetirerMontant(montant);
                     }
                     else
                     {
-                        Console.WriteLine("Fonds insuffisants");
+
                     }
-                    
+                   
                 }
                 else
                 {

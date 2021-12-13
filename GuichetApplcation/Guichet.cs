@@ -216,7 +216,7 @@ namespace Guichet
             {
                 Console.WriteLine("operation de retrait impossible");
             }
-            else if(montant <= usagerCourant.CompteCheque.Balance || montant <= usagerCourant.CompteCheque.Balance)
+            else 
             {
                 solde -= montant;
             }

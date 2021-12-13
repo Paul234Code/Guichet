@@ -941,34 +941,12 @@ namespace Guichet
                 case "2":
                     RetournerMenu();
                     break;
-
-            }
-            
+            }       
         }
         public void ModifierTransaction()
         {
-            Console.WriteLine("Enter le montant de la facture");
-            string saisie = Console.ReadLine();
-            bool result = decimal.TryParse(saisie, out decimal montant);
             
-            if (result)
-            {
-                if(montant > 0)
-                {
-                   
-
-
-                }
-                else
-                {
-                    Console.WriteLine("Le montant de la facture doit etre positif");
-                }
-
-            }
-            else
-            {
-                Console.WriteLine("Enter un montant valide");
-            }
+            
 
         }
     }

@@ -46,7 +46,7 @@ namespace Guichet
             };
             FournisseurService videotron = new("Videotron")
             {
-                ListeFacture = new List<Facture>()               
+                ListeFacture = new List<Facture>()
             };
             // La liste des fournisseurs de service
             var service = new List<FournisseurService>();

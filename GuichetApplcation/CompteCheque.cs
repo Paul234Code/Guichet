@@ -18,7 +18,7 @@ namespace Guichet
         {
             string format = string.Format("{0:0,0.00}", balance);
             string chaine = format.Replace(',', '.');
-            Console.WriteLine($"Solde du compte Cheque : {chaine}" );
+            Console.WriteLine($"Solde du compte Cheque : {chaine}");
 
         }
     }

@@ -15,9 +15,11 @@ namespace Guichet
             get => nomFournisseur;
             set => nomFournisseur = value;
         }
-        public string NumeroFournisseur {
+        public string NumeroFournisseur
+        {
             get => numeroFournisseur;
-            set => numeroFournisseur = value; } 
+            set => numeroFournisseur = value;
+        }
         public List<Facture> ListeFacture
         {
             get => listeFacture;
@@ -26,7 +28,7 @@ namespace Guichet
         // Le  Constructeur de la classe Fournisseur
         public FournisseurService(string nomFournisseur)
         {
-            numeroFournisseur=  numero.ToString();
+            numeroFournisseur = numero.ToString();
             this.nomFournisseur = nomFournisseur;
             listeFacture = new List<Facture>();
             numero++;

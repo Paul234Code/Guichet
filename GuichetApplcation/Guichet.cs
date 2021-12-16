@@ -10,7 +10,7 @@ namespace Guichet
         private EtatDuSysteme mode;
         private List<Administrateur> listeAdministrateur;
         private static Usager usagerCourant;
-        private  static Administrateur administrateurCourant;
+        private static Administrateur administrateurCourant;
         private decimal solde;
         // Les proprietes
         public List<Usager> ListeUsager
@@ -43,7 +43,7 @@ namespace Guichet
         {
             this.solde = solde;
             this.mode = mode;
-            listeAdministrateur =  new List<Administrateur>();
+            listeAdministrateur = new List<Administrateur>();
             listeUsager = new List<Usager>();
         }
         // methode qui ajoute un client dans la liste
@@ -72,7 +72,7 @@ namespace Guichet
         // Fonction qui determine la connection
         public void Connection()
         {
-            if(Solde == 0 ||  Mode == EtatDuSysteme.PANNE)
+            if (Solde == 0 || Mode == EtatDuSysteme.PANNE)
             {
                 Console.WriteLine("Systeme Hors service, guichet en PANNE");
             }
@@ -85,24 +85,24 @@ namespace Guichet
         }
         // Fonction qui va lancer l'application
         public void StartApplication()
-        {           
+        {
             do
             {
                 Console.Clear();
                 MenuPrincipal();
-                while(usagerCourant != null)
+                while (usagerCourant != null)
                 {
                     MenuComptePersonnel();
                     if (usagerCourant == null)
                     {
                         MenuPrincipal();
                         break;
-                    }                   
+                    }
                     else
                     {
                         MenuComptePersonnel();
-                    } 
-                } 
+                    }
+                }
                 while (administrateurCourant != null)
                 {
                     MenuAdmin();
@@ -183,7 +183,7 @@ namespace Guichet
         // Affiche le solde du guichet
         public void AfficherSoldeGuichet()
         {
-            
+
             Console.WriteLine($"Solde Guichet :  {Solde}");
         }
         // Fonction qui affiche l'etat du Guichet
@@ -216,7 +216,7 @@ namespace Guichet
             {
                 Console.WriteLine("operation de retrait impossible");
             }
-            else 
+            else
             {
                 solde -= montant;
             }
@@ -327,10 +327,10 @@ namespace Guichet
                 {
                     Console.WriteLine();
                     Console.WriteLine("Votre compte est verrouiller, contactez un administrateur paul");
-                    Console.WriteLine();                  
+                    Console.WriteLine();
                 }
                 else
-                {                   
+                {
                     MenuComptePersonnel();
                 }
             }
@@ -357,7 +357,7 @@ namespace Guichet
                     break;
                 }
 
-                 compteur++;
+                compteur++;
             }
             if (compteur == 3)
             {
@@ -398,7 +398,7 @@ namespace Guichet
             {
                 Console.WriteLine("Usager non connecté");
             }
-        }       
+        }
         // Fonction qui valide le mot de passe et le nom utilisateur de l'admin
         public bool ValidationAdministrateur(string userAdmin, string password)
         {
@@ -595,7 +595,7 @@ namespace Guichet
             bool resultat = decimal.TryParse(valeur, out decimal montant);
             if (resultat)
             {
-                if(montant> 0)
+                if (montant > 0)
                 {
                     if (!ValidationUsagerCourant())
                     {
@@ -623,7 +623,7 @@ namespace Guichet
                 else
                 {
                     Console.WriteLine("Le montant du depot doit etre positif");
-                }               
+                }
             }
             else
             {
@@ -656,11 +656,11 @@ namespace Guichet
         public void RetirerMontant(decimal montant)
         {
             if (!ValidationUsagerCourant())
-            {              
+            {
                 string compte = ChoisirCompte();
-                if(compte == "1")
+                if (compte == "1")
                 {
-                    if(montant <= usagerCourant.CompteCheque.Balance)
+                    if (montant <= usagerCourant.CompteCheque.Balance)
                     {
                         usagerCourant.CompteCheque.Retirer(montant);
                         usagerCourant.CompteCheque.AfficherSoldeCheque();
@@ -671,9 +671,9 @@ namespace Guichet
                         Console.WriteLine("Fonds insuffisants");
                     }
                 }
-                else if(compte == "2")
+                else if (compte == "2")
                 {
-                    if(montant <= usagerCourant.CompteEpargne.Balance)
+                    if (montant <= usagerCourant.CompteEpargne.Balance)
                     {
                         usagerCourant.CompteEpargne.Retirer(montant);
                         usagerCourant.CompteEpargne.AfficherSoldeEpargne();
@@ -683,7 +683,7 @@ namespace Guichet
                     {
                         Console.WriteLine("Fonds insuffisants");
                     }
-                }  
+                }
             }
             else
             {
@@ -699,14 +699,14 @@ namespace Guichet
             bool resulat = decimal.TryParse(saisie, out decimal montant);
             if (resulat)
             {
-                if(montant > 0 && montant <= solde)
-                { 
-                    RetirerMontant(montant);                  
+                if (montant > 0 && montant <= solde)
+                {
+                    RetirerMontant(montant);
                 }
                 else
                 {
                     Console.WriteLine("Le montant du retrait doit positif et inferieur au solde du guichet");
-                }               
+                }
             }
             else
             {
@@ -836,7 +836,7 @@ namespace Guichet
         }
         // Fonction qui permet de fermer la session
         public void FermerSession()
-        {          
+        {
             MenuPrincipal();
             usagerCourant = null;
         }
@@ -845,13 +845,13 @@ namespace Guichet
         {
             Console.WriteLine("Veuillez choisir un des fournisseurs suivant :");
             // Affiche la liste des fournissers
-            foreach(FournisseurService service in usagerCourant.FournisseurService)
+            foreach (FournisseurService service in usagerCourant.FournisseurService)
             {
-                Console.WriteLine(service.NumeroFournisseur+"- "+service.NomFournisseur);
+                Console.WriteLine(service.NumeroFournisseur + "- " + service.NomFournisseur);
             }
             string choice = Console.ReadLine();
-            FournisseurService fournisseurCourant = usagerCourant.FournisseurService.Find(fournisseur =>fournisseur.NumeroFournisseur == choice);
-            if(fournisseurCourant.ListeFacture.Count == 0)
+            FournisseurService fournisseurCourant = usagerCourant.FournisseurService.Find(fournisseur => fournisseur.NumeroFournisseur == choice);
+            if (fournisseurCourant.ListeFacture.Count == 0)
             {
                 Console.WriteLine("Aucune facture a payer liste factures vide");
                 Console.WriteLine();
@@ -872,7 +872,7 @@ namespace Guichet
                     {
                         ValidationPayement(montant);
                         // on supprime la facture payée dans la liste des factures
-                        fournisseurCourant.ListeFacture.RemoveAt(index);                                        
+                        fournisseurCourant.ListeFacture.RemoveAt(index);
                     }
                     else
                     {
@@ -882,7 +882,7 @@ namespace Guichet
                 else
                 {
                     Console.WriteLine("Entrer un montant de facture valide");
-                }               
+                }
             }
             AppuyerEntrer();
         }
@@ -905,7 +905,7 @@ namespace Guichet
             }
             else if (choice.Equals("2"))
             {
-                if(montant + frais > usagerCourant.CompteEpargne.Balance)
+                if (montant + frais > usagerCourant.CompteEpargne.Balance)
                 {
                     Console.WriteLine("Fonds insuffisants");
                     ChangerTransaction();
@@ -919,7 +919,7 @@ namespace Guichet
             else
             {
                 Console.WriteLine("Choix de compte invalide");
-            }           
+            }
         }
         // Fonction qui permet de retourner au menu du compte
         public void RetournerMenu()
@@ -941,12 +941,12 @@ namespace Guichet
                 case "2":
                     RetournerMenu();
                     break;
-            }       
+            }
         }
         public void ModifierTransaction()
         {
-            
-            
+
+
 
         }
     }
